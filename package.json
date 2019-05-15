@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "eslint *.js && nyc -r=text -r=lcov mocha",
-    "prepublish": "./bin/build.js"
+    "prepare": "node bin/build.js"
   },
   "repository": {
     "type": "git",
