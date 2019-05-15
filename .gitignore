@@ -3,3 +3,4 @@ package-lock.json
 coverage
 build
 .nyc_output
+opcodes*.json
