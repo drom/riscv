@@ -1,0 +1,35 @@
+{
+  "name": "riscv",
+  "version": "0.1.0",
+  "description": "RISC-V ISA helpers",
+  "main": "lib",
+  "scripts": {
+    "test": "eslint lib && nyc -r=text -r=lcov mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drom/riscv.git"
+  },
+  "keywords": [
+    "RISCV"
+  ],
+  "author": "Aliaksei Chapyzhenka",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/drom/riscv/issues"
+  },
+  "homepage": "https://github.com/drom/riscv#readme",
+  "devDependencies": {
+    "@drom/eslint-config": "^0.10.0",
+    "chai": "^4.2.0",
+    "eslint": "^5.16.0",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1"
+  },
+  "eslintConfig": {
+    "extends": "@drom/eslint-config/eslint4/node8"
+  },
+  "dependencies": {
+    "12": "^1.0.2"
+  }
+}
