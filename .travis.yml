@@ -1,14 +1,13 @@
+os:
+  - linux
+  - osx
+  - windows
 language: node_js
 node_js:
   - "12"
   - "11"
   - "10"
   - "8"
-  - "6"
-os:
-  - linux
-  - osx
-  - windows
 sudo: false
 install:
   - npm --version
