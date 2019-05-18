@@ -12,7 +12,9 @@ const urls = [
   'opcodes-custom',
   'opcodes-pseudo',
   'opcodes-rvc',
-  'opcodes-rvc-pseudo'
+  'opcodes-rvc-pseudo',
+  'opcodes-rvv',
+  'opcodes-rvv-pseudo'
 ];
 
 
