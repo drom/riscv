@@ -8,8 +8,10 @@ const lib = require('../lib');
 const flat = o => Object.keys(o)
   .reduce((res, key) => Object.assign(res, o[key]), {});
 
+const width = 1012;
+
 const c = lib.c;
-const tabler16 = lib.tabler(16, 860);
+const tabler16 = lib.tabler(16, width);
 
 const pics = [
   // major RV opcodes
@@ -261,10 +263,10 @@ const main = async () => {
   for (const pic of pics) {
     let svg;
     if (pic[1] === 'fmt') {
-      svg = lib.printHeader(pic[2], 860);
+      svg = lib.printHeader(pic[2], width);
     } else
     if (pic[1] === 'inst32') {
-      svg = lib.printInsts(pic[2], 860, opcodesAll, opcodesAllFlat);
+      svg = lib.printInsts(pic[2], width, opcodesAll, opcodesAllFlat);
     } else
     if (pic[1] === 'inst16') {
       svg = pic[2];
