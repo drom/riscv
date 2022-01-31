@@ -2,7 +2,7 @@
   "name": "riscv",
   "version": "0.3.0",
   "description": "RISC-V ISA helpers",
-  "main": "index.js",
+  "main": "lib",
   "scripts": {
     "test": "eslint *.js && nyc -r=text -r=lcov mocha",
     "prepare": "node bin/build.js"
@@ -22,15 +22,17 @@
   "homepage": "https://github.com/drom/riscv#readme",
   "devDependencies": {
     "@drom/eslint-config": "^0.10.0",
-    "chai": "^4.2.0",
-    "eslint": "^5.16.0",
-    "fs-extra": "^8.0.1",
-    "mocha": "^6.1.4",
-    "nyc": "^14.1.1",
-    "request": "^2.88.0",
-    "request-promise-native": "^1.0.7"
+    "chai": "^4.3.6",
+    "eslint": "^7.32.0",
+    "mocha": "^9.2.0",
+    "nyc": "^15.1.0"
   },
   "eslintConfig": {
     "extends": "@drom/eslint-config/eslint4/node8"
+  },
+  "dependencies": {
+    "bit-field": "^1.5.3",
+    "lodash.range": "^3.2.0",
+    "onml": "^2.1.0"
   }
 }
