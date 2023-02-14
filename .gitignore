@@ -4,3 +4,8 @@ coverage
 build
 .nyc_output
 opcodes*.json
+assets
+test1
+verilog
+
+
