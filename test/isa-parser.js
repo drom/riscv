@@ -11,7 +11,7 @@ describe('isa-lang-with', async () => {
   });
   it ('valid 1', async () => {
     const p = langParser(isaLangWith());
-    const stt = p('rv64g_zifencei_Sv39_zVe64f1_sscofpmf0p1_xpa64q_xpb1');
+    const stt = p('rv64g_zifencei_Sv39_zVe64f1_sscofpmf0p1_xpa64q_xpb1_zicbop');
     expect(stt.body).to.deep.eq([
       { kind: 'b', name: 'g', start: 4, end: 5 },
       { kind: 'z', name: 'zifencei', start: 6, end: 14 },
@@ -19,7 +19,8 @@ describe('isa-lang-with', async () => {
       { kind: 'z', name: 'zVe64f', start: 20, major: 1, end: 27 },
       { kind: 's', name: 'sscofpmf', start: 28, major: 0, minor: 1, end: 39 },
       { kind: 'x', name: 'xpa64q', start: 40, end: 46 },
-      { kind: 'x', name: 'xpb', start: 47, major: 1 }
+      { kind: 'x', name: 'xpb', start: 47, major: 1, end: 51 },
+      { kind: 'z', name: 'zicbop', start: 52 }
     ]);
   });
   it ('error 1', async () => {
@@ -47,7 +48,7 @@ describe('isa-lang-with', async () => {
       { kind: 'z', name: 'zVe64f', start: 26, major: 1, end: 33 },
       { kind: 's', name: 'sscofpmf', start: 34, major: 0, minor: 1, end: 45 },
       { kind: 'x', name: 'xpa64q', start: 46, end: 52 },
-      {            name: 'xp%b1ertertqer', error: 'invalid chunk', start: 53, end: 67 },
+      {            name: 'xp%b1ertertqer', error: 'invalid chunk', start: 53, end: 67 }
     ]);
   });
 
