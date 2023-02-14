@@ -302,7 +302,7 @@ const pics = [
     tabler32((labels, fields) => {
       [0, 1].map(t => {
         [0, 5, 6, 7].map((eew, ieew) => {
-          labels.push('V' + (t ? 'S' : 'L') + 'E' + (2 ** (ieew + 3)) + '.V')
+          labels.push('V' + (t ? 'S' : 'L') + 'E' + (2 ** (ieew + 3)) + '.V');
           fields.push(
             {bits: 7,  name: 0x7 + (t << 5)},
             {bits: 5,  name: '<b>v' + (t ? 's3' : 'd'), type: t ? 4 : 2},
@@ -347,7 +347,7 @@ const pics = [
     tabler32((labels, fields) => {
       [0, 1].map(t => {
         [0, 5, 6, 7].map((eew, ieew) => {
-          labels.push('V' + (t ? 'S' : 'L') + 'SE' + (2 ** (ieew + 3)) + '.V')
+          labels.push('V' + (t ? 'S' : 'L') + 'SE' + (2 ** (ieew + 3)) + '.V');
           fields.push(
             {bits: 7,  name: 0x7 + (t << 5)},
             {bits: 5,  name: '<b>v' + (t ? 's3' : 'd'), type: t ? 4 : 2},
@@ -370,7 +370,7 @@ const pics = [
     tabler32((labels, fields) => {
       [0, 1].map(t => {
         [0, 5, 6, 7].map((eew, ieew) => {
-          labels.push('V' + (t ? 'S' : 'L') + 'UXEI' + (2 ** (ieew + 3)) + '.V')
+          labels.push('V' + (t ? 'S' : 'L') + 'UXEI' + (2 ** (ieew + 3)) + '.V');
           fields.push(
             {bits: 7,  name: 0x7 + (t << 5)},
             {bits: 5,  name: '<b>v' + (t ? 's3' : 'd'), type: t ? 4 : 2},
@@ -386,7 +386,7 @@ const pics = [
       });
       [0, 1].map(t => {
         [0, 5, 6, 7].map((eew, ieew) => {
-          labels.push('V' + (t ? 'S' : 'L') + 'OXEI' + (2 ** (ieew + 3)) + '.V')
+          labels.push('V' + (t ? 'S' : 'L') + 'OXEI' + (2 ** (ieew + 3)) + '.V');
           fields.push(
             {bits: 7,  name: 0x7 + (t << 5)},
             {bits: 5,  name: '<b>v' + (t ? 's3' : 'd'), type: t ? 4 : 2},
@@ -408,7 +408,7 @@ const pics = [
   // print_insts(Object.keys(opcodesAll.rvv).filter(e => e.match(/vle\d\d?ff.v/)))
     tabler32((labels, fields) => {
       [0, 5, 6, 7].map((eew, ieew) => {
-        labels.push('VLE' + (2 ** (ieew + 3)) + 'FF.V')
+        labels.push('VLE' + (2 ** (ieew + 3)) + 'FF.V');
         fields.push(
           {bits: 7,  name: 0x7},
           {bits: 5,  name: '<b>vd', type: 2},
@@ -426,7 +426,7 @@ const pics = [
   ['rvv-7-8-1-1', 'inst', tabler32((labels, fields) => {
     [0, 5, 6, 7].map((eew, ieew) => {
       _.range(7).map(nf => {
-        labels.push('VLSEG' + (nf + 2) + 'E' + (2 ** (ieew + 3)) + '.V')
+        labels.push('VLSEG' + (nf + 2) + 'E' + (2 ** (ieew + 3)) + '.V');
         fields.push(
           {bits: 7,  name: 0x7},
           {bits: 5,  name: '<b>vd', type: 2},
@@ -445,7 +445,7 @@ const pics = [
   ['rvv-7-8-1-2', 'inst', tabler32((labels, fields) => {
     [0, 5, 6, 7].map((eew, ieew) => {
       _.range(7).map(nf => {
-        labels.push('VSSEG' + (nf + 2) + 'E' + (2 ** (ieew + 3)) + '.V')
+        labels.push('VSSEG' + (nf + 2) + 'E' + (2 ** (ieew + 3)) + '.V');
         fields.push(
           {bits: 7,  name: 0x27},
           {bits: 5,  name: '<b>vs3', type: 4},
@@ -464,7 +464,7 @@ const pics = [
   ['rvv-7-8-2-1', 'inst', tabler32((labels, fields) => {
     [0, 5, 6, 7].map((eew, ieew) => {
       _.range(7).map(nf => {
-        labels.push('VLSSEG' + (nf + 2) + 'EI' + (2 ** (ieew + 3)) + '.V')
+        labels.push('VLSSEG' + (nf + 2) + 'EI' + (2 ** (ieew + 3)) + '.V');
         fields.push(
           {bits: 7,  name: 0x7},
           {bits: 5,  name: '<b>vd', type: 2},
@@ -483,7 +483,7 @@ const pics = [
   ['rvv-7-8-2-2', 'inst', tabler32((labels, fields) => {
     [0, 5, 6, 7].map((eew, ieew) => {
       _.range(7).map(nf => {
-        labels.push('VSSSEG' + (nf + 2) + 'EI' + (2 ** (ieew + 3)) + '.V')
+        labels.push('VSSSEG' + (nf + 2) + 'EI' + (2 ** (ieew + 3)) + '.V');
         fields.push(
           {bits: 7,  name: 0x27},
           {bits: 5,  name: '<b>vs3', type: 4},
@@ -502,7 +502,7 @@ const pics = [
   ['rvv-7-8-3-1', 'inst', tabler32((labels, fields) => {
     [0, 5, 6, 7].map((eew, ieew) => {
       _.range(7).map(nf => {
-        labels.push('VLUXSEG' + (nf + 2) + 'EI' + (2 ** (ieew + 3)) + '.V')
+        labels.push('VLUXSEG' + (nf + 2) + 'EI' + (2 ** (ieew + 3)) + '.V');
         fields.push(
           {bits: 7,  name: 0x7},
           {bits: 5,  name: '<b>vd', type: 2},
@@ -521,7 +521,7 @@ const pics = [
   ['rvv-7-8-3-2', 'inst', tabler32((labels, fields) => {
     [0, 5, 6, 7].map((eew, ieew) => {
       _.range(7).map(nf => {
-        labels.push('VSUXSEG' + (nf + 2) + 'EI' + (2 ** (ieew + 3)) + '.V')
+        labels.push('VSUXSEG' + (nf + 2) + 'EI' + (2 ** (ieew + 3)) + '.V');
         fields.push(
           {bits: 7,  name: 0x27},
           {bits: 5,  name: '<b>vs3', type: 4},
@@ -539,7 +539,7 @@ const pics = [
   ['rvv-7-8-3-3', 'inst', tabler32((labels, fields) => {
     [0, 5, 6, 7].map((eew, ieew) => {
       _.range(7).map(nf => {
-        labels.push('VLOXSEG' + (nf + 2) + 'EI' + (2 ** (ieew + 3)) + '.V')
+        labels.push('VLOXSEG' + (nf + 2) + 'EI' + (2 ** (ieew + 3)) + '.V');
         fields.push(
           {bits: 7,  name: 0x7},
           {bits: 5,  name: '<b>vd', type: 2},
@@ -557,7 +557,7 @@ const pics = [
   ['rvv-7-8-3-4', 'inst', tabler32((labels, fields) => {
     [0, 5, 6, 7].map((eew, ieew) => {
       _.range(7).map(nf => {
-        labels.push('VSOXSEG' + (nf + 2) + 'EI' + (2 ** (ieew + 3)) + '.V')
+        labels.push('VSOXSEG' + (nf + 2) + 'EI' + (2 ** (ieew + 3)) + '.V');
         fields.push(
           {bits: 7,  name: 0x27},
           {bits: 5,  name: '<b>vs3', type: 4},
@@ -575,7 +575,7 @@ const pics = [
   ['rvv-7-8-3-5', 'inst', tabler32((labels, fields) => {
     [0, 1, 2, 3].map(eew => {
       _.range(7).map(nf => {
-        labels.push('VLSEG' + (nf + 2) + 'E' + (2 ** (eew + 3)) + 'FF.V')
+        labels.push('VLSEG' + (nf + 2) + 'E' + (2 ** (eew + 3)) + 'FF.V');
         fields.push(
           {bits: 7,  name: 0x7},
           {bits: 5,  name: '<b>vd', type: 2},
