@@ -5,7 +5,7 @@
   "main": "lib",
   "scripts": {
     "test": "eslint lib test bin && nyc -r=text -r=lcov mocha",
-    "prepare": "node bin/build.js"
+    "prepare": "node bin/build-extensions.js"
   },
   "repository": {
     "type": "git",
