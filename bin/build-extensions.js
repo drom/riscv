@@ -11,13 +11,15 @@ const main = async () => {
   const opcodesRatified = await extractNode(
     opcodes.ROOT,
     opcodes.RATIFIED_OPCODES,
-    fieldo
+    fieldo,
+    true /* ratified */
   );
 
   const opcodesUnratified = await extractNode(
     opcodes.ROOT + 'unratified/',
     opcodes.UNRATIFIED_OPCODES,
-    fieldo
+    fieldo,
+    false /* unratified */
   );
 
   const opcodesAll = opcodesRatified.concat(opcodesUnratified);

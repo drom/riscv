@@ -1,5 +1,5 @@
 [
-{"name": "rv_i", "opcodes": [
+{"name": "rv_i", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"lui","mask":"0x7f","valu":"0x37","fullMask":"0xffffffff","args":["rd","imm20",[6,2,13],[1,0,3]]},
 {"kind":"leaf","name":"auipc","mask":"0x7f","valu":"0x17","fullMask":"0xffffffff","args":["rd","imm20",[6,2,5],[1,0,3]]},
 {"kind":"leaf","name":"jal","mask":"0x7f","valu":"0x6f","fullMask":"0xffffffff","args":["rd","jimm20",[6,2,27],[1,0,3]]},
@@ -42,7 +42,7 @@
 {"kind":"pseudo","ref":["rv_i","ecall"],"name":"scall","mask":"0xffffffff","valu":"0x73","fullMask":"0xffffffff","args":[[11,7,0],[19,15,0],[31,20,0],[14,12,0],[6,2,28],[1,0,3]]},
 {"kind":"pseudo","ref":["rv_i","ebreak"],"name":"sbreak","mask":"0xffffffff","valu":"0x100073","fullMask":"0xffffffff","args":[[11,7,0],[19,15,0],[31,20,1],[14,12,0],[6,2,28],[1,0,3]]}
 ]},
-{"name": "rv32_i", "opcodes": [
+{"name": "rv32_i", "ratified": true, "opcodes": [
 {"kind":"pseudo","ref":["rv64_i","slli"],"name":"slli","mask":"0xfe00707f","valu":"0x1013","fullMask":"0xffffffff","args":["rd","rs1","shamtw",[31,25,0],[14,12,1],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_i","srli"],"name":"srli","mask":"0xfe00707f","valu":"0x5013","fullMask":"0xffffffff","args":["rd","rs1","shamtw",[31,25,0],[14,12,5],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_i","srai"],"name":"srai","mask":"0xfe00707f","valu":"0x40005013","fullMask":"0xffffffff","args":["rd","rs1","shamtw",[31,25,32],[14,12,5],[6,2,4],[1,0,3]]},
@@ -50,7 +50,7 @@
 {"kind":"pseudo","ref":["rv64_i","srli"],"name":"srli_rv32","mask":"0xfe00707f","valu":"0x5013","fullMask":"0xffffffff","args":["rd","rs1","shamtw",[31,25,0],[14,12,5],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_i","srai"],"name":"srai_rv32","mask":"0xfe00707f","valu":"0x40005013","fullMask":"0xffffffff","args":["rd","rs1","shamtw",[31,25,32],[14,12,5],[6,2,4],[1,0,3]]}
 ]},
-{"name": "rv64_i", "opcodes": [
+{"name": "rv64_i", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"lwu","mask":"0x707f","valu":"0x6003","fullMask":"0xffffffff","args":["rd","rs1","imm12",[14,12,6],[6,2,0],[1,0,3]]},
 {"kind":"leaf","name":"ld","mask":"0x707f","valu":"0x3003","fullMask":"0xffffffff","args":["rd","rs1","imm12",[14,12,3],[6,2,0],[1,0,3]]},
 {"kind":"leaf","name":"sd","mask":"0x707f","valu":"0x3023","fullMask":"0xffffffff","args":["imm12hi","rs1","rs2","imm12lo",[14,12,3],[6,2,8],[1,0,3]]},
@@ -67,7 +67,7 @@
 {"kind":"leaf","name":"srlw","mask":"0xfe00707f","valu":"0x503b","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,0],[14,12,5],[6,2,14],[1,0,3]]},
 {"kind":"leaf","name":"sraw","mask":"0xfe00707f","valu":"0x4000503b","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,32],[14,12,5],[6,2,14],[1,0,3]]}
 ]},
-{"name": "rv_m", "opcodes": [
+{"name": "rv_m", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"mul","mask":"0xfe00707f","valu":"0x2000033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,1],[14,12,0],[6,2,12],[1,0,3]]},
 {"kind":"leaf","name":"mulh","mask":"0xfe00707f","valu":"0x2001033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,1],[14,12,1],[6,2,12],[1,0,3]]},
 {"kind":"leaf","name":"mulhsu","mask":"0xfe00707f","valu":"0x2002033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,1],[14,12,2],[6,2,12],[1,0,3]]},
@@ -77,14 +77,14 @@
 {"kind":"leaf","name":"rem","mask":"0xfe00707f","valu":"0x2006033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,1],[14,12,6],[6,2,12],[1,0,3]]},
 {"kind":"leaf","name":"remu","mask":"0xfe00707f","valu":"0x2007033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,1],[14,12,7],[6,2,12],[1,0,3]]}
 ]},
-{"name": "rv64_m", "opcodes": [
+{"name": "rv64_m", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"mulw","mask":"0xfe00707f","valu":"0x200003b","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,1],[14,12,0],[6,2,14],[1,0,3]]},
 {"kind":"leaf","name":"divw","mask":"0xfe00707f","valu":"0x200403b","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,1],[14,12,4],[6,2,14],[1,0,3]]},
 {"kind":"leaf","name":"divuw","mask":"0xfe00707f","valu":"0x200503b","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,1],[14,12,5],[6,2,14],[1,0,3]]},
 {"kind":"leaf","name":"remw","mask":"0xfe00707f","valu":"0x200603b","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,1],[14,12,6],[6,2,14],[1,0,3]]},
 {"kind":"leaf","name":"remuw","mask":"0xfe00707f","valu":"0x200703b","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,1],[14,12,7],[6,2,14],[1,0,3]]}
 ]},
-{"name": "rv_c", "opcodes": [
+{"name": "rv_c", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"c.addi4spn","mask":"0xe003","valu":"0x0","fullMask":"0xffff","args":["rd_p","c_nzuimm10",[1,0,0],[15,13,0]]},
 {"kind":"leaf","name":"c.lw","mask":"0xe003","valu":"0x4000","fullMask":"0xffff","args":["rd_p","rs1_p","c_uimm7lo","c_uimm7hi",[1,0,0],[15,13,2]]},
 {"kind":"leaf","name":"c.sw","mask":"0xe003","valu":"0xc000","fullMask":"0xffff","args":["rs1_p","rs2_p","c_uimm7lo","c_uimm7hi",[1,0,0],[15,13,6]]},
@@ -109,19 +109,19 @@
 {"kind":"leaf","name":"c.add","mask":"0xf003","valu":"0x9002","fullMask":"0xffff","args":["rd_rs1","c_rs2_n0",[1,0,2],[15,13,4],[12,12,1]]},
 {"kind":"leaf","name":"c.swsp","mask":"0xe003","valu":"0xc002","fullMask":"0xffff","args":["c_rs2","c_uimm8sp_s",[1,0,2],[15,13,6]]}
 ]},
-{"name": "rv_c_d", "opcodes": [
+{"name": "rv_c_d", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"c.fld","mask":"0xe003","valu":"0x2000","fullMask":"0xffff","args":["rd_p","rs1_p","c_uimm8lo","c_uimm8hi",[1,0,0],[15,13,1]]},
 {"kind":"leaf","name":"c.fsd","mask":"0xe003","valu":"0xa000","fullMask":"0xffff","args":["rs1_p","rs2_p","c_uimm8lo","c_uimm8hi",[1,0,0],[15,13,5]]},
 {"kind":"leaf","name":"c.fldsp","mask":"0xe003","valu":"0x2002","fullMask":"0xffff","args":["rd","c_uimm9sphi","c_uimm9splo",[1,0,2],[15,13,1]]},
 {"kind":"leaf","name":"c.fsdsp","mask":"0xe003","valu":"0xa002","fullMask":"0xffff","args":["c_rs2","c_uimm9sp_s",[1,0,2],[15,13,5]]}
 ]},
-{"name": "rv32_c", "opcodes": [
+{"name": "rv32_c", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"c.jal","mask":"0xe003","valu":"0x2001","fullMask":"0xffff","args":["c_imm12",[1,0,1],[15,13,1]]},
 {"kind":"pseudo","ref":["rv64_c","c.srli"],"name":"c.srli","mask":"0xfc03","valu":"0x8001","fullMask":"0xffff","args":["rd_rs1_p","c_nzuimm5",[1,0,1],[15,13,4],[12,10,0]]},
 {"kind":"pseudo","ref":["rv64_c","c.srai"],"name":"c.srai","mask":"0xfc03","valu":"0x8401","fullMask":"0xffff","args":["rd_rs1_p","c_nzuimm5",[1,0,1],[15,13,4],[12,10,1]]},
 {"kind":"pseudo","ref":["rv64_c","c.slli"],"name":"c.slli","mask":"0xf003","valu":"0x2","fullMask":"0xffff","args":["rd_rs1_n0","c_nzuimm6lo",[1,0,2],[15,12,0]]}
 ]},
-{"name": "rv64_c", "opcodes": [
+{"name": "rv64_c", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"c.ld","mask":"0xe003","valu":"0x6000","fullMask":"0xffff","args":["rd_p","rs1_p","c_uimm8lo","c_uimm8hi",[1,0,0],[15,13,3]]},
 {"kind":"leaf","name":"c.sd","mask":"0xe003","valu":"0xe000","fullMask":"0xffff","args":["rs1_p","rs2_p","c_uimm8hi","c_uimm8lo",[1,0,0],[15,13,7]]},
 {"kind":"leaf","name":"c.addiw","mask":"0xe003","valu":"0x2001","fullMask":"0xffff","args":["rd_rs1","c_imm6lo","c_imm6hi",[1,0,1],[15,13,1]]},
@@ -133,7 +133,7 @@
 {"kind":"leaf","name":"c.ldsp","mask":"0xe003","valu":"0x6002","fullMask":"0xffff","args":["rd_n0","c_uimm9sphi","c_uimm9splo",[1,0,2],[15,13,3]]},
 {"kind":"leaf","name":"c.sdsp","mask":"0xe003","valu":"0xe002","fullMask":"0xffff","args":["c_rs2","c_uimm9sp_s",[1,0,2],[15,13,7]]}
 ]},
-{"name": "rv_a", "opcodes": [
+{"name": "rv_a", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"lr.w","mask":"0xf9f0707f","valu":"0x1000202f","fullMask":"0xffffffff","args":["rd","rs1",[24,20,0],"aq","rl",[31,29,0],[28,27,2],[14,12,2],[6,2,11],[1,0,3]]},
 {"kind":"leaf","name":"sc.w","mask":"0xf800707f","valu":"0x1800202f","fullMask":"0xffffffff","args":["rd","rs1","rs2","aq","rl",[31,29,0],[28,27,3],[14,12,2],[6,2,11],[1,0,3]]},
 {"kind":"leaf","name":"amoswap.w","mask":"0xf800707f","valu":"0x800202f","fullMask":"0xffffffff","args":["rd","rs1","rs2","aq","rl",[31,29,0],[28,27,1],[14,12,2],[6,2,11],[1,0,3]]},
@@ -146,7 +146,7 @@
 {"kind":"leaf","name":"amominu.w","mask":"0xf800707f","valu":"0xc000202f","fullMask":"0xffffffff","args":["rd","rs1","rs2","aq","rl",[31,29,6],[28,27,0],[14,12,2],[6,2,11],[1,0,3]]},
 {"kind":"leaf","name":"amomaxu.w","mask":"0xf800707f","valu":"0xe000202f","fullMask":"0xffffffff","args":["rd","rs1","rs2","aq","rl",[31,29,7],[28,27,0],[14,12,2],[6,2,11],[1,0,3]]}
 ]},
-{"name": "rv64_a", "opcodes": [
+{"name": "rv64_a", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"lr.d","mask":"0xf9f0707f","valu":"0x1000302f","fullMask":"0xffffffff","args":["rd","rs1",[24,20,0],"aq","rl",[31,29,0],[28,27,2],[14,12,3],[6,2,11],[1,0,3]]},
 {"kind":"leaf","name":"sc.d","mask":"0xf800707f","valu":"0x1800302f","fullMask":"0xffffffff","args":["rd","rs1","rs2","aq","rl",[31,29,0],[28,27,3],[14,12,3],[6,2,11],[1,0,3]]},
 {"kind":"leaf","name":"amoswap.d","mask":"0xf800707f","valu":"0x800302f","fullMask":"0xffffffff","args":["rd","rs1","rs2","aq","rl",[31,29,0],[28,27,1],[14,12,3],[6,2,11],[1,0,3]]},
@@ -159,7 +159,7 @@
 {"kind":"leaf","name":"amominu.d","mask":"0xf800707f","valu":"0xc000302f","fullMask":"0xffffffff","args":["rd","rs1","rs2","aq","rl",[31,29,6],[28,27,0],[14,12,3],[6,2,11],[1,0,3]]},
 {"kind":"leaf","name":"amomaxu.d","mask":"0xf800707f","valu":"0xe000302f","fullMask":"0xffffffff","args":["rd","rs1","rs2","aq","rl",[31,29,7],[28,27,0],[14,12,3],[6,2,11],[1,0,3]]}
 ]},
-{"name": "rv_f", "opcodes": [
+{"name": "rv_f", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"flw","mask":"0x707f","valu":"0x2007","fullMask":"0xffffffff","args":["rd","rs1","imm12",[14,12,2],[6,2,1],[1,0,3]]},
 {"kind":"leaf","name":"fsw","mask":"0x707f","valu":"0x2027","fullMask":"0xffffffff","args":["imm12hi","rs1","rs2","imm12lo",[14,12,2],[6,2,9],[1,0,3]]},
 {"kind":"leaf","name":"fmadd.s","mask":"0x600007f","valu":"0x43","fullMask":"0xffffffff","args":["rd","rs1","rs2","rs3","rm",[26,25,0],[6,2,16],[1,0,3]]},
@@ -189,13 +189,13 @@
 {"kind":"pseudo","ref":["rv_f","fmv.x.w"],"name":"fmv.x.s","mask":"0xfff0707f","valu":"0xe0000053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,0],[31,27,28],[14,12,0],[26,25,0],[6,2,20],[1,0,3]]},
 {"kind":"pseudo","ref":["rv_f","fmv.w.x"],"name":"fmv.s.x","mask":"0xfff0707f","valu":"0xf0000053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,0],[31,27,30],[14,12,0],[26,25,0],[6,2,20],[1,0,3]]}
 ]},
-{"name": "rv64_f", "opcodes": [
+{"name": "rv64_f", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"fcvt.l.s","mask":"0xfff0007f","valu":"0xc0200053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,2],[31,27,24],"rm",[26,25,0],[6,2,20],[1,0,3]]},
 {"kind":"leaf","name":"fcvt.lu.s","mask":"0xfff0007f","valu":"0xc0300053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,3],[31,27,24],"rm",[26,25,0],[6,2,20],[1,0,3]]},
 {"kind":"leaf","name":"fcvt.s.l","mask":"0xfff0007f","valu":"0xd0200053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,2],[31,27,26],"rm",[26,25,0],[6,2,20],[1,0,3]]},
 {"kind":"leaf","name":"fcvt.s.lu","mask":"0xfff0007f","valu":"0xd0300053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,3],[31,27,26],"rm",[26,25,0],[6,2,20],[1,0,3]]}
 ]},
-{"name": "rv_d", "opcodes": [
+{"name": "rv_d", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"fld","mask":"0x707f","valu":"0x3007","fullMask":"0xffffffff","args":["rd","rs1","imm12",[14,12,3],[6,2,1],[1,0,3]]},
 {"kind":"leaf","name":"fsd","mask":"0x707f","valu":"0x3027","fullMask":"0xffffffff","args":["imm12hi","rs1","rs2","imm12lo",[14,12,3],[6,2,9],[1,0,3]]},
 {"kind":"leaf","name":"fmadd.d","mask":"0x600007f","valu":"0x2000043","fullMask":"0xffffffff","args":["rd","rs1","rs2","rs3","rm",[26,25,1],[6,2,16],[1,0,3]]},
@@ -223,11 +223,11 @@
 {"kind":"leaf","name":"fcvt.d.w","mask":"0xfff0007f","valu":"0xd2000053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,0],[31,27,26],"rm",[26,25,1],[6,2,20],[1,0,3]]},
 {"kind":"leaf","name":"fcvt.d.wu","mask":"0xfff0007f","valu":"0xd2100053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,1],[31,27,26],"rm",[26,25,1],[6,2,20],[1,0,3]]}
 ]},
-{"name": "rv_d_zfh", "opcodes": [
+{"name": "rv_d_zfh", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"fcvt.d.h","mask":"0xfff0007f","valu":"0x42200053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,2],[31,27,8],"rm",[26,25,1],[6,2,20],[1,0,3]]},
 {"kind":"leaf","name":"fcvt.h.d","mask":"0xfff0007f","valu":"0x44100053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,1],[31,27,8],"rm",[26,25,2],[6,2,20],[1,0,3]]}
 ]},
-{"name": "rv64_d", "opcodes": [
+{"name": "rv64_d", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"fcvt.l.d","mask":"0xfff0007f","valu":"0xc2200053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,2],[31,27,24],"rm",[26,25,1],[6,2,20],[1,0,3]]},
 {"kind":"leaf","name":"fcvt.lu.d","mask":"0xfff0007f","valu":"0xc2300053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,3],[31,27,24],"rm",[26,25,1],[6,2,20],[1,0,3]]},
 {"kind":"leaf","name":"fmv.x.d","mask":"0xfff0707f","valu":"0xe2000053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,0],[31,27,28],[14,12,0],[26,25,1],[6,2,20],[1,0,3]]},
@@ -235,7 +235,7 @@
 {"kind":"leaf","name":"fcvt.d.lu","mask":"0xfff0007f","valu":"0xd2300053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,3],[31,27,26],"rm",[26,25,1],[6,2,20],[1,0,3]]},
 {"kind":"leaf","name":"fmv.d.x","mask":"0xfff0707f","valu":"0xf2000053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,0],[31,27,30],[14,12,0],[26,25,1],[6,2,20],[1,0,3]]}
 ]},
-{"name": "rv_q", "opcodes": [
+{"name": "rv_q", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"flq","mask":"0x707f","valu":"0x4007","fullMask":"0xffffffff","args":["rd","rs1","imm12",[14,12,4],[6,2,1],[1,0,3]]},
 {"kind":"leaf","name":"fsq","mask":"0x707f","valu":"0x4027","fullMask":"0xffffffff","args":["imm12hi","rs1","rs2","imm12lo",[14,12,4],[6,2,9],[1,0,3]]},
 {"kind":"leaf","name":"fmadd.q","mask":"0x600007f","valu":"0x6000043","fullMask":"0xffffffff","args":["rd","rs1","rs2","rs3","rm",[26,25,3],[6,2,16],[1,0,3]]},
@@ -265,17 +265,17 @@
 {"kind":"leaf","name":"fcvt.q.w","mask":"0xfff0007f","valu":"0xd6000053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,0],[31,27,26],"rm",[26,25,3],[6,2,20],[1,0,3]]},
 {"kind":"leaf","name":"fcvt.q.wu","mask":"0xfff0007f","valu":"0xd6100053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,1],[31,27,26],"rm",[26,25,3],[6,2,20],[1,0,3]]}
 ]},
-{"name": "rv64_q", "opcodes": [
+{"name": "rv64_q", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"fcvt.l.q","mask":"0xfff0007f","valu":"0xc6200053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,2],[31,27,24],"rm",[26,25,3],[6,2,20],[1,0,3]]},
 {"kind":"leaf","name":"fcvt.lu.q","mask":"0xfff0007f","valu":"0xc6300053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,3],[31,27,24],"rm",[26,25,3],[6,2,20],[1,0,3]]},
 {"kind":"leaf","name":"fcvt.q.l","mask":"0xfff0007f","valu":"0xd6200053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,2],[31,27,26],"rm",[26,25,3],[6,2,20],[1,0,3]]},
 {"kind":"leaf","name":"fcvt.q.lu","mask":"0xfff0007f","valu":"0xd6300053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,3],[31,27,26],"rm",[26,25,3],[6,2,20],[1,0,3]]}
 ]},
-{"name": "rv_q_zfh", "opcodes": [
+{"name": "rv_q_zfh", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"fcvt.q.h","mask":"0xfff0007f","valu":"0x46200053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,2],[31,27,8],"rm",[26,25,3],[6,2,20],[1,0,3]]},
 {"kind":"leaf","name":"fcvt.h.q","mask":"0xfff0007f","valu":"0x44300053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,3],[31,27,8],"rm",[26,25,2],[6,2,20],[1,0,3]]}
 ]},
-{"name": "rv_h", "opcodes": [
+{"name": "rv_h", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"hfence.vvma","mask":"0xfe007fff","valu":"0x22000073","fullMask":"0xffffffff","args":[[11,7,0],"rs1","rs2",[31,25,17],[14,12,0],[6,2,28],[1,0,3]]},
 {"kind":"leaf","name":"hfence.gvma","mask":"0xfe007fff","valu":"0x62000073","fullMask":"0xffffffff","args":[[11,7,0],"rs1","rs2",[31,25,49],[14,12,0],[6,2,28],[1,0,3]]},
 {"kind":"leaf","name":"hlv.b","mask":"0xfff0707f","valu":"0x60004073","fullMask":"0xffffffff","args":["rd","rs1",[24,20,0],[31,25,48],[14,12,4],[6,2,28],[1,0,3]]},
@@ -289,28 +289,28 @@
 {"kind":"leaf","name":"hsv.h","mask":"0xfe007fff","valu":"0x66004073","fullMask":"0xffffffff","args":[[11,7,0],"rs1","rs2",[31,25,51],[14,12,4],[6,2,28],[1,0,3]]},
 {"kind":"leaf","name":"hsv.w","mask":"0xfe007fff","valu":"0x6a004073","fullMask":"0xffffffff","args":[[11,7,0],"rs1","rs2",[31,25,53],[14,12,4],[6,2,28],[1,0,3]]}
 ]},
-{"name": "rv64_h", "opcodes": [
+{"name": "rv64_h", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"hlv.wu","mask":"0xfff0707f","valu":"0x68104073","fullMask":"0xffffffff","args":["rd","rs1",[24,20,1],[31,25,52],[14,12,4],[6,2,28],[1,0,3]]},
 {"kind":"leaf","name":"hlv.d","mask":"0xfff0707f","valu":"0x6c004073","fullMask":"0xffffffff","args":["rd","rs1",[24,20,0],[31,25,54],[14,12,4],[6,2,28],[1,0,3]]},
 {"kind":"leaf","name":"hsv.d","mask":"0xfe007fff","valu":"0x6e004073","fullMask":"0xffffffff","args":[[11,7,0],"rs1","rs2",[31,25,55],[14,12,4],[6,2,28],[1,0,3]]}
 ]},
-{"name": "rv_s", "opcodes": [
+{"name": "rv_s", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"sfence.vma","mask":"0xfe007fff","valu":"0x12000073","fullMask":"0xffffffff","args":[[11,7,0],"rs1","rs2",[31,25,9],[14,12,0],[6,2,28],[1,0,3]]},
 {"kind":"leaf","name":"sret","mask":"0xffffffff","valu":"0x10200073","fullMask":"0xffffffff","args":[[11,7,0],[19,15,0],[31,20,258],[14,12,0],[6,2,28],[1,0,3]]}
 ]},
-{"name": "rv_svinval", "opcodes": [
+{"name": "rv_svinval", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"sinval.vma","mask":"0xfe007fff","valu":"0x16000073","fullMask":"0xffffffff","args":[[11,7,0],"rs1","rs2",[31,25,11],[14,12,0],[6,2,28],[1,0,3]]},
 {"kind":"leaf","name":"sfence.w.inval","mask":"0xffffffff","valu":"0x18000073","fullMask":"0xffffffff","args":[[11,7,0],[19,15,0],[24,20,0],[31,25,12],[14,12,0],[6,2,28],[1,0,3]]},
 {"kind":"leaf","name":"sfence.inval.ir","mask":"0xffffffff","valu":"0x18100073","fullMask":"0xffffffff","args":[[11,7,0],[19,15,0],[24,20,1],[31,25,12],[14,12,0],[6,2,28],[1,0,3]]},
 {"kind":"leaf","name":"hinval.vvma","mask":"0xfe007fff","valu":"0x26000073","fullMask":"0xffffffff","args":[[11,7,0],"rs1","rs2",[31,25,19],[14,12,0],[6,2,28],[1,0,3]]},
 {"kind":"leaf","name":"hinval.gvma","mask":"0xfe007fff","valu":"0x66000073","fullMask":"0xffffffff","args":[[11,7,0],"rs1","rs2",[31,25,51],[14,12,0],[6,2,28],[1,0,3]]}
 ]},
-{"name": "rv_system", "opcodes": [
+{"name": "rv_system", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"mret","mask":"0xffffffff","valu":"0x30200073","fullMask":"0xffffffff","args":[[11,7,0],[19,15,0],[31,20,770],[14,12,0],[6,2,28],[1,0,3]]},
 {"kind":"leaf","name":"dret","mask":"0xffffffff","valu":"0x7b200073","fullMask":"0xffffffff","args":[[11,7,0],[19,15,0],[31,20,1970],[14,12,0],[6,2,28],[1,0,3]]},
 {"kind":"leaf","name":"wfi","mask":"0xffffffff","valu":"0x10500073","fullMask":"0xffffffff","args":[[11,7,0],[19,15,0],[31,20,261],[14,12,0],[6,2,28],[1,0,3]]}
 ]},
-{"name": "rv_v", "opcodes": [
+{"name": "rv_v", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"vsetivli","mask":"0xc000707f","valu":"0xc0007057","fullMask":"0xffffffff","args":[[31,31,1],[30,30,1],"zimm10","zimm",[14,12,7],"rd",[6,0,87]]},
 {"kind":"leaf","name":"vsetvli","mask":"0x8000707f","valu":"0x7057","fullMask":"0xffffffff","args":[[31,31,0],"zimm11","rs1",[14,12,7],"rd",[6,0,87]]},
 {"kind":"leaf","name":"vsetvl","mask":"0xfe00707f","valu":"0x80007057","fullMask":"0xffffffff","args":[[31,31,1],[30,25,0],"rs2","rs1",[14,12,7],"rd",[6,0,87]]},
@@ -759,7 +759,7 @@
 {"kind":"leaf","name":"vamominuei64.v","mask":"0xf800707f","valu":"0xc000702f","fullMask":"0xffffffff","args":[[31,27,24],"wd","vm","vs2","rs1",[14,12,7],"vd",[6,0,47]]},
 {"kind":"leaf","name":"vamomaxuei64.v","mask":"0xf800707f","valu":"0xe000702f","fullMask":"0xffffffff","args":[[31,27,28],"wd","vm","vs2","rs1",[14,12,7],"vd",[6,0,47]]}
 ]},
-{"name": "rv_v_aliases", "opcodes": [
+{"name": "rv_v_aliases", "ratified": true, "opcodes": [
 {"kind":"pseudo","ref":["rv_v","vl1re8.v"],"name":"vl1r.v","mask":"0xfff0707f","valu":"0x2800007","fullMask":"0xffffffff","args":[[31,29,0],[28,28,0],[27,26,0],[25,25,1],[24,20,8],"rs1",[14,12,0],"vd",[6,0,7]]},
 {"kind":"pseudo","ref":["rv_v","vl2re8.v"],"name":"vl2r.v","mask":"0xfff0707f","valu":"0x22800007","fullMask":"0xffffffff","args":[[31,29,1],[28,28,0],[27,26,0],[25,25,1],[24,20,8],"rs1",[14,12,0],"vd",[6,0,7]]},
 {"kind":"pseudo","ref":["rv_v","vl4re8.v"],"name":"vl4r.v","mask":"0xfff0707f","valu":"0x62800007","fullMask":"0xffffffff","args":[[31,29,3],[28,28,0],[27,26,0],[25,25,1],[24,20,8],"rs1",[14,12,0],"vd",[6,0,7]]},
@@ -772,19 +772,19 @@
 {"kind":"pseudo","ref":["rv_v","vmorn.mm"],"name":"vmornot.mm","mask":"0xfc00707f","valu":"0x70002057","fullMask":"0xffffffff","args":[[31,26,28],"vm","vs2","vs1",[14,12,2],"vd",[6,0,87]]},
 {"kind":"pseudo","ref":["rv_v","vmandn.mm"],"name":"vmandnot.mm","mask":"0xfc00707f","valu":"0x60002057","fullMask":"0xffffffff","args":[[31,26,24],"vm","vs2","vs1",[14,12,2],"vd",[6,0,87]]}
 ]},
-{"name": "rv_zba", "opcodes": [
+{"name": "rv_zba", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"sh1add","mask":"0xfe00707f","valu":"0x20002033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,16],[14,12,2],[6,2,12],[1,0,3]]},
 {"kind":"leaf","name":"sh2add","mask":"0xfe00707f","valu":"0x20004033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,16],[14,12,4],[6,2,12],[1,0,3]]},
 {"kind":"leaf","name":"sh3add","mask":"0xfe00707f","valu":"0x20006033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,16],[14,12,6],[6,2,12],[1,0,3]]}
 ]},
-{"name": "rv64_zba", "opcodes": [
+{"name": "rv64_zba", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"add.uw","mask":"0xfe00707f","valu":"0x800003b","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,4],[14,12,0],[6,2,14],[1,0,3]]},
 {"kind":"leaf","name":"sh1add.uw","mask":"0xfe00707f","valu":"0x2000203b","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,16],[14,12,2],[6,2,14],[1,0,3]]},
 {"kind":"leaf","name":"sh2add.uw","mask":"0xfe00707f","valu":"0x2000403b","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,16],[14,12,4],[6,2,14],[1,0,3]]},
 {"kind":"leaf","name":"sh3add.uw","mask":"0xfe00707f","valu":"0x2000603b","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,16],[14,12,6],[6,2,14],[1,0,3]]},
 {"kind":"leaf","name":"slli.uw","mask":"0xfc00707f","valu":"0x800101b","fullMask":"0xffffffff","args":["rd","rs1",[31,26,2],"shamtd",[14,12,1],[6,2,6],[1,0,3]]}
 ]},
-{"name": "rv_zbb", "opcodes": [
+{"name": "rv_zbb", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"andn","mask":"0xfe00707f","valu":"0x40007033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,32],[14,12,7],[6,2,12],[1,0,3]]},
 {"kind":"leaf","name":"orn","mask":"0xfe00707f","valu":"0x40006033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,32],[14,12,6],[6,2,12],[1,0,3]]},
 {"kind":"leaf","name":"xnor","mask":"0xfe00707f","valu":"0x40004033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,32],[14,12,4],[6,2,12],[1,0,3]]},
@@ -801,12 +801,12 @@
 {"kind":"leaf","name":"ror","mask":"0xfe00707f","valu":"0x60005033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,48],[14,12,5],[6,2,12],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_zbp","gorci"],"name":"orc.b","mask":"0xfff0707f","valu":"0x28705013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,647],[14,12,5],[6,0,19]]}
 ]},
-{"name": "rv32_zbb", "opcodes": [
+{"name": "rv32_zbb", "ratified": true, "opcodes": [
 {"kind":"pseudo","ref":["rv_zbe","pack"],"name":"zext.h","mask":"0xfff0707f","valu":"0x8004033","fullMask":"0xffffffff","args":["rd","rs1",[31,25,4],[24,20,0],[14,12,4],[6,0,51]]},
 {"kind":"pseudo","ref":["rv64_zbp","grevi"],"name":"rev8","mask":"0xfff0707f","valu":"0x69805013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1688],[14,12,5],[6,0,19]]},
 {"kind":"pseudo","ref":["rv64_zbb","rori"],"name":"rori","mask":"0xfe00707f","valu":"0x60005013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,48],"shamtw",[14,12,5],[6,2,4],[1,0,3]]}
 ]},
-{"name": "rv64_zbb", "opcodes": [
+{"name": "rv64_zbb", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"clzw","mask":"0xfff0707f","valu":"0x6000101b","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1536],[14,12,1],[6,2,6],[1,0,3]]},
 {"kind":"leaf","name":"ctzw","mask":"0xfff0707f","valu":"0x6010101b","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1537],[14,12,1],[6,2,6],[1,0,3]]},
 {"kind":"leaf","name":"cpopw","mask":"0xfff0707f","valu":"0x6020101b","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1538],[14,12,1],[6,2,6],[1,0,3]]},
@@ -817,30 +817,30 @@
 {"kind":"pseudo","ref":["rv64_zbe","packw"],"name":"zext.h","mask":"0xfff0707f","valu":"0x800403b","fullMask":"0xffffffff","args":["rd","rs1",[31,25,4],[24,20,0],[14,12,4],[6,2,14],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_zbp","grevi"],"name":"rev8","mask":"0xfff0707f","valu":"0x6b805013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1720],[14,12,5],[6,0,19]]}
 ]},
-{"name": "rv_zbc", "opcodes": [
+{"name": "rv_zbc", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"clmul","mask":"0xfe00707f","valu":"0xa001033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,5],[14,12,1],[6,2,12],[1,0,3]]},
 {"kind":"leaf","name":"clmulr","mask":"0xfe00707f","valu":"0xa002033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,5],[14,12,2],[6,2,12],[1,0,3]]},
 {"kind":"leaf","name":"clmulh","mask":"0xfe00707f","valu":"0xa003033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,5],[14,12,3],[6,2,12],[1,0,3]]}
 ]},
-{"name": "rv_zbs", "opcodes": [
+{"name": "rv_zbs", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"bclr","mask":"0xfe00707f","valu":"0x48001033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,36],[14,12,1],[6,2,12],[1,0,3]]},
 {"kind":"leaf","name":"bext","mask":"0xfe00707f","valu":"0x48005033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,36],[14,12,5],[6,2,12],[1,0,3]]},
 {"kind":"leaf","name":"binv","mask":"0xfe00707f","valu":"0x68001033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,52],[14,12,1],[6,2,12],[1,0,3]]},
 {"kind":"leaf","name":"bset","mask":"0xfe00707f","valu":"0x28001033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,20],[14,12,1],[6,2,12],[1,0,3]]}
 ]},
-{"name": "rv32_zbs", "opcodes": [
+{"name": "rv32_zbs", "ratified": true, "opcodes": [
 {"kind":"pseudo","ref":["rv64_zbs","bclri"],"name":"bclri","mask":"0xfe00707f","valu":"0x48001013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,36],"shamtw",[14,12,1],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_zbs","bexti"],"name":"bexti","mask":"0xfe00707f","valu":"0x48005013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,36],"shamtw",[14,12,5],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_zbs","binvi"],"name":"binvi","mask":"0xfe00707f","valu":"0x68001013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,52],"shamtw",[14,12,1],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_zbs","bseti"],"name":"bseti","mask":"0xfe00707f","valu":"0x28001013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,20],"shamtw",[14,12,1],[6,2,4],[1,0,3]]}
 ]},
-{"name": "rv64_zbs", "opcodes": [
+{"name": "rv64_zbs", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"bclri","mask":"0xfc00707f","valu":"0x48001013","fullMask":"0xffffffff","args":["rd","rs1",[31,26,18],"shamtd",[14,12,1],[6,2,4],[1,0,3]]},
 {"kind":"leaf","name":"bexti","mask":"0xfc00707f","valu":"0x48005013","fullMask":"0xffffffff","args":["rd","rs1",[31,26,18],"shamtd",[14,12,5],[6,2,4],[1,0,3]]},
 {"kind":"leaf","name":"binvi","mask":"0xfc00707f","valu":"0x68001013","fullMask":"0xffffffff","args":["rd","rs1",[31,26,26],"shamtd",[14,12,1],[6,2,4],[1,0,3]]},
 {"kind":"leaf","name":"bseti","mask":"0xfc00707f","valu":"0x28001013","fullMask":"0xffffffff","args":["rd","rs1",[31,26,10],"shamtd",[14,12,1],[6,2,4],[1,0,3]]}
 ]},
-{"name": "rv_zbkb", "opcodes": [
+{"name": "rv_zbkb", "ratified": true, "opcodes": [
 {"kind":"import","ref":["rv_zbb","rol"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zbb","ror"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zbb","andn"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
@@ -850,13 +850,13 @@
 {"kind":"import","ref":["rv_zbe","packh"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"pseudo","ref":["rv64_zbp","grevi"],"name":"brev8","mask":"0xfff0707f","valu":"0x68705013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1671],[14,12,5],[6,2,4],[1,0,3]]}
 ]},
-{"name": "rv32_zbkb", "opcodes": [
+{"name": "rv32_zbkb", "ratified": true, "opcodes": [
 {"kind":"pseudo","ref":["rv64_zbp","shfli"],"name":"zip","mask":"0xfff0707f","valu":"0x8f01013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,4],[24,20,15],[14,12,1],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_zbp","unshfli"],"name":"unzip","mask":"0xfff0707f","valu":"0x8f05013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,4],[24,20,15],[14,12,5],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_zbb","rori"],"name":"rori","mask":"0xfe00707f","valu":"0x60005013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,48],"shamtw",[14,12,5],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_zbp","grevi"],"name":"rev8","mask":"0xfff0707f","valu":"0x69805013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1688],[14,12,5],[6,0,19]]}
 ]},
-{"name": "rv64_zbkb", "opcodes": [
+{"name": "rv64_zbkb", "ratified": true, "opcodes": [
 {"kind":"pseudo","ref":["rv64_zbp","grevi"],"name":"rev8","mask":"0xfff0707f","valu":"0x6b805013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1720],[14,12,5],[6,0,19]]},
 {"kind":"import","ref":["rv64_zbb","rolw"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv64_zbb","rorw"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
@@ -864,15 +864,15 @@
 {"kind":"import","ref":["rv64_zbb","rori"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv64_zbe","packw"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]}
 ]},
-{"name": "rv_zbkc", "opcodes": [
+{"name": "rv_zbkc", "ratified": true, "opcodes": [
 {"kind":"import","ref":["rv_zbc","clmul"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zbc","clmulh"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]}
 ]},
-{"name": "rv_zbkx", "opcodes": [
+{"name": "rv_zbkx", "ratified": true, "opcodes": [
 {"kind":"import","ref":["rv_zbp","xperm4"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zbp","xperm8"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]}
 ]},
-{"name": "rv_zk", "opcodes": [
+{"name": "rv_zk", "ratified": true, "opcodes": [
 {"kind":"import","ref":["rv_zbb","rol"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zbb","ror"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zbb","andn"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
@@ -890,7 +890,7 @@
 {"kind":"import","ref":["rv_zknh","sha256sig0"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zknh","sha256sig1"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]}
 ]},
-{"name": "rv32_zk", "opcodes": [
+{"name": "rv32_zk", "ratified": true, "opcodes": [
 {"kind":"pseudo","ref":["rv64_zbp","shfli"],"name":"zip","mask":"0xfff0707f","valu":"0x8f01013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,4],[24,20,15],[14,12,1],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_zbp","unshfli"],"name":"unzip","mask":"0xfff0707f","valu":"0x8f05013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,4],[24,20,15],[14,12,5],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_zbb","rori"],"name":"rori","mask":"0xfe00707f","valu":"0x60005013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,48],"shamtw",[14,12,5],[6,2,4],[1,0,3]]},
@@ -906,7 +906,7 @@
 {"kind":"import","ref":["rv32_zknh","sha512sig1l"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv32_zknh","sha512sig1h"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]}
 ]},
-{"name": "rv64_zk", "opcodes": [
+{"name": "rv64_zk", "ratified": true, "opcodes": [
 {"kind":"pseudo","ref":["rv64_zbp","grevi"],"name":"rev8","mask":"0xfff0707f","valu":"0x6b805013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1720],[14,12,5],[6,0,19]]},
 {"kind":"import","ref":["rv64_zbb","rolw"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv64_zbb","rorw"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
@@ -925,7 +925,7 @@
 {"kind":"import","ref":["rv64_zknh","sha512sig0"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv64_zknh","sha512sig1"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]}
 ]},
-{"name": "rv_zkn", "opcodes": [
+{"name": "rv_zkn", "ratified": true, "opcodes": [
 {"kind":"import","ref":["rv_zbb","rol"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zbb","ror"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zbb","andn"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
@@ -943,7 +943,7 @@
 {"kind":"import","ref":["rv_zknh","sha256sig0"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zknh","sha256sig1"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]}
 ]},
-{"name": "rv32_zkn", "opcodes": [
+{"name": "rv32_zkn", "ratified": true, "opcodes": [
 {"kind":"pseudo","ref":["rv64_zbp","shfli"],"name":"zip","mask":"0xfff0707f","valu":"0x8f01013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,4],[24,20,15],[14,12,1],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_zbp","unshfli"],"name":"unzip","mask":"0xfff0707f","valu":"0x8f05013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,4],[24,20,15],[14,12,5],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_zbb","rori"],"name":"rori","mask":"0xfe00707f","valu":"0x60005013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,48],"shamtw",[14,12,5],[6,2,4],[1,0,3]]},
@@ -959,7 +959,7 @@
 {"kind":"import","ref":["rv32_zknh","sha512sig1l"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv32_zknh","sha512sig1h"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]}
 ]},
-{"name": "rv64_zkn", "opcodes": [
+{"name": "rv64_zkn", "ratified": true, "opcodes": [
 {"kind":"pseudo","ref":["rv64_zbp","grevi"],"name":"rev8","mask":"0xfff0707f","valu":"0x6b805013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1720],[14,12,5],[6,0,19]]},
 {"kind":"import","ref":["rv64_zbb","rolw"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv64_zbb","rorw"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
@@ -978,13 +978,13 @@
 {"kind":"import","ref":["rv64_zknh","sha512sig0"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv64_zknh","sha512sig1"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]}
 ]},
-{"name": "rv_zknh", "opcodes": [
+{"name": "rv_zknh", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"sha256sum0","mask":"0xfff0707f","valu":"0x10001013","fullMask":"0xffffffff","args":["rd","rs1",[31,30,0],[29,25,8],[24,20,0],[14,12,1],[6,0,19]]},
 {"kind":"leaf","name":"sha256sum1","mask":"0xfff0707f","valu":"0x10101013","fullMask":"0xffffffff","args":["rd","rs1",[31,30,0],[29,25,8],[24,20,1],[14,12,1],[6,0,19]]},
 {"kind":"leaf","name":"sha256sig0","mask":"0xfff0707f","valu":"0x10201013","fullMask":"0xffffffff","args":["rd","rs1",[31,30,0],[29,25,8],[24,20,2],[14,12,1],[6,0,19]]},
 {"kind":"leaf","name":"sha256sig1","mask":"0xfff0707f","valu":"0x10301013","fullMask":"0xffffffff","args":["rd","rs1",[31,30,0],[29,25,8],[24,20,3],[14,12,1],[6,0,19]]}
 ]},
-{"name": "rv32_zknh", "opcodes": [
+{"name": "rv32_zknh", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"sha512sum0r","mask":"0xfe00707f","valu":"0x50000033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,30,1],[29,25,8],[14,12,0],[6,0,51]]},
 {"kind":"leaf","name":"sha512sum1r","mask":"0xfe00707f","valu":"0x52000033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,30,1],[29,25,9],[14,12,0],[6,0,51]]},
 {"kind":"leaf","name":"sha512sig0l","mask":"0xfe00707f","valu":"0x54000033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,30,1],[29,25,10],[14,12,0],[6,0,51]]},
@@ -992,13 +992,13 @@
 {"kind":"leaf","name":"sha512sig1l","mask":"0xfe00707f","valu":"0x56000033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,30,1],[29,25,11],[14,12,0],[6,0,51]]},
 {"kind":"leaf","name":"sha512sig1h","mask":"0xfe00707f","valu":"0x5e000033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,30,1],[29,25,15],[14,12,0],[6,0,51]]}
 ]},
-{"name": "rv64_zknh", "opcodes": [
+{"name": "rv64_zknh", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"sha512sum0","mask":"0xfff0707f","valu":"0x10401013","fullMask":"0xffffffff","args":["rd","rs1",[31,30,0],[29,25,8],[24,20,4],[14,12,1],[6,0,19]]},
 {"kind":"leaf","name":"sha512sum1","mask":"0xfff0707f","valu":"0x10501013","fullMask":"0xffffffff","args":["rd","rs1",[31,30,0],[29,25,8],[24,20,5],[14,12,1],[6,0,19]]},
 {"kind":"leaf","name":"sha512sig0","mask":"0xfff0707f","valu":"0x10601013","fullMask":"0xffffffff","args":["rd","rs1",[31,30,0],[29,25,8],[24,20,6],[14,12,1],[6,0,19]]},
 {"kind":"leaf","name":"sha512sig1","mask":"0xfff0707f","valu":"0x10701013","fullMask":"0xffffffff","args":["rd","rs1",[31,30,0],[29,25,8],[24,20,7],[14,12,1],[6,0,19]]}
 ]},
-{"name": "rv_zks", "opcodes": [
+{"name": "rv_zks", "ratified": true, "opcodes": [
 {"kind":"import","ref":["rv_zbb","rol"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zbb","ror"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zbb","andn"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
@@ -1016,13 +1016,13 @@
 {"kind":"import","ref":["rv_zksh","sm3p0"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zksh","sm3p1"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]}
 ]},
-{"name": "rv32_zks", "opcodes": [
+{"name": "rv32_zks", "ratified": true, "opcodes": [
 {"kind":"pseudo","ref":["rv64_zbp","shfli"],"name":"zip","mask":"0xfff0707f","valu":"0x8f01013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,4],[24,20,15],[14,12,1],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_zbp","unshfli"],"name":"unzip","mask":"0xfff0707f","valu":"0x8f05013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,4],[24,20,15],[14,12,5],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_zbb","rori"],"name":"rori","mask":"0xfe00707f","valu":"0x60005013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,48],"shamtw",[14,12,5],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_zbp","grevi"],"name":"rev8","mask":"0xfff0707f","valu":"0x69805013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1688],[14,12,5],[6,0,19]]}
 ]},
-{"name": "rv64_zks", "opcodes": [
+{"name": "rv64_zks", "ratified": true, "opcodes": [
 {"kind":"pseudo","ref":["rv64_zbp","grevi"],"name":"rev8","mask":"0xfff0707f","valu":"0x6b805013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1720],[14,12,5],[6,0,19]]},
 {"kind":"import","ref":["rv64_zbb","rolw"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv64_zbb","rorw"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
@@ -1030,36 +1030,36 @@
 {"kind":"import","ref":["rv64_zbb","rori"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv64_zbe","packw"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]}
 ]},
-{"name": "rv_zksed", "opcodes": [
+{"name": "rv_zksed", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"sm4ed","mask":"0x3e00707f","valu":"0x30000033","fullMask":"0xffffffff","args":["rd","rs1","rs2","bs",[29,25,24],[14,12,0],[6,0,51]]},
 {"kind":"leaf","name":"sm4ks","mask":"0x3e00707f","valu":"0x34000033","fullMask":"0xffffffff","args":["rd","rs1","rs2","bs",[29,25,26],[14,12,0],[6,0,51]]}
 ]},
-{"name": "rv_zksh", "opcodes": [
+{"name": "rv_zksh", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"sm3p0","mask":"0xfff0707f","valu":"0x10801013","fullMask":"0xffffffff","args":["rd","rs1",[31,30,0],[29,25,8],[24,20,8],[14,12,1],[6,0,19]]},
 {"kind":"leaf","name":"sm3p1","mask":"0xfff0707f","valu":"0x10901013","fullMask":"0xffffffff","args":["rd","rs1",[31,30,0],[29,25,8],[24,20,9],[14,12,1],[6,0,19]]}
 ]},
-{"name": "rv32_zknd", "opcodes": [
+{"name": "rv32_zknd", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"aes32dsmi","mask":"0x3e00707f","valu":"0x2e000033","fullMask":"0xffffffff","args":["rd","rs1","rs2","bs",[29,25,23],[14,12,0],[6,0,51]]},
 {"kind":"leaf","name":"aes32dsi","mask":"0x3e00707f","valu":"0x2a000033","fullMask":"0xffffffff","args":["rd","rs1","rs2","bs",[29,25,21],[14,12,0],[6,0,51]]}
 ]},
-{"name": "rv64_zknd", "opcodes": [
+{"name": "rv64_zknd", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"aes64dsm","mask":"0xfe00707f","valu":"0x3e000033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,30,0],[29,25,31],[14,12,0],[6,0,51]]},
 {"kind":"leaf","name":"aes64ds","mask":"0xfe00707f","valu":"0x3a000033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,30,0],[29,25,29],[14,12,0],[6,0,51]]},
 {"kind":"leaf","name":"aes64ks1i","mask":"0xff00707f","valu":"0x31001013","fullMask":"0xffffffff","args":["rd","rs1","rnum",[31,30,0],[29,25,24],[24,24,1],[14,12,1],[6,0,19]]},
 {"kind":"leaf","name":"aes64im","mask":"0xfff0707f","valu":"0x30001013","fullMask":"0xffffffff","args":["rd","rs1",[31,30,0],[29,25,24],[24,20,0],[14,12,1],[6,0,19]]},
 {"kind":"leaf","name":"aes64ks2","mask":"0xfe00707f","valu":"0x7e000033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,30,1],[29,25,31],[14,12,0],[6,0,51]]}
 ]},
-{"name": "rv32_zkne", "opcodes": [
+{"name": "rv32_zkne", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"aes32esmi","mask":"0x3e00707f","valu":"0x26000033","fullMask":"0xffffffff","args":["rd","rs1","rs2","bs",[29,25,19],[14,12,0],[6,0,51]]},
 {"kind":"leaf","name":"aes32esi","mask":"0x3e00707f","valu":"0x22000033","fullMask":"0xffffffff","args":["rd","rs1","rs2","bs",[29,25,17],[14,12,0],[6,0,51]]}
 ]},
-{"name": "rv64_zkne", "opcodes": [
+{"name": "rv64_zkne", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"aes64esm","mask":"0xfe00707f","valu":"0x36000033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,30,0],[29,25,27],[14,12,0],[6,0,51]]},
 {"kind":"leaf","name":"aes64es","mask":"0xfe00707f","valu":"0x32000033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,30,0],[29,25,25],[14,12,0],[6,0,51]]},
 {"kind":"import","ref":["rv64_zknd","aes64ks1i"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv64_zknd","aes64ks2"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]}
 ]},
-{"name": "rv_zcb", "opcodes": [
+{"name": "rv_zcb", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"c.lbu","mask":"0xfc03","valu":"0x8000","fullMask":"0xffff","args":["rd_p","rs1_p","c_uimm2",[1,0,0],[15,13,4],[12,10,0]]},
 {"kind":"leaf","name":"c.lhu","mask":"0xfc43","valu":"0x8400","fullMask":"0xffff","args":["rd_p","rs1_p","c_uimm1",[1,0,0],[15,13,4],[12,10,1],[6,6,0]]},
 {"kind":"leaf","name":"c.lh","mask":"0xfc43","valu":"0x8440","fullMask":"0xffff","args":["rd_p","rs1_p","c_uimm1",[1,0,0],[15,13,4],[12,10,1],[6,6,1]]},
@@ -1072,10 +1072,10 @@
 {"kind":"leaf","name":"c.not","mask":"0xfc7f","valu":"0x9c75","fullMask":"0xffff","args":["rd_rs1_p",[1,0,1],[15,13,4],[12,10,7],[6,5,3],[4,2,5]]},
 {"kind":"leaf","name":"c.mul","mask":"0xfc63","valu":"0x9c41","fullMask":"0xffff","args":["rd_rs1_p","rs2_p",[1,0,1],[15,13,4],[12,10,7],[6,5,2]]}
 ]},
-{"name": "rv64_zcb", "opcodes": [
+{"name": "rv64_zcb", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"c.zext.w","mask":"0xfc7f","valu":"0x9c71","fullMask":"0xffff","args":["rd_rs1_p",[1,0,1],[15,13,4],[12,10,7],[6,5,3],[4,2,4]]}
 ]},
-{"name": "rv_zfh", "opcodes": [
+{"name": "rv_zfh", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"flh","mask":"0x707f","valu":"0x1007","fullMask":"0xffffffff","args":["rd","rs1","imm12",[14,12,1],[6,2,1],[1,0,3]]},
 {"kind":"leaf","name":"fsh","mask":"0x707f","valu":"0x1027","fullMask":"0xffffffff","args":["imm12hi","rs1","rs2","imm12lo",[14,12,1],[6,2,9],[1,0,3]]},
 {"kind":"leaf","name":"fmadd.h","mask":"0x600007f","valu":"0x4000043","fullMask":"0xffffffff","args":["rd","rs1","rs2","rs3","rm",[26,25,2],[6,2,16],[1,0,3]]},
@@ -1105,13 +1105,13 @@
 {"kind":"leaf","name":"fcvt.h.wu","mask":"0xfff0007f","valu":"0xd4100053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,1],[31,27,26],"rm",[26,25,2],[6,2,20],[1,0,3]]},
 {"kind":"leaf","name":"fmv.h.x","mask":"0xfff0707f","valu":"0xf4000053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,0],[31,27,30],[14,12,0],[26,25,2],[6,2,20],[1,0,3]]}
 ]},
-{"name": "rv64_zfh", "opcodes": [
+{"name": "rv64_zfh", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"fcvt.l.h","mask":"0xfff0007f","valu":"0xc4200053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,2],[31,27,24],"rm",[26,25,2],[6,2,20],[1,0,3]]},
 {"kind":"leaf","name":"fcvt.lu.h","mask":"0xfff0007f","valu":"0xc4300053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,3],[31,27,24],"rm",[26,25,2],[6,2,20],[1,0,3]]},
 {"kind":"leaf","name":"fcvt.h.l","mask":"0xfff0007f","valu":"0xd4200053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,2],[31,27,26],"rm",[26,25,2],[6,2,20],[1,0,3]]},
 {"kind":"leaf","name":"fcvt.h.lu","mask":"0xfff0007f","valu":"0xd4300053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,3],[31,27,26],"rm",[26,25,2],[6,2,20],[1,0,3]]}
 ]},
-{"name": "rv_zcmp", "opcodes": [
+{"name": "rv_zcmp", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"cm.push","mask":"0xff03","valu":"0xb802","fullMask":"0xffff","args":["c_rlist","c_spimm",[1,0,2],[15,13,5],[12,8,24]]},
 {"kind":"leaf","name":"cm.pop","mask":"0xff03","valu":"0xba02","fullMask":"0xffff","args":["c_rlist","c_spimm",[1,0,2],[15,13,5],[12,8,26]]},
 {"kind":"leaf","name":"cm.popretz","mask":"0xff03","valu":"0xbc02","fullMask":"0xffff","args":["c_rlist","c_spimm",[1,0,2],[15,13,5],[12,8,28]]},
@@ -1119,10 +1119,10 @@
 {"kind":"leaf","name":"cm.mvsa01","mask":"0xfc63","valu":"0xac22","fullMask":"0xffff","args":["c_sreg1","c_sreg2",[1,0,2],[15,13,5],[12,10,3],[6,5,1]]},
 {"kind":"leaf","name":"cm.mva01s","mask":"0xfc63","valu":"0xac62","fullMask":"0xffff","args":["c_sreg1","c_sreg2",[1,0,2],[15,13,5],[12,10,3],[6,5,3]]}
 ]},
-{"name": "rv_zcmt", "opcodes": [
+{"name": "rv_zcmt", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"cm.jalt","mask":"0xfc03","valu":"0xa002","fullMask":"0xffff","args":["c_index",[1,0,2],[15,13,5],[12,10,0]]}
 ]},
-{"name": "rv_zicbo", "opcodes": [
+{"name": "rv_zicbo", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"cbo.clean","mask":"0xfff07fff","valu":"0x10200f","fullMask":"0xffffffff","args":["rs1",[31,20,1],[14,12,2],[11,7,0],[6,2,3],[1,0,3]]},
 {"kind":"leaf","name":"cbo.flush","mask":"0xfff07fff","valu":"0x20200f","fullMask":"0xffffffff","args":["rs1",[31,20,2],[14,12,2],[11,7,0],[6,2,3],[1,0,3]]},
 {"kind":"leaf","name":"cbo.inval","mask":"0xfff07fff","valu":"0x200f","fullMask":"0xffffffff","args":["rs1",[31,20,0],[14,12,2],[11,7,0],[6,2,3],[1,0,3]]},
@@ -1131,7 +1131,7 @@
 {"kind":"pseudo","ref":["rv_i","ori"],"name":"prefetch.r","mask":"0x1f07fff","valu":"0x106013","fullMask":"0xffffffff","args":["rs1","imm12hi",[24,20,1],[14,12,6],[11,7,0],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv_i","ori"],"name":"prefetch.w","mask":"0x1f07fff","valu":"0x306013","fullMask":"0xffffffff","args":["rs1","imm12hi",[24,20,3],[14,12,6],[11,7,0],[6,2,4],[1,0,3]]}
 ]},
-{"name": "rv_zicsr", "opcodes": [
+{"name": "rv_zicsr", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"csrrw","mask":"0x707f","valu":"0x1073","fullMask":"0xffffffff","args":["rd","rs1","csr",[14,12,1],[6,2,28],[1,0,3]]},
 {"kind":"leaf","name":"csrrs","mask":"0x707f","valu":"0x2073","fullMask":"0xffffffff","args":["rd","rs1","csr",[14,12,2],[6,2,28],[1,0,3]]},
 {"kind":"leaf","name":"csrrc","mask":"0x707f","valu":"0x3073","fullMask":"0xffffffff","args":["rd","rs1","csr",[14,12,3],[6,2,28],[1,0,3]]},
@@ -1153,10 +1153,14 @@
 {"kind":"pseudo","ref":["rv_zicsr","csrrs"],"name":"rdtimeh","mask":"0xfffff07f","valu":"0xc8102073","fullMask":"0xffffffff","args":["rd",[19,15,0],[31,20,3201],[14,12,2],[6,2,28],[1,0,3]]},
 {"kind":"pseudo","ref":["rv_zicsr","csrrs"],"name":"rdinstreth","mask":"0xfffff07f","valu":"0xc8202073","fullMask":"0xffffffff","args":["rd",[19,15,0],[31,20,3202],[14,12,2],[6,2,28],[1,0,3]]}
 ]},
-{"name": "rv_zifencei", "opcodes": [
+{"name": "rv_zifencei", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"fence.i","mask":"0x707f","valu":"0x100f","fullMask":"0xffffffff","args":["imm12","rs1",[14,12,1],"rd",[6,2,3],[1,0,3]]}
 ]},
-{"name": "rv128_i", "opcodes": [
+{"name": "rv_zawrs", "ratified": true, "opcodes": [
+{"kind":"leaf","name":"wrs.nto","mask":"0xffffffff","valu":"0xd00073","fullMask":"0xffffffff","args":[[31,20,13],[19,7,0],[6,2,28],[1,0,3]]},
+{"kind":"leaf","name":"wrs.sto","mask":"0xffffffff","valu":"0x1d00073","fullMask":"0xffffffff","args":[[31,20,29],[19,7,0],[6,2,28],[1,0,3]]}
+]},
+{"name": "rv128_i", "ratified": false, "opcodes": [
 {"kind":"leaf","name":"addid","mask":"0x707f","valu":"0x5b","fullMask":"0xffffffff","args":["rd","rs1","imm12",[14,12,0],[6,2,22],[1,0,3]]},
 {"kind":"leaf","name":"sllid","mask":"0xfc00707f","valu":"0x105b","fullMask":"0xffffffff","args":["rd","rs1",[31,26,0],"shamtd",[14,12,1],[6,2,22],[1,0,3]]},
 {"kind":"leaf","name":"srlid","mask":"0xfc00707f","valu":"0x505b","fullMask":"0xffffffff","args":["rd","rs1",[31,26,0],"shamtd",[14,12,5],[6,2,22],[1,0,3]]},
@@ -1176,13 +1180,13 @@
 {"kind":"pseudo","ref":["rv64_i","srli"],"name":"srli_rv128","mask":"0xf800707f","valu":"0x5013","fullMask":"0xffffffff","args":["rd","rs1",[31,27,0],"shamtq",[14,12,5],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_i","srai"],"name":"srai_rv128","mask":"0xf800707f","valu":"0x40005013","fullMask":"0xffffffff","args":["rd","rs1",[31,27,8],"shamtq",[14,12,5],[6,2,4],[1,0,3]]}
 ]},
-{"name": "rv_c_zihintntl", "opcodes": [
+{"name": "rv_c_zihintntl", "ratified": false, "opcodes": [
 {"kind":"pseudo","ref":["rv_c","c.add"],"name":"c.ntl.p1","mask":"0xffff","valu":"0x900a","fullMask":"0xffff","args":[[1,0,2],[6,2,2],[11,7,0],[15,13,4],[12,12,1]]},
 {"kind":"pseudo","ref":["rv_c","c.add"],"name":"c.ntl.pall","mask":"0xffff","valu":"0x900e","fullMask":"0xffff","args":[[1,0,2],[6,2,3],[11,7,0],[15,13,4],[12,12,1]]},
 {"kind":"pseudo","ref":["rv_c","c.add"],"name":"c.ntl.s1","mask":"0xffff","valu":"0x9012","fullMask":"0xffff","args":[[1,0,2],[6,2,4],[11,7,0],[15,13,4],[12,12,1]]},
 {"kind":"pseudo","ref":["rv_c","c.add"],"name":"c.ntl.all","mask":"0xffff","valu":"0x9016","fullMask":"0xffff","args":[[1,0,2],[6,2,5],[11,7,0],[15,13,4],[12,12,1]]}
 ]},
-{"name": "rv128_c", "opcodes": [
+{"name": "rv128_c", "ratified": false, "opcodes": [
 {"kind":"leaf","name":"c.lq","mask":"0xe003","valu":"0x2000","fullMask":"0xffff","args":["rd_p","rs1_p","c_uimm9lo","c_uimm9hi",[1,0,0],[15,13,1]]},
 {"kind":"leaf","name":"c.ld","mask":"0xe003","valu":"0x6000","fullMask":"0xffff","args":["rd_p","rs1_p","c_uimm8lo","c_uimm8hi",[1,0,0],[15,13,3]]},
 {"kind":"leaf","name":"c.sq","mask":"0xe003","valu":"0xa000","fullMask":"0xffff","args":["rs1_p","rs2_p","c_uimm9hi","c_uimm9lo",[1,0,0],[15,13,5]]},
@@ -1193,39 +1197,39 @@
 {"kind":"leaf","name":"c.sqsp","mask":"0xe003","valu":"0xa002","fullMask":"0xffff","args":["c_rs2","c_uimm10sp_s",[1,0,2],[15,13,5]]},
 {"kind":"leaf","name":"c.sdsp","mask":"0xe003","valu":"0xe002","fullMask":"0xffff","args":["c_rs2","c_uimm9sp_s",[1,0,2],[15,13,7]]}
 ]},
-{"name": "rv_b", "opcodes": [
+{"name": "rv_b", "ratified": false, "opcodes": [
 {"kind":"leaf","name":"slo","mask":"0xfe00707f","valu":"0x20001033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,16],[14,12,1],[6,2,12],[1,0,3]]},
 {"kind":"leaf","name":"sro","mask":"0xfe00707f","valu":"0x20005033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,16],[14,12,5],[6,2,12],[1,0,3]]},
 {"kind":"leaf","name":"sloi","mask":"0xfc00707f","valu":"0x20001013","fullMask":"0xffffffff","args":["rd","rs1",[31,26,8],"shamtd",[14,12,1],[6,2,4],[1,0,3]]},
 {"kind":"leaf","name":"sroi","mask":"0xfc00707f","valu":"0x20005013","fullMask":"0xffffffff","args":["rd","rs1",[31,26,8],"shamtd",[14,12,5],[6,2,4],[1,0,3]]}
 ]},
-{"name": "rv64_b", "opcodes": [
+{"name": "rv64_b", "ratified": false, "opcodes": [
 {"kind":"leaf","name":"slow","mask":"0xfe00707f","valu":"0x2000103b","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,16],[14,12,1],[6,2,14],[1,0,3]]},
 {"kind":"leaf","name":"srow","mask":"0xfe00707f","valu":"0x2000503b","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,16],[14,12,5],[6,2,14],[1,0,3]]},
 {"kind":"leaf","name":"sloiw","mask":"0xfe00707f","valu":"0x2000101b","fullMask":"0xffffffff","args":["rd","rs1",[31,26,8],[25,25,0],"shamtw",[14,12,1],[6,2,6],[1,0,3]]},
 {"kind":"leaf","name":"sroiw","mask":"0xfe00707f","valu":"0x2000501b","fullMask":"0xffffffff","args":["rd","rs1",[31,26,8],[25,25,0],"shamtw",[14,12,5],[6,2,6],[1,0,3]]}
 ]},
-{"name": "rv_zbe", "opcodes": [
+{"name": "rv_zbe", "ratified": false, "opcodes": [
 {"kind":"leaf","name":"bcompress","mask":"0xfe00707f","valu":"0x8006033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,4],[14,12,6],[6,2,12],[1,0,3]]},
 {"kind":"leaf","name":"bdecompress","mask":"0xfe00707f","valu":"0x48006033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,36],[14,12,6],[6,2,12],[1,0,3]]},
 {"kind":"leaf","name":"pack","mask":"0xfe00707f","valu":"0x8004033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,4],[14,12,4],[6,2,12],[1,0,3]]},
 {"kind":"leaf","name":"packh","mask":"0xfe00707f","valu":"0x8007033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,4],[14,12,7],[6,2,12],[1,0,3]]}
 ]},
-{"name": "rv64_zbe", "opcodes": [
+{"name": "rv64_zbe", "ratified": false, "opcodes": [
 {"kind":"leaf","name":"bcompressw","mask":"0xfe00707f","valu":"0x800603b","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,4],[14,12,6],[6,2,14],[1,0,3]]},
 {"kind":"leaf","name":"bdecompressw","mask":"0xfe00707f","valu":"0x4800603b","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,36],[14,12,6],[6,2,14],[1,0,3]]},
 {"kind":"leaf","name":"packw","mask":"0xfe00707f","valu":"0x800403b","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,4],[14,12,4],[6,2,14],[1,0,3]]}
 ]},
-{"name": "rv_zbf", "opcodes": [
+{"name": "rv_zbf", "ratified": false, "opcodes": [
 {"kind":"leaf","name":"bfp","mask":"0xfe00707f","valu":"0x48007033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,36],[14,12,7],[6,2,12],[1,0,3]]},
 {"kind":"import","ref":["rv_zbe","pack"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zbe","packh"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]}
 ]},
-{"name": "rv64_zbf", "opcodes": [
+{"name": "rv64_zbf", "ratified": false, "opcodes": [
 {"kind":"leaf","name":"bfpw","mask":"0xfe00707f","valu":"0x4800703b","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,36],[14,12,7],[6,2,14],[1,0,3]]},
 {"kind":"import","ref":["rv64_zbe","packw"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]}
 ]},
-{"name": "rv64_zbm", "opcodes": [
+{"name": "rv64_zbm", "ratified": false, "opcodes": [
 {"kind":"leaf","name":"bmatflip","mask":"0xfff0707f","valu":"0x60301013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1539],[14,12,1],[6,2,4],[1,0,3]]},
 {"kind":"leaf","name":"bmator","mask":"0xfe00707f","valu":"0x8003033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,4],[14,12,3],[6,2,12],[1,0,3]]},
 {"kind":"leaf","name":"bmatxor","mask":"0xfe00707f","valu":"0x48003033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,36],[14,12,3],[6,2,12],[1,0,3]]},
@@ -1234,7 +1238,7 @@
 {"kind":"import","ref":["rv_zbe","pack"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zbp","packu"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]}
 ]},
-{"name": "rv_zbp", "opcodes": [
+{"name": "rv_zbp", "ratified": false, "opcodes": [
 {"kind":"import","ref":["rv_zbb","andn"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zbb","orn"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zbb","xnor"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
@@ -1251,14 +1255,14 @@
 {"kind":"leaf","name":"xperm16","mask":"0xfe00707f","valu":"0x28006033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,20],[14,12,6],[6,2,12],[1,0,3]]},
 {"kind":"leaf","name":"packu","mask":"0xfe00707f","valu":"0x48004033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,36],[14,12,4],[6,2,12],[1,0,3]]}
 ]},
-{"name": "rv32_zbp", "opcodes": [
+{"name": "rv32_zbp", "ratified": false, "opcodes": [
 {"kind":"pseudo","ref":["rv64_zbp","grevi"],"name":"grevi","mask":"0xfe00707f","valu":"0x68005013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,52],"shamtw",[14,12,5],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_zbp","gorci"],"name":"gorci","mask":"0xfe00707f","valu":"0x28005013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,20],"shamtw",[14,12,5],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_zbp","shfli"],"name":"shfli","mask":"0xff00707f","valu":"0x8001013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,4],[24,24,0],"shamtw4",[14,12,1],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_zbp","unshfli"],"name":"unshfli","mask":"0xff00707f","valu":"0x8005013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,4],[24,24,0],"shamtw4",[14,12,5],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_zbb","rori"],"name":"rori","mask":"0xfe00707f","valu":"0x60005013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,48],"shamtw",[14,12,5],[6,2,4],[1,0,3]]}
 ]},
-{"name": "rv64_zbp", "opcodes": [
+{"name": "rv64_zbp", "ratified": false, "opcodes": [
 {"kind":"leaf","name":"grevi","mask":"0xfc00707f","valu":"0x68005013","fullMask":"0xffffffff","args":["rd","rs1",[31,26,26],"shamtd",[14,12,5],[6,2,4],[1,0,3]]},
 {"kind":"leaf","name":"gorci","mask":"0xfc00707f","valu":"0x28005013","fullMask":"0xffffffff","args":["rd","rs1",[31,26,10],"shamtd",[14,12,5],[6,2,4],[1,0,3]]},
 {"kind":"leaf","name":"shfli","mask":"0xfe00707f","valu":"0x8001013","fullMask":"0xffffffff","args":["rd","rs1",[31,26,2],[25,25,0],"shamtw",[14,12,1],[6,2,4],[1,0,3]]},
@@ -1277,7 +1281,7 @@
 {"kind":"leaf","name":"unshflw","mask":"0xfe00707f","valu":"0x800503b","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,4],[14,12,5],[6,2,14],[1,0,3]]},
 {"kind":"leaf","name":"xperm32","mask":"0xfe00707f","valu":"0x28000033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,20],[14,12,0],[6,2,12],[1,0,3]]}
 ]},
-{"name": "rv_zbpbo", "opcodes": [
+{"name": "rv_zbpbo", "ratified": false, "opcodes": [
 {"kind":"import","ref":["rv_zbe","pack"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zbp","packu"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zbb","max"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
@@ -1286,19 +1290,19 @@
 {"kind":"import","ref":["rv_zbp","grev"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"pseudo","ref":["rv64_zbp","grevi"],"name":"rev8.h","mask":"0xfff0707f","valu":"0x68805013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1672],[14,12,5],[6,0,19]]}
 ]},
-{"name": "rv32_zbpbo", "opcodes": [
+{"name": "rv32_zbpbo", "ratified": false, "opcodes": [
 {"kind":"import","ref":["rv_zbb","clz"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zbt","fsr"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"pseudo","ref":["rv64_zbt","fsri"],"name":"fsri","mask":"0x600707f","valu":"0x4005013","fullMask":"0xffffffff","args":["rd","rs1","rs3",[26,26,1],[25,25,0],"shamtw",[14,12,5],[6,2,4],[1,0,3]]},
 {"kind":"pseudo","ref":["rv64_zbp","grevi"],"name":"rev","mask":"0xfff0707f","valu":"0x69f05013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1695],[14,12,5],[6,0,19]]},
 {"kind":"pseudo","ref":["rv64_zbp","grevi"],"name":"grevi","mask":"0xfe00707f","valu":"0x68005013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,52],"shamtw",[14,12,5],[6,2,4],[1,0,3]]}
 ]},
-{"name": "rv64_zbpbo", "opcodes": [
+{"name": "rv64_zbpbo", "ratified": false, "opcodes": [
 {"kind":"import","ref":["rv64_zbt","fsrw"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv64_zbp","grevi"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"pseudo","ref":["rv64_zbp","grevi"],"name":"rev","mask":"0xfff0707f","valu":"0x6bf05013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1727],[14,12,5],[6,0,19]]}
 ]},
-{"name": "rv_zbr", "opcodes": [
+{"name": "rv_zbr", "ratified": false, "opcodes": [
 {"kind":"leaf","name":"crc32.b","mask":"0xfff0707f","valu":"0x61001013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1552],[14,12,1],[6,2,4],[1,0,3]]},
 {"kind":"leaf","name":"crc32.h","mask":"0xfff0707f","valu":"0x61101013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1553],[14,12,1],[6,2,4],[1,0,3]]},
 {"kind":"leaf","name":"crc32.w","mask":"0xfff0707f","valu":"0x61201013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1554],[14,12,1],[6,2,4],[1,0,3]]},
@@ -1306,36 +1310,32 @@
 {"kind":"leaf","name":"crc32c.h","mask":"0xfff0707f","valu":"0x61901013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1561],[14,12,1],[6,2,4],[1,0,3]]},
 {"kind":"leaf","name":"crc32c.w","mask":"0xfff0707f","valu":"0x61a01013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1562],[14,12,1],[6,2,4],[1,0,3]]}
 ]},
-{"name": "rv64_zbr", "opcodes": [
+{"name": "rv64_zbr", "ratified": false, "opcodes": [
 {"kind":"leaf","name":"crc32.d","mask":"0xfff0707f","valu":"0x61301013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1555],[14,12,1],[6,2,4],[1,0,3]]},
 {"kind":"leaf","name":"crc32c.d","mask":"0xfff0707f","valu":"0x61b01013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1563],[14,12,1],[6,2,4],[1,0,3]]}
 ]},
-{"name": "rv_zbt", "opcodes": [
+{"name": "rv_zbt", "ratified": false, "opcodes": [
 {"kind":"leaf","name":"cmix","mask":"0x600707f","valu":"0x6001033","fullMask":"0xffffffff","args":["rd","rs1","rs2","rs3",[26,25,3],[14,12,1],[6,2,12],[1,0,3]]},
 {"kind":"leaf","name":"cmov","mask":"0x600707f","valu":"0x6005033","fullMask":"0xffffffff","args":["rd","rs1","rs2","rs3",[26,25,3],[14,12,5],[6,2,12],[1,0,3]]},
 {"kind":"leaf","name":"fsl","mask":"0x600707f","valu":"0x4001033","fullMask":"0xffffffff","args":["rd","rs1","rs2","rs3",[26,25,2],[14,12,1],[6,2,12],[1,0,3]]},
 {"kind":"leaf","name":"fsr","mask":"0x600707f","valu":"0x4005033","fullMask":"0xffffffff","args":["rd","rs1","rs2","rs3",[26,25,2],[14,12,5],[6,2,12],[1,0,3]]}
 ]},
-{"name": "rv32_zbt", "opcodes": [
+{"name": "rv32_zbt", "ratified": false, "opcodes": [
 {"kind":"pseudo","ref":["rv64_zbt","fsri"],"name":"fsri","mask":"0x600707f","valu":"0x4005013","fullMask":"0xffffffff","args":["rd","rs1","rs3",[26,26,1],[25,25,0],"shamtw",[14,12,5],[6,2,4],[1,0,3]]}
 ]},
-{"name": "rv64_zbt", "opcodes": [
+{"name": "rv64_zbt", "ratified": false, "opcodes": [
 {"kind":"leaf","name":"fslw","mask":"0x600707f","valu":"0x400103b","fullMask":"0xffffffff","args":["rd","rs1","rs2","rs3",[26,25,2],[14,12,1],[6,2,14],[1,0,3]]},
 {"kind":"leaf","name":"fsrw","mask":"0x600707f","valu":"0x400503b","fullMask":"0xffffffff","args":["rd","rs1","rs2","rs3",[26,25,2],[14,12,5],[6,2,14],[1,0,3]]},
 {"kind":"leaf","name":"fsriw","mask":"0x600707f","valu":"0x400501b","fullMask":"0xffffffff","args":["rd","rs1","rs3",[26,25,2],"shamtw",[14,12,5],[6,2,6],[1,0,3]]},
 {"kind":"leaf","name":"fsri","mask":"0x400707f","valu":"0x4005013","fullMask":"0xffffffff","args":["rd","rs1","rs3",[26,26,1],"shamtd",[14,12,5],[6,2,4],[1,0,3]]}
 ]},
-{"name": "rv_zawrs", "opcodes": [
-{"kind":"leaf","name":"wrs.nto","mask":"0xffffffff","valu":"0xd00073","fullMask":"0xffffffff","args":[[31,20,13],[19,7,0],[6,2,28],[1,0,3]]},
-{"kind":"leaf","name":"wrs.sto","mask":"0xffffffff","valu":"0x1d00073","fullMask":"0xffffffff","args":[[31,20,29],[19,7,0],[6,2,28],[1,0,3]]}
-]},
-{"name": "rv_zihintntl", "opcodes": [
+{"name": "rv_zihintntl", "ratified": false, "opcodes": [
 {"kind":"pseudo","ref":["rv_i","add"],"name":"ntl.p1","mask":"0xffffffff","valu":"0x200033","fullMask":"0xffffffff","args":[[31,25,0],[24,20,2],[19,15,0],[14,12,0],[11,7,0],[6,2,12],[1,0,3]]},
 {"kind":"pseudo","ref":["rv_i","add"],"name":"ntl.pall","mask":"0xffffffff","valu":"0x300033","fullMask":"0xffffffff","args":[[31,25,0],[24,20,3],[19,15,0],[14,12,0],[11,7,0],[6,2,12],[1,0,3]]},
 {"kind":"pseudo","ref":["rv_i","add"],"name":"ntl.s1","mask":"0xffffffff","valu":"0x400033","fullMask":"0xffffffff","args":[[31,25,0],[24,20,4],[19,15,0],[14,12,0],[11,7,0],[6,2,12],[1,0,3]]},
 {"kind":"pseudo","ref":["rv_i","add"],"name":"ntl.all","mask":"0xffffffff","valu":"0x500033","fullMask":"0xffffffff","args":[[31,25,0],[24,20,5],[19,15,0],[14,12,0],[11,7,0],[6,2,12],[1,0,3]]}
 ]},
-{"name": "rv_zpn", "opcodes": [
+{"name": "rv_zpn", "ratified": false, "opcodes": [
 {"kind":"pseudo","ref":["rv_zicsr","csrrs"],"name":"rdov","mask":"0xfffff07f","valu":"0x902073","fullMask":"0xffffffff","args":["rd",[19,15,0],[31,20,9],[14,12,2],[6,2,28],[1,0,3]]},
 {"kind":"pseudo","ref":["rv_zicsr","csrrci"],"name":"clrov","mask":"0xfffff07f","valu":"0x90f073","fullMask":"0xffffffff","args":["rd",[19,15,1],[31,20,9],[14,12,7],[6,2,28],[1,0,3]]},
 {"kind":"leaf","name":"add16","mask":"0xfe00707f","valu":"0x40000077","fullMask":"0xffffffff","args":[[31,25,32],"rs2","rs1",[14,12,0],"rd",[6,0,119]]},
@@ -1531,12 +1531,12 @@
 {"kind":"leaf","name":"zunpkd831","mask":"0xfff0707f","valu":"0xacf00077","fullMask":"0xffffffff","args":[[31,25,86],[24,20,15],"rs1",[14,12,0],"rd",[6,0,119]]},
 {"kind":"leaf","name":"zunpkd832","mask":"0xfff0707f","valu":"0xad700077","fullMask":"0xffffffff","args":[[31,25,86],[24,20,23],"rs1",[14,12,0],"rd",[6,0,119]]}
 ]},
-{"name": "rv32_zpn", "opcodes": [
+{"name": "rv32_zpn", "ratified": false, "opcodes": [
 {"kind":"import","ref":["rv_m","mulh"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"pseudo","ref":["rv64_zpn","srai.u"],"name":"srai.u","mask":"0xfe00707f","valu":"0xd4001077","fullMask":"0xffffffff","args":[[31,25,106],"imm5","rs1",[14,12,1],"rd",[6,0,119]]},
 {"kind":"pseudo","ref":["rv64_zpn","insb"],"name":"insb","mask":"0xffc0707f","valu":"0xac000077","fullMask":"0xffffffff","args":[[31,25,86],[24,22,0],"imm2","rs1",[14,12,0],"rd",[6,0,119]]}
 ]},
-{"name": "rv64_zpn", "opcodes": [
+{"name": "rv64_zpn", "ratified": false, "opcodes": [
 {"kind":"leaf","name":"add32","mask":"0xfe00707f","valu":"0x40002077","fullMask":"0xffffffff","args":[[31,25,32],"rs2","rs1",[14,12,2],"rd",[6,0,119]]},
 {"kind":"leaf","name":"insb","mask":"0xff80707f","valu":"0xac000077","fullMask":"0xffffffff","args":[[31,25,86],[24,23,0],"imm3","rs1",[14,12,0],"rd",[6,0,119]]},
 {"kind":"leaf","name":"pkbb16","mask":"0xfe00707f","valu":"0xe001077","fullMask":"0xffffffff","args":[[31,25,7],"rs2","rs1",[14,12,1],"rd",[6,0,119]]},
@@ -1620,7 +1620,7 @@
 {"kind":"leaf","name":"pktb32","mask":"0xfe00707f","valu":"0x3e002077","fullMask":"0xffffffff","args":[[31,25,31],"rs2","rs1",[14,12,2],"rd",[6,0,119]]},
 {"kind":"leaf","name":"kabs32","mask":"0xfff0707f","valu":"0xad200077","fullMask":"0xffffffff","args":[[31,25,86],[24,20,18],"rs1",[14,12,0],"rd",[6,0,119]]}
 ]},
-{"name": "rv_zpsf", "opcodes": [
+{"name": "rv_zpsf", "ratified": false, "opcodes": [
 {"kind":"leaf","name":"kadd64","mask":"0xfe00707f","valu":"0x90001077","fullMask":"0xffffffff","args":[[31,25,72],"rs2","rs1",[14,12,1],"rd",[6,0,119]]},
 {"kind":"leaf","name":"kmar64","mask":"0xfe00707f","valu":"0x94001077","fullMask":"0xffffffff","args":[[31,25,74],"rs2","rs1",[14,12,1],"rd",[6,0,119]]},
 {"kind":"leaf","name":"kmsr64","mask":"0xfe00707f","valu":"0x96001077","fullMask":"0xffffffff","args":[[31,25,75],"rs2","rs1",[14,12,1],"rd",[6,0,119]]},
@@ -1659,7 +1659,7 @@
 {"kind":"leaf","name":"uradd64","mask":"0xfe00707f","valu":"0xa0001077","fullMask":"0xffffffff","args":[[31,25,80],"rs2","rs1",[14,12,1],"rd",[6,0,119]]},
 {"kind":"leaf","name":"ursub64","mask":"0xfe00707f","valu":"0xa2001077","fullMask":"0xffffffff","args":[[31,25,81],"rs2","rs1",[14,12,1],"rd",[6,0,119]]}
 ]},
-{"name": "rv32_zpsf", "opcodes": [
+{"name": "rv32_zpsf", "ratified": false, "opcodes": [
 {"kind":"leaf","name":"add64","mask":"0xfe00707f","valu":"0xc0001077","fullMask":"0xffffffff","args":[[31,25,96],"rs2","rs1",[14,12,1],"rd",[6,0,119]]},
 {"kind":"leaf","name":"sub64","mask":"0xfe00707f","valu":"0xc2001077","fullMask":"0xffffffff","args":[[31,25,97],"rs2","rs1",[14,12,1],"rd",[6,0,119]]}
 ]}
