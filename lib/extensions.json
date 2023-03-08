@@ -1287,19 +1287,16 @@
 {"kind":"import","ref":["rv_zbb","max"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zbb","min"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zbt","cmix"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
-{"kind":"import","ref":["rv_zbp","grev"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"pseudo","ref":["rv64_zbp","grevi"],"name":"rev8.h","mask":"0xfff0707f","valu":"0x68805013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1672],[14,12,5],[6,0,19]]}
 ]},
 {"name": "rv32_zbpbo", "ratified": false, "opcodes": [
 {"kind":"import","ref":["rv_zbb","clz"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"import","ref":["rv_zbt","fsr"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"pseudo","ref":["rv64_zbt","fsri"],"name":"fsri","mask":"0x600707f","valu":"0x4005013","fullMask":"0xffffffff","args":["rd","rs1","rs3",[26,26,1],[25,25,0],"shamtw",[14,12,5],[6,2,4],[1,0,3]]},
-{"kind":"pseudo","ref":["rv64_zbp","grevi"],"name":"rev","mask":"0xfff0707f","valu":"0x69f05013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1695],[14,12,5],[6,0,19]]},
-{"kind":"pseudo","ref":["rv64_zbp","grevi"],"name":"grevi","mask":"0xfe00707f","valu":"0x68005013","fullMask":"0xffffffff","args":["rd","rs1",[31,25,52],"shamtw",[14,12,5],[6,2,4],[1,0,3]]}
+{"kind":"pseudo","ref":["rv64_zbp","grevi"],"name":"rev","mask":"0xfff0707f","valu":"0x69f05013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1695],[14,12,5],[6,0,19]]}
 ]},
 {"name": "rv64_zbpbo", "ratified": false, "opcodes": [
 {"kind":"import","ref":["rv64_zbt","fsrw"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
-{"kind":"import","ref":["rv64_zbp","grevi"],"mask":"0x0","valu":"0x0","fullMask":"0x0","args":[]},
 {"kind":"pseudo","ref":["rv64_zbp","grevi"],"name":"rev","mask":"0xfff0707f","valu":"0x6bf05013","fullMask":"0xffffffff","args":["rd","rs1",[31,20,1727],[14,12,5],[6,0,19]]}
 ]},
 {"name": "rv_zbr", "ratified": false, "opcodes": [
