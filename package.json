@@ -3,6 +3,9 @@
   "version": "0.8.0",
   "description": "RISC-V ISA helpers",
   "main": "lib",
+  "bin": {
+    "riscv": "bin/riscv.js"
+  },
   "scripts": {
     "test": "eslint lib test bin && nyc -r=text -r=lcov mocha",
     "prepare": "node bin/build-extensions.js"
