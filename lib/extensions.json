@@ -133,6 +133,12 @@
 {"kind":"leaf","name":"c.ldsp","mask":"0xe003","valu":"0x6002","fullMask":"0xffff","args":["rd_n0","c_uimm9sphi","c_uimm9splo",[1,0,2],[15,13,3]]},
 {"kind":"leaf","name":"c.sdsp","mask":"0xe003","valu":"0xe002","fullMask":"0xffff","args":["c_rs2","c_uimm9sp_s",[1,0,2],[15,13,7]]}
 ]},
+{"name": "rv32_c_f", "ratified": true, "opcodes": [
+{"kind":"leaf","name":"c.flw","mask":"0xe003","valu":"0x6000","fullMask":"0xffff","args":["rd_p","rs1_p","c_uimm7lo","c_uimm7hi",[1,0,0],[15,13,3]]},
+{"kind":"leaf","name":"c.fsw","mask":"0xe003","valu":"0xe000","fullMask":"0xffff","args":["rs1_p","rs2_p","c_uimm7lo","c_uimm7hi",[1,0,0],[15,13,7]]},
+{"kind":"leaf","name":"c.flwsp","mask":"0xe003","valu":"0x6002","fullMask":"0xffff","args":["rd","c_uimm8sphi","c_uimm8splo",[1,0,2],[15,13,3]]},
+{"kind":"leaf","name":"c.fswsp","mask":"0xe003","valu":"0xe002","fullMask":"0xffff","args":["c_rs2","c_uimm8sp_s",[1,0,2],[15,13,7]]}
+]},
 {"name": "rv_a", "ratified": true, "opcodes": [
 {"kind":"leaf","name":"lr.w","mask":"0xf9f0707f","valu":"0x1000202f","fullMask":"0xffffffff","args":["rd","rs1",[24,20,0],"aq","rl",[31,29,0],[28,27,2],[14,12,2],[6,2,11],[1,0,3]]},
 {"kind":"leaf","name":"sc.w","mask":"0xf800707f","valu":"0x1800202f","fullMask":"0xffffffff","args":["rd","rs1","rs2","aq","rl",[31,29,0],[28,27,3],[14,12,2],[6,2,11],[1,0,3]]},
@@ -1659,5 +1665,57 @@
 {"name": "rv32_zpsf", "ratified": false, "opcodes": [
 {"kind":"leaf","name":"add64","mask":"0xfe00707f","valu":"0xc0001077","fullMask":"0xffffffff","args":[[31,25,96],"rs2","rs1",[14,12,1],"rd",[6,0,119]]},
 {"kind":"leaf","name":"sub64","mask":"0xfe00707f","valu":"0xc2001077","fullMask":"0xffffffff","args":[[31,25,97],"rs2","rs1",[14,12,1],"rd",[6,0,119]]}
+]},
+{"name": "rv_d_zfa", "ratified": false, "opcodes": [
+{"kind":"leaf","name":"fli.d","mask":"0xfff0707f","valu":"0xf2100053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,1],[31,27,30],[14,12,0],[26,25,1],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fminm.d","mask":"0xfe00707f","valu":"0x2a002053","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,27,5],[14,12,2],[26,25,1],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fmaxm.d","mask":"0xfe00707f","valu":"0x2a003053","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,27,5],[14,12,3],[26,25,1],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fround.d","mask":"0xfff0007f","valu":"0x42400053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,4],[31,27,8],"rm",[26,25,1],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"froundnx.d","mask":"0xfff0007f","valu":"0x42500053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,5],[31,27,8],"rm",[26,25,1],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fcvtmod.w.d","mask":"0xfff0707f","valu":"0xc2801053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,8],[31,27,24],[14,12,1],[26,25,1],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fleq.d","mask":"0xfe00707f","valu":"0xa2004053","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,27,20],[14,12,4],[26,25,1],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fltq.d","mask":"0xfe00707f","valu":"0xa2005053","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,27,20],[14,12,5],[26,25,1],[6,2,20],[1,0,3]]}
+]},
+{"name": "rv32_d_zfa", "ratified": false, "opcodes": [
+{"kind":"leaf","name":"fmvh.x.d","mask":"0xfff0707f","valu":"0xe2100053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,1],[31,27,28],[14,12,0],[26,25,1],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fmvp.d.x","mask":"0xfff0707f","valu":"0xb2100053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,1],[31,27,22],[14,12,0],[26,25,1],[6,2,20],[1,0,3]]}
+]},
+{"name": "rv_q_zfa", "ratified": false, "opcodes": [
+{"kind":"leaf","name":"fli.q","mask":"0xfff0707f","valu":"0xf6100053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,1],[31,27,30],[14,12,0],[26,25,3],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fminm.q","mask":"0xfe00707f","valu":"0x2e002053","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,27,5],[14,12,2],[26,25,3],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fmaxm.q","mask":"0xfe00707f","valu":"0x2e003053","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,27,5],[14,12,3],[26,25,3],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fround.q","mask":"0xfff0007f","valu":"0x46400053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,4],[31,27,8],"rm",[26,25,3],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"froundnx.q","mask":"0xfff0007f","valu":"0x46500053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,5],[31,27,8],"rm",[26,25,3],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fleq.q","mask":"0xfe00707f","valu":"0xa6004053","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,27,20],[14,12,4],[26,25,3],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fltq.q","mask":"0xfe00707f","valu":"0xa6005053","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,27,20],[14,12,5],[26,25,3],[6,2,20],[1,0,3]]}
+]},
+{"name": "rv64_q_zfa", "ratified": false, "opcodes": [
+{"kind":"leaf","name":"fmvh.x.q","mask":"0xfff0707f","valu":"0xe6100053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,1],[31,27,28],[14,12,0],[26,25,3],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fmvp.q.x","mask":"0xfff0707f","valu":"0xb6100053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,1],[31,27,22],[14,12,0],[26,25,3],[6,2,20],[1,0,3]]}
+]},
+{"name": "rv_f_zfa", "ratified": false, "opcodes": [
+{"kind":"leaf","name":"fli.s","mask":"0xfff0707f","valu":"0xf0100053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,1],[31,27,30],[14,12,0],[26,25,0],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fminm.s","mask":"0xfe00707f","valu":"0x28002053","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,27,5],[14,12,2],[26,25,0],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fmaxm.s","mask":"0xfe00707f","valu":"0x28003053","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,27,5],[14,12,3],[26,25,0],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fround.s","mask":"0xfff0007f","valu":"0x40400053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,4],[31,27,8],"rm",[26,25,0],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"froundnx.s","mask":"0xfff0007f","valu":"0x40500053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,5],[31,27,8],"rm",[26,25,0],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fleq.s","mask":"0xfe00707f","valu":"0xa0004053","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,27,20],[14,12,4],[26,25,0],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fltq.s","mask":"0xfe00707f","valu":"0xa0005053","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,27,20],[14,12,5],[26,25,0],[6,2,20],[1,0,3]]}
+]},
+{"name": "rv_zfh_zfa", "ratified": false, "opcodes": [
+{"kind":"leaf","name":"fli.h","mask":"0xfff0707f","valu":"0xf4100053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,1],[31,27,30],[14,12,0],[26,25,2],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fminm.h","mask":"0xfe00707f","valu":"0x2c002053","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,27,5],[14,12,2],[26,25,2],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fmaxm.h","mask":"0xfe00707f","valu":"0x2c003053","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,27,5],[14,12,3],[26,25,2],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fround.h","mask":"0xfff0007f","valu":"0x44400053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,4],[31,27,8],"rm",[26,25,2],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"froundnx.h","mask":"0xfff0007f","valu":"0x44500053","fullMask":"0xffffffff","args":["rd","rs1",[24,20,5],[31,27,8],"rm",[26,25,2],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fleq.h","mask":"0xfe00707f","valu":"0xa4004053","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,27,20],[14,12,4],[26,25,2],[6,2,20],[1,0,3]]},
+{"kind":"leaf","name":"fltq.h","mask":"0xfe00707f","valu":"0xa4005053","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,27,20],[14,12,5],[26,25,2],[6,2,20],[1,0,3]]}
+]},
+{"name": "rv_smrnmi", "ratified": false, "opcodes": [
+{"kind":"leaf","name":"mnret","mask":"0xffffffff","valu":"0x70200073","fullMask":"0xffffffff","args":[[11,7,0],[19,15,0],[31,20,1794],[14,12,0],[6,2,28],[1,0,3]]}
+]},
+{"name": "rv_zicond", "ratified": false, "opcodes": [
+{"kind":"leaf","name":"czero.eqz","mask":"0xfe00707f","valu":"0xe005033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,7],[14,12,5],[6,2,12],[1,0,3]]},
+{"kind":"leaf","name":"czero.nez","mask":"0xfe00707f","valu":"0xe007033","fullMask":"0xffffffff","args":["rd","rs1","rs2",[31,25,7],[14,12,7],[6,2,12],[1,0,3]]}
 ]}
 ]
