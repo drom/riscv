@@ -12,7 +12,7 @@ describe('basic', async () => {
   // });
 
   it ('got all files', async () => {
-    expect(lib.opcodes.ALL_OPCODES.length).to.eq(95);
+    expect(lib.opcodes.ALL_OPCODES.length).to.eq(104);
   });
 
   // it ('got all opcodes', async () => {
