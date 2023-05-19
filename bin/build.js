@@ -151,7 +151,7 @@ const pics = [
     c.mv, c.ebreak,
     c.jalr,
     c.add,
-    c.swsp,
+    c.swsp
   )],
   ['rv64c', 'inst', tabler16(
     c.illegal,
@@ -172,7 +172,7 @@ const pics = [
     c.mv, c.ebreak,
     c.jalr,
     c.add,
-    c.swsp, c.sdsp,
+    c.swsp, c.sdsp
   )],
   ['rv32fc', 'inst', tabler16(
     c.illegal,
@@ -194,7 +194,7 @@ const pics = [
     c.mv, c.ebreak,
     c.jalr,
     c.add,
-    c.swsp, c.fswsp,
+    c.swsp, c.fswsp
   )],
   ['rv64fc', 'inst', tabler16(
     c.illegal,
@@ -215,7 +215,7 @@ const pics = [
     c.mv, c.ebreak,
     c.jalr,
     c.add,
-    c.swsp, c.fswsp, c.sdsp,
+    c.swsp, c.fswsp, c.sdsp
   )],
   ['rv32dc', 'inst', tabler16(
     c.illegal,
@@ -237,7 +237,7 @@ const pics = [
     c.mv, c.ebreak,
     c.jalr,
     c.add,
-    c.fsdsp, c.swsp,
+    c.fsdsp, c.swsp
   )],
   ['rv64dc', 'inst', tabler16(
     c.illegal,
@@ -258,7 +258,7 @@ const pics = [
     c.mv, c.ebreak,
     c.jalr,
     c.add,
-    c.fsdsp, c.swsp, c.sdsp,
+    c.fsdsp, c.swsp, c.sdsp
   )],
   // RVV
   [
@@ -312,7 +312,7 @@ const pics = [
             {bits: 1,  name: 'vm'},
             {bits: 2,  name: 0},
             {bits: 1,  name: 0},
-            {bits: 3,  name: 0},
+            {bits: 3,  name: 0}
           );
         });
       });
@@ -336,7 +336,7 @@ const pics = [
         {bits: 1,  name: 1},
         {bits: 2,  name: 0},
         {bits: 1,  name: 0},
-        {bits: 3,  name: 0},
+        {bits: 3,  name: 0}
       );
     })
   ],
@@ -357,7 +357,7 @@ const pics = [
             {bits: 1,  name: 'vm'},
             {bits: 2,  name: 2},
             {bits: 1,  name: 0},
-            {bits: 3,  name: 0},
+            {bits: 3,  name: 0}
           );
         });
       });
@@ -380,7 +380,7 @@ const pics = [
             {bits: 1,  name: 'vm'},
             {bits: 2,  name: 1},
             {bits: 1,  name: 0},
-            {bits: 3,  name: 0},
+            {bits: 3,  name: 0}
           );
         });
       });
@@ -396,7 +396,7 @@ const pics = [
             {bits: 1,  name: 'vm'},
             {bits: 2,  name: 3},
             {bits: 1,  name: 0},
-            {bits: 3,  name: 0},
+            {bits: 3,  name: 0}
           );
         });
       });
@@ -418,7 +418,7 @@ const pics = [
           {bits: 1,  name: 'vm'},
           {bits: 2,  name: 0},
           {bits: 1,  name: 0},
-          {bits: 3,  name: 0},
+          {bits: 3,  name: 0}
         );
       });
     })
@@ -436,7 +436,7 @@ const pics = [
           {bits: 1,  name: 'vm'},
           {bits: 2,  name: 0},
           {bits: 1,  name: 0},
-          {bits: 3,  name: nf + 1},
+          {bits: 3,  name: nf + 1}
         );
       });
     });
@@ -455,7 +455,7 @@ const pics = [
           {bits: 1,  name: 'vm'},
           {bits: 2,  name: 0},
           {bits: 1,  name: 0},
-          {bits: 3,  name: nf + 1},
+          {bits: 3,  name: nf + 1}
         );
       });
     });
@@ -474,7 +474,7 @@ const pics = [
           {bits: 1,  name: 'vm'},
           {bits: 2,  name: 2},
           {bits: 1,  name: 0},
-          {bits: 3,  name: nf + 1},
+          {bits: 3,  name: nf + 1}
         );
       });
     });
@@ -493,7 +493,7 @@ const pics = [
           {bits: 1,  name: 'vm'},
           {bits: 2,  name: 2},
           {bits: 1,  name: 0},
-          {bits: 3,  name: nf + 1},
+          {bits: 3,  name: nf + 1}
         );
       });
     });
@@ -512,7 +512,7 @@ const pics = [
           {bits: 1,  name: 'vm'},
           {bits: 2,  name: 1},
           {bits: 1,  name: 0},
-          {bits: 3,  name: nf + 1},
+          {bits: 3,  name: nf + 1}
         );
       });
     });
@@ -531,7 +531,7 @@ const pics = [
           {bits: 1,  name: 'vm'},
           {bits: 2,  name: 1},
           {bits: 1,  name: 0},
-          {bits: 3,  name: nf + 1},
+          {bits: 3,  name: nf + 1}
         );
       });
     });
@@ -549,7 +549,7 @@ const pics = [
           {bits: 1,  name: 'vm'},
           {bits: 2,  name: 3},
           {bits: 1,  name: 0},
-          {bits: 3,  name: nf + 1},
+          {bits: 3,  name: nf + 1}
         );
       });
     });
@@ -567,7 +567,7 @@ const pics = [
           {bits: 1,  name: 'vm'},
           {bits: 2,  name: 3},
           {bits: 1,  name: 0},
-          {bits: 3,  name: nf + 1},
+          {bits: 3,  name: nf + 1}
         );
       });
     });
@@ -585,7 +585,7 @@ const pics = [
           {bits: 1,  name: 'vm'},
           {bits: 2,  name: 0},
           {bits: 1,  name: 0},
-          {bits: 3,  name: nf + 1},
+          {bits: 3,  name: nf + 1}
         );
       });
     });
@@ -696,8 +696,8 @@ const pics = [
   vwmaccsu.vv vwmaccsu.vx
   vwmaccus.vx
   `],
-  ['rvv-11-15', 'inst32', `vmerge.vvm vmerge.vxm vmerge.vim`],
-  ['rvv-11-16', 'inst32', `vmv.v.v vmv.v.x vmv.v.i`],
+  ['rvv-11-15', 'inst32', 'vmerge.vvm vmerge.vxm vmerge.vim'],
+  ['rvv-11-16', 'inst32', 'vmv.v.v vmv.v.x vmv.v.i'],
   ['rvv-12-1', 'inst32', `
   vsaddu.vv vsaddu.vx vsaddu.vi
   vsadd.vv vsadd.vx vsadd.vi
@@ -710,7 +710,7 @@ const pics = [
   vasubu.vv vasubu.vx
   vasub.vv vasub.vx
   `],
-  ['rvv-12-3', 'inst32', `vsmul.vv vsmul.vx`],
+  ['rvv-12-3', 'inst32', 'vsmul.vv vsmul.vx'],
   ['rvv-12-4', 'inst32', `
   vssrl.vv vssrl.vx vssrl.vi
   vssra.vv vssra.vx vssra.vi
@@ -732,7 +732,7 @@ const pics = [
   vfdiv.vv vfdiv.vf
   vfrdiv.vf
   `],
-  ['rvv-13-5', 'inst32', `vfwmul.vv vfwmul.vf`],
+  ['rvv-13-5', 'inst32', 'vfwmul.vv vfwmul.vf'],
   ['rvv-13-6', 'inst32', `
   vfmacc.vv vfmacc.vf
   vfnmacc.vv vfnmacc.vf
@@ -775,7 +775,7 @@ const pics = [
   vfclass.v
   vfmerge.vfm
   vfmv.v.f
-  `],
+  `]
   // ...
 
 ];
