@@ -27,9 +27,9 @@
   },
   "homepage": "https://github.com/drom/riscv#readme",
   "devDependencies": {
-    "@drom/eslint-config": "^0.11.0",
+    "@drom/eslint-config": "^0.12.0",
     "chai": "^4.3.6",
-    "eslint": "^8.42.0",
+    "eslint": "^8.56.0",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0"
   },
@@ -37,9 +37,9 @@
     "extends": "@drom/eslint-config/eslint8/node12"
   },
   "dependencies": {
-    "async": "^3.2.4",
+    "async": "^3.2.5",
     "bit-field": "^1.8.0",
-    "commander": "^10.0.1",
+    "commander": "^11.1.0",
     "lodash.range": "^3.2.0",
     "onml": "^2.1.0"
   }
