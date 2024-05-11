@@ -7,7 +7,9 @@ const { program } = require('commander');
 
 const { writeFile } = require('fs').promises;
 
-const { opcodes, extractNode, jsonStringify } = require('../lib');
+const lib = require('../lib');
+
+const getOpcodes = require('../lib/get-opcodes.js');
 
 const countOpcodes = (arr, name) => {
   const o = {};
@@ -24,11 +26,18 @@ const countOpcodes = (arr, name) => {
 
 const main = async () => {
   program
-    .option('--url <url>', 'URL with files')
+    .option('--url <url>', 'Github repo name with files')
     .option('--dir <dir>', 'folder with files')
     .parse(process.argv);
 
   const opts = program.opts();
+
+  if (!(opts.url || opts.dir)) {
+    opts.url = 'riscv/riscv-opcodes';
+  }
+
+  const opcodes = await getOpcodes(opts);
+  // const opcodes = lib.opcodes;
 
   const fieldo = {};
 
@@ -36,7 +45,7 @@ const main = async () => {
     countOpcodes(opcodes[e], e);
   });
 
-  const opcodesRatified = await extractNode(
+  const opcodesRatified = await lib.extractNode(
     opts, // opcodes.ROOT,
     '',
     opcodes.RATIFIED_OPCODES,
@@ -44,7 +53,7 @@ const main = async () => {
     true /* ratified */
   );
 
-  const opcodesUnratified = await extractNode(
+  const opcodesUnratified = await lib.extractNode(
     opts,
     'unratified/', // opcodes.ROOT + 'unratified/',
     opcodes.UNRATIFIED_OPCODES,
@@ -54,7 +63,9 @@ const main = async () => {
 
   const opcodesAll = opcodesRatified.concat(opcodesUnratified);
 
-  await writeFile('lib/extensions.json', jsonStringify(opcodesAll));
+  await writeFile('lib/extensions.json', lib.jsonStringify(opcodesAll));
+
+  // console.log(opcodesAll);
 
   // const filteredOpcodes = filterOpcodes(opcodesAll);
 
