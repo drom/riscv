@@ -43,6 +43,11 @@
 {"kind": "pseudo", "ref": ["rv64_zbs","binvi"], "name": "binvi.rv32", "mask": 4261441663, "valu": 1744834579, "fullMask": 4294967295, "args": ["rd","rs1",[31,25,52],"shamtw",[14,12,1],[6,2,4],[1,0,3]]},
 {"kind": "pseudo", "ref": ["rv64_zbs","bseti"], "name": "bseti.rv32", "mask": 4261441663, "valu": 671092755, "fullMask": 4294967295, "args": ["rd","rs1",[31,25,20],"shamtw",[14,12,1],[6,2,4],[1,0,3]]}
 ]},
+{"name": "rv32_zicntr", "ratified": true, "opcodes": [
+{"kind": "pseudo", "ref": ["rv_zicsr","csrrs"], "name": "rdcycleh", "mask": 4294963327, "valu": 3355451507, "fullMask": 4294967295, "args": ["rd",[19,15,0],[31,20,3200],[14,12,2],[6,2,28],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_zicsr","csrrs"], "name": "rdtimeh", "mask": 4294963327, "valu": 3356500083, "fullMask": 4294967295, "args": ["rd",[19,15,0],[31,20,3201],[14,12,2],[6,2,28],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_zicsr","csrrs"], "name": "rdinstreth", "mask": 4294963327, "valu": 3357548659, "fullMask": 4294967295, "args": ["rd",[19,15,0],[31,20,3202],[14,12,2],[6,2,28],[1,0,3]]}
+]},
 {"name": "rv32_zk", "ratified": true, "opcodes": [
 {"kind": "pseudo", "ref": ["rv64_zbp","shfli"], "name": "zip", "mask": 4293947519, "valu": 149950483, "fullMask": 4294967295, "args": ["rd","rs1",[31,25,4],[24,20,15],[14,12,1],[6,2,4],[1,0,3]]},
 {"kind": "pseudo", "ref": ["rv64_zbp","unshfli"], "name": "unzip", "mask": 4293947519, "valu": 149966867, "fullMask": 4294967295, "args": ["rd","rs1",[31,25,4],[24,20,15],[14,12,5],[6,2,4],[1,0,3]]},
@@ -156,7 +161,8 @@
 {"kind": "leaf", "name": "subw", "mask": 4261441663, "valu": 1073741883, "fullMask": 4294967295, "args": ["rd","rs1","rs2",[31,25,32],[14,12,0],[6,2,14],[1,0,3]]},
 {"kind": "leaf", "name": "sllw", "mask": 4261441663, "valu": 4155, "fullMask": 4294967295, "args": ["rd","rs1","rs2",[31,25,0],[14,12,1],[6,2,14],[1,0,3]]},
 {"kind": "leaf", "name": "srlw", "mask": 4261441663, "valu": 20539, "fullMask": 4294967295, "args": ["rd","rs1","rs2",[31,25,0],[14,12,5],[6,2,14],[1,0,3]]},
-{"kind": "leaf", "name": "sraw", "mask": 4261441663, "valu": 1073762363, "fullMask": 4294967295, "args": ["rd","rs1","rs2",[31,25,32],[14,12,5],[6,2,14],[1,0,3]]}
+{"kind": "leaf", "name": "sraw", "mask": 4261441663, "valu": 1073762363, "fullMask": 4294967295, "args": ["rd","rs1","rs2",[31,25,32],[14,12,5],[6,2,14],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv64_i","addiw"], "name": "sext.w", "mask": 4293947519, "valu": 27, "fullMask": 4294967295, "args": ["rd","rs1",[31,20,0],[14,12,0],[6,2,6],[1,0,3]]}
 ]},
 {"name": "rv64_m", "ratified": true, "opcodes": [
 {"kind": "leaf", "name": "mulw", "mask": 4261441663, "valu": 33554491, "fullMask": 4294967295, "args": ["rd","rs1","rs2",[31,25,1],[14,12,0],[6,2,14],[1,0,3]]},
@@ -404,7 +410,15 @@
 {"kind": "leaf", "name": "fcvt.s.wu", "mask": 4293918847, "valu": 3490709587, "fullMask": 4294967295, "args": ["rd","rs1",[24,20,1],[31,27,26],"rm",[26,25,0],[6,2,20],[1,0,3]]},
 {"kind": "leaf", "name": "fmv.w.x", "mask": 4293947519, "valu": 4026531923, "fullMask": 4294967295, "args": ["rd","rs1",[24,20,0],[31,27,30],[14,12,0],[26,25,0],[6,2,20],[1,0,3]]},
 {"kind": "pseudo", "ref": ["rv_f","fmv.x.w"], "name": "fmv.x.s", "mask": 4293947519, "valu": 3758096467, "fullMask": 4294967295, "args": ["rd","rs1",[24,20,0],[31,27,28],[14,12,0],[26,25,0],[6,2,20],[1,0,3]]},
-{"kind": "pseudo", "ref": ["rv_f","fmv.w.x"], "name": "fmv.s.x", "mask": 4293947519, "valu": 4026531923, "fullMask": 4294967295, "args": ["rd","rs1",[24,20,0],[31,27,30],[14,12,0],[26,25,0],[6,2,20],[1,0,3]]}
+{"kind": "pseudo", "ref": ["rv_f","fmv.w.x"], "name": "fmv.s.x", "mask": 4293947519, "valu": 4026531923, "fullMask": 4294967295, "args": ["rd","rs1",[24,20,0],[31,27,30],[14,12,0],[26,25,0],[6,2,20],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_zicsr","csrrs"], "name": "frflags", "mask": 4294963327, "valu": 1056883, "fullMask": 4294967295, "args": ["rd",[19,15,0],[31,20,1],[14,12,2],[6,2,28],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_zicsr","csrrw"], "name": "fsflags", "mask": 4293947519, "valu": 1052787, "fullMask": 4294967295, "args": ["rd","rs1",[31,20,1],[14,12,1],[6,2,28],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_zicsr","csrrwi"], "name": "fsflagsi", "mask": 4293947519, "valu": 1069171, "fullMask": 4294967295, "args": ["rd","zimm",[31,20,1],[14,12,5],[6,2,28],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_zicsr","csrrs"], "name": "frrm", "mask": 4294963327, "valu": 2105459, "fullMask": 4294967295, "args": ["rd",[19,15,0],[31,20,2],[14,12,2],[6,2,28],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_zicsr","csrrw"], "name": "fsrm", "mask": 4293947519, "valu": 2101363, "fullMask": 4294967295, "args": ["rd","rs1",[31,20,2],[14,12,1],[6,2,28],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_zicsr","csrrwi"], "name": "fsrmi", "mask": 4293947519, "valu": 2117747, "fullMask": 4294967295, "args": ["rd","zimm",[31,20,2],[14,12,5],[6,2,28],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_zicsr","csrrw"], "name": "fscsr", "mask": 4293947519, "valu": 3149939, "fullMask": 4294967295, "args": ["rd","rs1",[31,20,3],[14,12,1],[6,2,28],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_zicsr","csrrs"], "name": "frcsr", "mask": 4294963327, "valu": 3154035, "fullMask": 4294967295, "args": ["rd",[19,15,0],[31,20,3],[14,12,2],[6,2,28],[1,0,3]]}
 ]},
 {"name": "rv_f_zfa", "ratified": true, "opcodes": [
 {"kind": "leaf", "name": "fli.s", "mask": 4293947519, "valu": 4027580499, "fullMask": 4294967295, "args": ["rd","rs1",[24,20,1],[31,27,30],[14,12,0],[26,25,0],[6,2,20],[1,0,3]]},
@@ -470,7 +484,30 @@
 {"kind": "leaf", "name": "ecall", "mask": 4294967295, "valu": 115, "fullMask": 4294967295, "args": [[31,20,0],[19,7,0],[6,2,28],[1,0,3]]},
 {"kind": "leaf", "name": "ebreak", "mask": 4294967295, "valu": 1048691, "fullMask": 4294967295, "args": [[31,20,1],[19,7,0],[6,2,28],[1,0,3]]},
 {"kind": "pseudo", "ref": ["rv_i","ecall"], "name": "scall", "mask": 4294967295, "valu": 115, "fullMask": 4294967295, "args": [[11,7,0],[19,15,0],[31,20,0],[14,12,0],[6,2,28],[1,0,3]]},
-{"kind": "pseudo", "ref": ["rv_i","ebreak"], "name": "sbreak", "mask": 4294967295, "valu": 1048691, "fullMask": 4294967295, "args": [[11,7,0],[19,15,0],[31,20,1],[14,12,0],[6,2,28],[1,0,3]]}
+{"kind": "pseudo", "ref": ["rv_i","ebreak"], "name": "sbreak", "mask": 4294967295, "valu": 1048691, "fullMask": 4294967295, "args": [[11,7,0],[19,15,0],[31,20,1],[14,12,0],[6,2,28],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","addi"], "name": "mv", "mask": 4293947519, "valu": 19, "fullMask": 4294967295, "args": ["rd","rs1",[31,20,0],[14,12,0],[6,2,4],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","sub"], "name": "neg", "mask": 4293947519, "valu": 1073741875, "fullMask": 4294967295, "args": ["rd","rs1",[31,25,32],[24,20,0],[14,12,0],[6,2,12],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","addi"], "name": "nop", "mask": 4294967295, "valu": 19, "fullMask": 4294967295, "args": [[31,20,0],[19,15,0],[14,12,0],[11,7,0],[6,2,4],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","andi"], "name": "zext.b", "mask": 4293947519, "valu": 28691, "fullMask": 4294967295, "args": ["rd","rs1",[31,20,0],[14,12,7],[6,2,4],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","jalr"], "name": "ret", "mask": 4294967295, "valu": 32871, "fullMask": 4294967295, "args": [[31,20,0],[19,15,1],[14,12,0],[11,7,0],[6,2,25],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","bgeu"], "name": "bleu", "mask": 28799, "valu": 28771, "fullMask": 4294967295, "args": ["bimm12hi","rs2","rs1","bimm12lo",[14,12,7],[6,2,24],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","bltu"], "name": "bgtu", "mask": 28799, "valu": 24675, "fullMask": 4294967295, "args": ["bimm12hi","rs2","rs1","bimm12lo",[14,12,6],[6,2,24],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","bge"], "name": "ble", "mask": 28799, "valu": 20579, "fullMask": 4294967295, "args": ["bimm12hi","rs2","rs1","bimm12lo",[14,12,5],[6,2,24],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","bge"], "name": "bgez", "mask": 32534655, "valu": 20579, "fullMask": 4294967295, "args": ["bimm12hi","rs1","bimm12lo",[24,20,0],[14,12,5],[6,2,24],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","bge"], "name": "blez", "mask": 1044607, "valu": 20579, "fullMask": 4294967295, "args": ["bimm12hi","rs2","bimm12lo",[19,15,0],[14,12,5],[6,2,24],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","blt"], "name": "bgt", "mask": 28799, "valu": 16483, "fullMask": 4294967295, "args": ["bimm12hi","rs2","rs1","bimm12lo",[14,12,4],[6,2,24],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","blt"], "name": "bgtz", "mask": 1044607, "valu": 16483, "fullMask": 4294967295, "args": ["bimm12hi","rs2","bimm12lo",[19,15,0],[14,12,4],[6,2,24],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","blt"], "name": "bltz", "mask": 32534655, "valu": 16483, "fullMask": 4294967295, "args": ["bimm12hi","rs1","bimm12lo",[24,20,0],[14,12,4],[6,2,24],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","bne"], "name": "bnez", "mask": 32534655, "valu": 4195, "fullMask": 4294967295, "args": ["bimm12hi","rs1","bimm12lo",[24,20,0],[14,12,1],[6,2,24],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","beq"], "name": "beqz", "mask": 32534655, "valu": 99, "fullMask": 4294967295, "args": ["bimm12hi","rs1","bimm12lo",[24,20,0],[14,12,0],[6,2,24],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","sltiu"], "name": "seqz", "mask": 4293947519, "valu": 1060883, "fullMask": 4294967295, "args": ["rd","rs1",[31,20,1],[14,12,3],[6,2,4],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","sltu"], "name": "snez", "mask": 4262457471, "valu": 12339, "fullMask": 4294967295, "args": ["rd","rs2",[31,25,0],[19,15,0],[14,12,3],[6,2,12],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","slt"], "name": "sltz", "mask": 4293947519, "valu": 8243, "fullMask": 4294967295, "args": ["rd","rs1",[31,25,0],[24,20,0],[14,12,2],[6,2,12],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","slt"], "name": "sgtz", "mask": 4262457471, "valu": 8243, "fullMask": 4294967295, "args": ["rd","rs2",[31,25,0],[19,15,0],[14,12,2],[6,2,12],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","jalr"], "name": "jalr", "mask": 4293951487, "valu": 231, "fullMask": 4294967295, "args": ["rs1",[31,20,0],[14,12,0],[11,7,1],[6,2,25],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","jalr"], "name": "jr", "mask": 4293951487, "valu": 103, "fullMask": 4294967295, "args": ["rs1",[31,20,0],[14,12,0],[11,7,0],[6,2,25],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","jal"], "name": "jal", "mask": 4095, "valu": 239, "fullMask": 4294967295, "args": ["jimm20",[11,7,1],[6,2,27],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_i","jal"], "name": "j", "mask": 4095, "valu": 111, "fullMask": 4294967295, "args": ["jimm20",[11,7,0],[6,2,27],[1,0,3]]}
 ]},
 {"name": "rv_m", "ratified": true, "opcodes": [
 {"kind": "leaf", "name": "mul", "mask": 4261441663, "valu": 33554483, "fullMask": 4294967295, "args": ["rd","rs1","rs2",[31,25,1],[14,12,0],[6,2,12],[1,0,3]]},
@@ -1097,6 +1134,11 @@
 {"kind": "pseudo", "ref": ["rv_i","ori"], "name": "prefetch.r", "mask": 32538623, "valu": 1073171, "fullMask": 4294967295, "args": ["rs1","imm12hi",[24,20,1],[14,12,6],[11,7,0],[6,2,4],[1,0,3]]},
 {"kind": "pseudo", "ref": ["rv_i","ori"], "name": "prefetch.w", "mask": 32538623, "valu": 3170323, "fullMask": 4294967295, "args": ["rs1","imm12hi",[24,20,3],[14,12,6],[11,7,0],[6,2,4],[1,0,3]]}
 ]},
+{"name": "rv_zicntr", "ratified": true, "opcodes": [
+{"kind": "pseudo", "ref": ["rv_zicsr","csrrs"], "name": "rdcycle", "mask": 4294963327, "valu": 3221233779, "fullMask": 4294967295, "args": ["rd",[19,15,0],[31,20,3072],[14,12,2],[6,2,28],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_zicsr","csrrs"], "name": "rdtime", "mask": 4294963327, "valu": 3222282355, "fullMask": 4294967295, "args": ["rd",[19,15,0],[31,20,3073],[14,12,2],[6,2,28],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_zicsr","csrrs"], "name": "rdinstret", "mask": 4294963327, "valu": 3223330931, "fullMask": 4294967295, "args": ["rd",[19,15,0],[31,20,3074],[14,12,2],[6,2,28],[1,0,3]]}
+]},
 {"name": "rv_zicond", "ratified": true, "opcodes": [
 {"kind": "leaf", "name": "czero.eqz", "mask": 4261441663, "valu": 234901555, "fullMask": 4294967295, "args": ["rd","rs1","rs2",[31,25,7],[14,12,5],[6,2,12],[1,0,3]]},
 {"kind": "leaf", "name": "czero.nez", "mask": 4261441663, "valu": 234909747, "fullMask": 4294967295, "args": ["rd","rs1","rs2",[31,25,7],[14,12,7],[6,2,12],[1,0,3]]}
@@ -1108,20 +1150,13 @@
 {"kind": "leaf", "name": "csrrwi", "mask": 28799, "valu": 20595, "fullMask": 4294967295, "args": ["rd","csr","zimm",[14,12,5],[6,2,28],[1,0,3]]},
 {"kind": "leaf", "name": "csrrsi", "mask": 28799, "valu": 24691, "fullMask": 4294967295, "args": ["rd","csr","zimm",[14,12,6],[6,2,28],[1,0,3]]},
 {"kind": "leaf", "name": "csrrci", "mask": 28799, "valu": 28787, "fullMask": 4294967295, "args": ["rd","csr","zimm",[14,12,7],[6,2,28],[1,0,3]]},
-{"kind": "pseudo", "ref": ["rv_zicsr","csrrs"], "name": "frflags", "mask": 4294963327, "valu": 1056883, "fullMask": 4294967295, "args": ["rd",[19,15,0],[31,20,1],[14,12,2],[6,2,28],[1,0,3]]},
-{"kind": "pseudo", "ref": ["rv_zicsr","csrrw"], "name": "fsflags", "mask": 4293947519, "valu": 1052787, "fullMask": 4294967295, "args": ["rd","rs1",[31,20,1],[14,12,1],[6,2,28],[1,0,3]]},
-{"kind": "pseudo", "ref": ["rv_zicsr","csrrwi"], "name": "fsflagsi", "mask": 4293947519, "valu": 1069171, "fullMask": 4294967295, "args": ["rd","zimm",[31,20,1],[14,12,5],[6,2,28],[1,0,3]]},
-{"kind": "pseudo", "ref": ["rv_zicsr","csrrs"], "name": "frrm", "mask": 4294963327, "valu": 2105459, "fullMask": 4294967295, "args": ["rd",[19,15,0],[31,20,2],[14,12,2],[6,2,28],[1,0,3]]},
-{"kind": "pseudo", "ref": ["rv_zicsr","csrrw"], "name": "fsrm", "mask": 4293947519, "valu": 2101363, "fullMask": 4294967295, "args": ["rd","rs1",[31,20,2],[14,12,1],[6,2,28],[1,0,3]]},
-{"kind": "pseudo", "ref": ["rv_zicsr","csrrwi"], "name": "fsrmi", "mask": 4293947519, "valu": 2117747, "fullMask": 4294967295, "args": ["rd","zimm",[31,20,2],[14,12,5],[6,2,28],[1,0,3]]},
-{"kind": "pseudo", "ref": ["rv_zicsr","csrrw"], "name": "fscsr", "mask": 4293947519, "valu": 3149939, "fullMask": 4294967295, "args": ["rd","rs1",[31,20,3],[14,12,1],[6,2,28],[1,0,3]]},
-{"kind": "pseudo", "ref": ["rv_zicsr","csrrs"], "name": "frcsr", "mask": 4294963327, "valu": 3154035, "fullMask": 4294967295, "args": ["rd",[19,15,0],[31,20,3],[14,12,2],[6,2,28],[1,0,3]]},
-{"kind": "pseudo", "ref": ["rv_zicsr","csrrs"], "name": "rdcycle", "mask": 4294963327, "valu": 3221233779, "fullMask": 4294967295, "args": ["rd",[19,15,0],[31,20,3072],[14,12,2],[6,2,28],[1,0,3]]},
-{"kind": "pseudo", "ref": ["rv_zicsr","csrrs"], "name": "rdtime", "mask": 4294963327, "valu": 3222282355, "fullMask": 4294967295, "args": ["rd",[19,15,0],[31,20,3073],[14,12,2],[6,2,28],[1,0,3]]},
-{"kind": "pseudo", "ref": ["rv_zicsr","csrrs"], "name": "rdinstret", "mask": 4294963327, "valu": 3223330931, "fullMask": 4294967295, "args": ["rd",[19,15,0],[31,20,3074],[14,12,2],[6,2,28],[1,0,3]]},
-{"kind": "pseudo", "ref": ["rv_zicsr","csrrs"], "name": "rdcycleh", "mask": 4294963327, "valu": 3355451507, "fullMask": 4294967295, "args": ["rd",[19,15,0],[31,20,3200],[14,12,2],[6,2,28],[1,0,3]]},
-{"kind": "pseudo", "ref": ["rv_zicsr","csrrs"], "name": "rdtimeh", "mask": 4294963327, "valu": 3356500083, "fullMask": 4294967295, "args": ["rd",[19,15,0],[31,20,3201],[14,12,2],[6,2,28],[1,0,3]]},
-{"kind": "pseudo", "ref": ["rv_zicsr","csrrs"], "name": "rdinstreth", "mask": 4294963327, "valu": 3357548659, "fullMask": 4294967295, "args": ["rd",[19,15,0],[31,20,3202],[14,12,2],[6,2,28],[1,0,3]]}
+{"kind": "pseudo", "ref": ["rv_zicsr","csrrs"], "name": "csrr", "mask": 1044607, "valu": 8307, "fullMask": 4294967295, "args": ["rd","csr",[19,15,0],[14,12,2],[6,2,28],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_zicsr","csrrw"], "name": "csrw", "mask": 32767, "valu": 4211, "fullMask": 4294967295, "args": ["rs1","csr",[14,12,1],[11,7,0],[6,2,28],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_zicsr","csrrs"], "name": "csrs", "mask": 32767, "valu": 8307, "fullMask": 4294967295, "args": ["rs1","csr",[14,12,2],[11,7,0],[6,2,28],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_zicsr","csrrc"], "name": "csrc", "mask": 32767, "valu": 12403, "fullMask": 4294967295, "args": ["rs1","csr",[14,12,3],[11,7,0],[6,2,28],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_zicsr","csrrwi"], "name": "csrwi", "mask": 32767, "valu": 20595, "fullMask": 4294967295, "args": ["csr","zimm",[14,12,5],[11,7,0],[6,2,28],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_zicsr","csrrsi"], "name": "csrsi", "mask": 32767, "valu": 24691, "fullMask": 4294967295, "args": ["csr","zimm",[14,12,6],[11,7,0],[6,2,28],[1,0,3]]},
+{"kind": "pseudo", "ref": ["rv_zicsr","csrrci"], "name": "csrci", "mask": 32767, "valu": 28787, "fullMask": 4294967295, "args": ["csr","zimm",[14,12,7],[11,7,0],[6,2,28],[1,0,3]]}
 ]},
 {"name": "rv_zifencei", "ratified": true, "opcodes": [
 {"kind": "leaf", "name": "fence.i", "mask": 28799, "valu": 4111, "fullMask": 4294967295, "args": ["imm12","rs1",[14,12,1],"rd",[6,2,3],[1,0,3]]}
@@ -1377,6 +1412,9 @@
 {"name": "rv_c_zicfiss", "ratified": false, "opcodes": [
 {"kind": "pseudo", "ref": ["rv_zcmop","c.mop.N"], "name": "c.sspush.x1", "mask": 65535, "valu": 24705, "fullMask": 65535, "args": [[1,0,1],[6,2,0],[11,7,1],[12,12,0],[15,13,3]]},
 {"kind": "pseudo", "ref": ["rv_zcmop","c.mop.N"], "name": "c.sspopchk.x5", "mask": 65535, "valu": 25217, "fullMask": 65535, "args": [[1,0,1],[6,2,0],[11,7,5],[12,12,0],[15,13,3]]}
+]},
+{"name": "rv_smdbltrp", "ratified": false, "opcodes": [
+{"kind": "leaf", "name": "sctrclr", "mask": 4294967295, "valu": 272629875, "fullMask": 4294967295, "args": [[11,7,0],[19,15,0],[31,20,260],[14,12,0],[6,2,28],[1,0,3]]}
 ]},
 {"name": "rv_smrnmi", "ratified": false, "opcodes": [
 {"kind": "leaf", "name": "mnret", "mask": 4294967295, "valu": 1881145459, "fullMask": 4294967295, "args": [[11,7,0],[19,15,0],[31,20,1794],[14,12,0],[6,2,28],[1,0,3]]}
