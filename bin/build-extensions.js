@@ -2,14 +2,12 @@
 'use strict';
 
 const process = require('process');
-
 const { program } = require('commander');
-
 const { writeFile } = require('fs').promises;
 
 const lib = require('../lib');
-
 const getOpcodes = require('../lib/get-opcodes.js');
+const resolveImports = require('../lib/resolve-imports.js');
 
 const countOpcodes = (arr, name) => {
   const o = {};
@@ -28,6 +26,7 @@ const main = async () => {
   program
     .option('--url <url>', 'Github repo name with files')
     .option('--dir <dir>', 'folder with files')
+    .option('-v', 'verbosity')
     .parse(process.argv);
 
   const opts = program.opts();
@@ -62,6 +61,10 @@ const main = async () => {
   );
 
   const opcodesAll = opcodesRatified.concat(opcodesUnratified);
+
+  // perform imports
+
+  resolveImports(opcodesAll);
 
   await writeFile('lib/extensions.json', lib.jsonStringify(opcodesAll));
 
