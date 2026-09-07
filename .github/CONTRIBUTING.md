@@ -1,6 +1,6 @@
 # Contributing to RISCV
 
-We'd love for you to contribute to our source code and to make WaveQL even better than it is today!
+We'd love for you to contribute to our source code and to make riscv even better than it is today!
 
 ## Issues
 
