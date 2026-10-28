@@ -2125,13 +2125,13 @@
 ]},
 {"name": "rv_zvabd", "ratified": false, "opcodes": [
 {"kind": "leaf", "name": "vabd.vv", "mask": 4227887231, "valu": 1409294423, "args": ["vd","vs2","vs1","vm"]},
-{"kind": "leaf", "name": "vabd.vx", "mask": 4227887231, "valu": 1409310807, "args": ["vd","vs2","vs1","vm"]},
+{"kind": "leaf", "name": "vabd.vx", "mask": 4227887231, "valu": 1409310807, "args": ["vd","rs1","vs2","vm"]},
 {"kind": "leaf", "name": "vabdu.vv", "mask": 4227887231, "valu": 1476403287, "args": ["vd","vs2","vs1","vm"]},
-{"kind": "leaf", "name": "vabdu.vx", "mask": 4227887231, "valu": 1476419671, "args": ["vd","vs2","vs1","vm"]},
+{"kind": "leaf", "name": "vabdu.vx", "mask": 4227887231, "valu": 1476419671, "args": ["vd","rs1","vs2","vm"]},
 {"kind": "leaf", "name": "vwabda.vv", "mask": 4227887231, "valu": 4093640791, "args": ["vd","vs2","vs1","vm"]},
-{"kind": "leaf", "name": "vwabda.vx", "mask": 4227887231, "valu": 4093657175, "args": ["vd","vs2","vs1","vm"]},
+{"kind": "leaf", "name": "vwabda.vx", "mask": 4227887231, "valu": 4093657175, "args": ["vd","rs1","vs2","vm"]},
 {"kind": "leaf", "name": "vwabdau.vv", "mask": 4227887231, "valu": 4160749655, "args": ["vd","vs2","vs1","vm"]},
-{"kind": "leaf", "name": "vwabdau.vx", "mask": 4227887231, "valu": 4160766039, "args": ["vd","vs2","vs1","vm"]}
+{"kind": "leaf", "name": "vwabdau.vx", "mask": 4227887231, "valu": 4160766039, "args": ["vd","rs1","vs2","vm"]}
 ]},
 {"name": "rv_zvdot4a", "ratified": false, "opcodes": [
 {"kind": "leaf", "name": "vdot4a.vv", "mask": 4227887231, "valu": 2952798295, "args": ["vd","vs2","vs1","vm"]},
@@ -2143,7 +2143,7 @@
 {"kind": "leaf", "name": "vdot4aus.vx", "mask": 4227887231, "valu": 3087032407, "args": ["vd","rs1","vs2","vm"]}
 ]},
 {"name": "rv_zvfbdota32f", "ratified": false, "opcodes": [
-{"kind": "leaf", "name": "vfbdota.vv", "mask": 4227887231, "valu": 2885685367, "args": ["vd","vs2","vs1","vm"]}
+{"kind": "leaf", "name": "vfbdota.vv", "mask": 4227887231, "valu": 2885685367, "args": ["vd","vs2x8","vs1","vm","ci"]}
 ]},
 {"name": "rv_zvfofp4min", "ratified": false, "opcodes": [
 {"kind": "leaf", "name": "vfext.vf2", "mask": 4228903039, "valu": 1208688727, "args": ["vd","vs2","vm"]}
@@ -2154,22 +2154,22 @@
 {"kind": "leaf", "name": "vfncvtbf16.sat.f.f.w", "mask": 4228903039, "valu": 1208979543, "args": ["vd","vs2","vm"]}
 ]},
 {"name": "rv_zvfqwbdota8f", "ratified": false, "opcodes": [
-{"kind": "leaf", "name": "vfqwbdota.vv", "mask": 4227887231, "valu": 3087011959, "args": ["vd","vs2","vs1","vm"]},
-{"kind": "leaf", "name": "vfqwbdota.alt.vv", "mask": 4227887231, "valu": 3154120823, "args": ["vd","vs2","vs1","vm"]}
+{"kind": "leaf", "name": "vfqwbdota.vv", "mask": 4227887231, "valu": 3087011959, "args": ["vd","vs2x8","vs1","vm","ci"]},
+{"kind": "leaf", "name": "vfqwbdota.alt.vv", "mask": 4227887231, "valu": 3154120823, "args": ["vd","vs2x8","vs1","vm","ci"]}
 ]},
 {"name": "rv_zvfqwdota8f", "ratified": false, "opcodes": [
 {"kind": "leaf", "name": "vfqwdota.vv", "mask": 4227887231, "valu": 2550141047, "args": ["vd","vs2","vs1","vm"]},
 {"kind": "leaf", "name": "vfqwdota.alt.vv", "mask": 4227887231, "valu": 2617249911, "args": ["vd","vs2","vs1","vm"]}
 ]},
 {"name": "rv_zvfwbdota16bf", "ratified": false, "opcodes": [
-{"kind": "leaf", "name": "vfwbdota.vv", "mask": 4227887231, "valu": 2952794231, "args": ["vd","vs2","vs1","vm"]}
+{"kind": "leaf", "name": "vfwbdota.vv", "mask": 4227887231, "valu": 2952794231, "args": ["vd","vs2x8","vs1","vm","ci"]}
 ]},
 {"name": "rv_zvfwdota16bf", "ratified": false, "opcodes": [
 {"kind": "leaf", "name": "vfwdota.vv", "mask": 4227887231, "valu": 2415923319, "args": ["vd","vs2","vs1","vm"]}
 ]},
 {"name": "rv_zvqwbdota8i", "ratified": false, "opcodes": [
-{"kind": "leaf", "name": "vqwbdotau.vv", "mask": 4227887231, "valu": 3087007863, "args": ["vd","vs2","vs1","vm"]},
-{"kind": "leaf", "name": "vqwbdotas.vv", "mask": 4227887231, "valu": 3154116727, "args": ["vd","vs2","vs1","vm"]}
+{"kind": "leaf", "name": "vqwbdotau.vv", "mask": 4227887231, "valu": 3087007863, "args": ["vd","vs2x8","vs1","vm","ci"]},
+{"kind": "leaf", "name": "vqwbdotas.vv", "mask": 4227887231, "valu": 3154116727, "args": ["vd","vs2x8","vs1","vm","ci"]}
 ]},
 {"name": "rv_zvqwdota8i", "ratified": false, "opcodes": [
 {"kind": "leaf", "name": "vqwdotau.vv", "mask": 4227887231, "valu": 2550136951, "args": ["vd","vs2","vs1","vm"]},

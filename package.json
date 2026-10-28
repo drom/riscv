@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "eslint lib test bin eslint.config.js && c8 -r text -r lcov mocha",
-    "prepare": "node bin/build-extensions.js"
+    "opcodes": "node bin/build-extensions.js"
   },
   "repository": {
     "type": "git",
@@ -42,5 +42,10 @@
   },
   "engines": {
     "node": ">=22.13.0"
+  },
+  "riscvOpcodes": {
+    "repo": "riscv/riscv-opcodes",
+    "commit": "f24ac23ec9fa947011781a09cd6fd25a7c36dc45",
+    "date": "2026-10-14T19:04:55Z"
   }
 }

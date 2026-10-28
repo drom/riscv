@@ -202,11 +202,115 @@ riscv.dasm[64](0xc00495d3); // 'fcvt.w.s a1,s1,rtz'
 ## Development
 
 ```sh
-npm i --ignore-scripts
-npm test                                  # eslint + mocha + c8 coverage
-node bin/build-extensions.js              # regenerate lib/extensions.json from GitHub
-node bin/build-extensions.js --dir ../riscv-opcodes/ -v   # ... or from local checkout
+npm i
+npm test          # eslint + mocha + c8 coverage
+npm run opcodes   # rebuild lib/extensions.json from the pinned riscv-opcodes commit
 ```
+
+### Opcode source
+
+`lib/extensions.json` is generated from
+[riscv/riscv-opcodes](https://github.com/riscv/riscv-opcodes) and committed to
+this repo, so installing the package never touches the network.
+
+Current snapshot:
+
+| repo | commit | date |
+|------|--------|------|
+| [riscv/riscv-opcodes](https://github.com/riscv/riscv-opcodes/tree/f24ac23ec9fa947011781a09cd6fd25a7c36dc45) | `f24ac23ec9fa947011781a09cd6fd25a7c36dc45` | 2026-10-14 |
+
+The pin lives in `package.json`:
+
+```json
+"riscvOpcodes": {
+  "repo": "riscv/riscv-opcodes",
+  "commit": "f24ac23ec9fa947011781a09cd6fd25a7c36dc45",
+  "date": "2026-10-14T19:04:55Z"
+}
+```
+
+`bin/build-extensions.js` options:
+
+| option         | description                                                  |
+|----------------|--------------------------------------------------------------|
+| `--ref <ref>`  | commit / branch / tag (default: pinned commit)                |
+| `--url <repo>` | GitHub repo (default: pinned repo)                            |
+| `--dir <dir>`  | use a local riscv-opcodes checkout instead of GitHub          |
+| `--pin`        | store resolved commit and date in `package.json`              |
+| `--dry-run`    | check only, write nothing                                     |
+| `--force`      | write `lib/extensions.json` even if there are errors          |
+| `-v`           | verbose                                                       |
+
+A branch or tag given to `--ref` is resolved to a full commit hash first, so
+all files come from the same commit. Set `GITHUB_TOKEN` to avoid GitHub API
+rate limits.
+
+The build collects all problems and prints them together, grouped, with
+`file:line instruction` locations. Errors stop the build: nothing is written
+and the exit code is 1. Checks:
+
+* **error** -- field name not in `lib/fieldo.js`; the message includes the bit
+  range from upstream `arg_lut.csv` and the line to add
+* **error** -- `lib/fieldo.js` bit range differs from `arg_lut.csv`
+* **error** -- overlapping bit ranges, bad ranges or values, malformed or unknown
+  `$` directives
+* **error** -- `$import` of a missing file or instruction; duplicate file names
+* **warning** -- instruction bits covered by neither fixed bits nor fields
+* **warning** -- `$pseudo_op` referencing a missing file or instruction
+* **warning** -- same instruction name defined twice in one file with unrelated
+  encodings (likely an upstream typo)
+
+Known warnings at the current snapshot (upstream issues):
+
+```
+warning: unratified/rv_zvtbase:5 msetmtypei: bits 28, 24..23, 16..15 not covered by fixed bits or fields
+warning: rv32_zilsd ld: instruction name defined twice with unrelated encodings (upstream typo?)
+```
+
+### Moving to a new riscv-opcodes commit
+
+1. Dry run against the new commit (default branch is `master`):
+
+   ```sh
+   node bin/build-extensions.js --ref master --dry-run
+   ```
+
+   The output shows the resolved commit and date, the pinned commit,
+   the changes compared to the current `lib/extensions.json`
+   (`+` added, `-` removed, `~` changed files and instructions), and the
+   diagnostics.
+
+2. Fix the errors:
+   * *unknown field* -- add the suggested entry to `lib/fieldo.js`. Pick a
+     `kind` (register class: `xr`, `fr`, `vr`, ...; see `lib/kindo.js`, add
+     a new one if needed), `prio` (operand order) and `src` / `dst`, or
+     `bits` (+ `kind: 'sext'`) for immediates. Upstream
+     `src/riscv_opcodes/constants.py` (`latex_mapping`) shows how
+     immediate bits are scattered.
+   * *bit range mismatch* -- upstream changed a field; update `lib/fieldo.js`.
+   * anything else -- most likely an upstream problem; check the referenced
+     `file:line`, report or work around it.
+
+   Repeat step 1 until there are no errors. New warnings are worth a look.
+
+3. Build and pin:
+
+   ```sh
+   node bin/build-extensions.js --ref <commit> --pin
+   ```
+
+   This writes `lib/extensions.json` and updates `riscvOpcodes` in
+   `package.json`.
+
+4. Review and test:
+
+   ```sh
+   git diff lib/extensions.json package.json lib/fieldo.js
+   npm test
+   ```
+
+5. Update the *Current snapshot* table and the *Known warnings* list above,
+   commit.
 
 ## License
 
