@@ -3,7 +3,7 @@
 
 const { writeFile } = require('fs').promises;
 
-const range = require('lodash.range');
+const range = require('../lib/range.js');
 
 const lib = require('../lib');
 

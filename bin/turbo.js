@@ -3,7 +3,7 @@
 
 const process = require('process');
 
-const { program } = require('commander');
+const { parseArgs } = require('util');
 
 const iso = {
   rv32i: [],
@@ -11,11 +11,17 @@ const iso = {
 };
 
 const main = async () => {
-  program
-    .requiredOption('-i, --isa <type>', 'RISC-V ISA string')
-    .parse(process.argv);
+  const { values: opts } = parseArgs({
+    args: process.argv.slice(2),
+    options: {
+      isa: {type: 'string', short: 'i'}
+    }
+  });
 
-  const opts = program.opts();
+  if (opts.isa === undefined) {
+    console.error('error: required option \'-i, --isa <type>\' not specified');
+    process.exit(1);
+  }
 
   const ops = iso[opts.isa];
   if (ops === undefined) {

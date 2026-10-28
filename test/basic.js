@@ -46,4 +46,3 @@ describe('basic', async () => {
 
 });
 
-/* eslint-env mocha */

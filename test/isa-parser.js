@@ -54,4 +54,3 @@ describe('isa-lang-with', async () => {
 
 });
 
-/* eslint-env mocha */

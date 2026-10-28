@@ -11,4 +11,3 @@ describe('dasm', async () => {
   });
 });
 
-/* eslint-env mocha */

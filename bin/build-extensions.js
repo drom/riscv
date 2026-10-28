@@ -2,7 +2,7 @@
 'use strict';
 
 const process = require('process');
-const { program } = require('commander');
+const { parseArgs } = require('util');
 const { writeFile } = require('fs').promises;
 
 const lib = require('../lib');
@@ -23,13 +23,14 @@ const countOpcodes = (arr, name) => {
 
 
 const main = async () => {
-  program
-    .option('--url <url>', 'Github repo name with files')
-    .option('--dir <dir>', 'folder with files')
-    .option('-v', 'verbosity')
-    .parse(process.argv);
-
-  const opts = program.opts();
+  const { values: opts } = parseArgs({
+    args: process.argv.slice(2),
+    options: {
+      url: {type: 'string'}, // Github repo name with files
+      dir: {type: 'string'}, // folder with files
+      v: {type: 'boolean', short: 'v'} // verbosity
+    }
+  });
 
   if (!(opts.url || opts.dir)) {
     opts.url = 'riscv/riscv-opcodes';

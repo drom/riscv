@@ -3,16 +3,27 @@
 
 const process = require('process');
 
-const { program } = require('commander');
+const { parseArgs } = require('util');
 
 const { langParser, isaLangWith, renderAnsi, exto } = require('../lib/index.js');
 
 const main = async () => {
-  program
-    .option('--isa <type>', 'RISC-V ISA string')
-    .parse(process.argv);
+  const { values: opts } = parseArgs({
+    args: process.argv.slice(2),
+    options: {
+      isa: {type: 'string'},
+      help: {type: 'boolean', short: 'h'}
+    }
+  });
 
-  const opts = program.opts();
+  if (opts.help) {
+    console.log(`Usage: riscv [options]
+
+Options:
+  --isa <type>  RISC-V ISA string
+  -h, --help    display help for command`);
+    return;
+  }
 
   if (opts.isa) {
     const parser = langParser(isaLangWith());

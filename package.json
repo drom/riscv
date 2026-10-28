@@ -7,7 +7,7 @@
     "riscv": "bin/riscv.js"
   },
   "scripts": {
-    "test": "eslint lib test bin && nyc -r=text -r=lcov mocha",
+    "test": "eslint lib test bin eslint.config.js && c8 -r text -r lcov mocha",
     "prepare": "node bin/build-extensions.js"
   },
   "repository": {
@@ -18,7 +18,9 @@
     "RISCV"
   ],
   "files": [
-    "lib"
+    "bin/riscv.js",
+    "lib/*.js",
+    "lib/extensions.json"
   ],
   "author": "Aliaksei Chapyzhenka",
   "license": "MIT",
@@ -27,20 +29,18 @@
   },
   "homepage": "https://github.com/drom/riscv#readme",
   "devDependencies": {
-    "@drom/eslint-config": "^0.12.0",
+    "@drom/eslint-config": "^1.0.0",
     "chai": "^4.3.6",
-    "eslint": "^8.57.0",
-    "mocha": "^10.7.3",
-    "nyc": "^17.0.0"
-  },
-  "eslintConfig": {
-    "extends": "@drom/eslint-config/eslint8/node12"
+    "eslint": "^10",
+    "globals": "^17.13.0",
+    "mocha": "^12",
+    "c8": "^12"
   },
   "dependencies": {
-    "async": "^3.2.6",
-    "bit-field": "^1.9.0",
-    "commander": "^12.1.0",
-    "lodash.range": "^3.2.0",
-    "onml": "^2.1.0"
+    "bit-field": "^1.11.0",
+    "onml": "^2.3.0"
+  },
+  "engines": {
+    "node": ">=22.13.0"
   }
 }
