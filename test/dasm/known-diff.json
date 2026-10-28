@@ -1,0 +1,15 @@
+{
+"32:rv_q_zfhmin:462f3153": "fcvt.q.h ft2,ft10,rup",
+"32:rv_q_zfhmin:462694d3": "fcvt.q.h fs1,fa3,rtz",
+"32:rv_q_zfhmin:4432f153": "fcvt.h.q ft2,ft5,dyn",
+"32:rv_q_zfhmin:443189d3": "fcvt.h.q fs3,ft3,rne",
+"32:rv_q_zfhmin:4433ba53": "fcvt.h.q fs4,ft7,rup",
+"32:rv_zcmop:6081": "c.mop.1",
+"32:rv_zcmop:6281": "c.mop.5",
+"64:rv_q_zfhmin:46281c53": "fcvt.q.h fs8,fa6,rtz",
+"64:rv_q_zfhmin:4624fa53": "fcvt.q.h fs4,fs1,dyn",
+"64:rv_q_zfhmin:443f1cd3": "fcvt.h.q fs9,ft10,rtz",
+"64:rv_zcmop:6081": "c.mop.1",
+"64:rv_zcmop:6281": "c.mop.5",
+"64:rv_zicfiss:cdc04073": "mop.r.28 zero,zero"
+}

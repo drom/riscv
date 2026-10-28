@@ -155,7 +155,14 @@ console.log(riscv.renderAnsi(state, riscv.exto));
   }
   ```
 
-  An instruction matches when `(inst & mask) === valu`.
+  An instruction matches when `(inst & mask) === valu`. Optional opcode
+  fields added by local patches (`lib/patches.js`): `alias: true` (assembler
+  alias, not disassembled), `xlen` (only valid for this XLEN), `requires`
+  (list of alternative extensions also needed, e.g. `c.mul`: `['m', 'zmmul']`).
+
+* `syntax` -- assembly syntax per opcode (`lib/syntax.json`), keyed
+  `'<file>::<name>'`: `{udb, asm: 'xd, imm(xs1)', vars: [{name, location,
+  left_shift?, sign_extend?, not?}], ...}`.
 
 * `opcodes` -- lists of `riscv-opcodes` file names:
   `RATIFIED_OPCODES`, `UNRATIFIED_OPCODES`, `ALL_OPCODES`.
@@ -186,25 +193,101 @@ console.log(riscv.renderAnsi(state, riscv.exto));
   `kindo.csr(0x300) === 'mstatus'`.
 * `fieldEnums` -- ABI names: `xabi`, `fabi`, `xabic`, `fabic` (compressed
   register subsets) and `rmlut` (rounding modes).
-* `csrs` -- CSR names keyed by address: `csrs[0x300] === 'mstatus'`.
+* `csrs` -- CSR names keyed by address: `csrs[0x300] === 'mstatus'`
+  (hand-written, 1.x). The disassembler uses `lib/csr-names.json`, built from
+  `riscv-opcodes` `csrs.csv` / `csrs32.csv`.
 
 ### Disassembler
 
-`dasm[32](inst)` / `dasm[64](inst)` -- disassemble a single instruction word
-for RV32 / RV64.
+Table driven, output format of `llvm-mc --disassemble -M no-aliases`
+(no pseudo instructions / aliases).
+
+`dasm(inst, {xlen, isa})` -- disassemble one instruction word. `xlen`
+default: from the ISA string (`rv32...`), else 64.
+
+* `isa` -- ISA string (`'rv64gc_zba'`), list of extension names
+  (`['m', 'zba']`) or `'all'`. Default: base `I` (plus privileged
+  `ecall`, `mret`, `sfence.vma`, ...). Extension implications (`g`, `d` -> `f`,
+  `zk` -> `zkn` ..., `c` -> `zca` / `zcf` / `zcd`) are applied.
+* unknown or reserved encodings -> `.insn 0x...`
 
 ```js
-riscv.dasm[32](0x00a00513); // 'addi a0,zero,10'
-riscv.dasm[32](0x4501);     // 'c.li a0,0'
-riscv.dasm[64](0xc00495d3); // 'fcvt.w.s a1,s1,rtz'
+riscv.dasm(0x00a00513);                     // 'addi a0, zero, 10'
+riscv.dasm(0x4501, {isa: 'rv32gc'});        // 'c.li a0, 0'
+riscv.dasm(0xc00495d3, {isa: 'rv64g'});     // 'fcvt.w.s a1, fs1, rtz'
+riscv.dasm(0x02b54557, {isa: 'rv64gcv'});   // 'vadd.vx v10, v11, a0'
+riscv.dasm(0x7605e013, {isa: 'rv64i_zicbop'}); // 'prefetch.i 1888(a1)'
+riscv.dasm(0x0000000b);                     // '.insn 0x0000000b'
 ```
+
+`decode(inst, {xlen, isa})` -- the same as data:
+
+```js
+riscv.decode(0x00a00513);
+// {name: 'addi', ext: 'rv_i', len: 4, raw: 10487059,
+//  ops: [{kind: 'xreg', name: 'xd', text: 'a0', value: 10}, ...], op, syntax}
+```
+
+`instLength(inst)` -- instruction length in bytes from the low bits
+(2, 4, 6, 8; 0 for reserved >= 80 bit encodings).
+
+How it works:
+
+* candidates: opcodes of the enabled `riscv-opcodes` files, assembler
+  aliases (`mv`, `csrr`, `j`, ...) skipped, more specific encodings (mask
+  popcount) first
+* operands: assembly template and immediate layout from
+  [riscv-unified-db](https://github.com/riscv/riscv-unified-db)
+  (`lib/syntax.json`): register classes, `imm(xs1)`, implicit `sp`,
+  sign extension, scaling, scattered bits
+* reserved values (`c.addi4spn` with imm 0, odd register pairs, `rm` 5 / 6,
+  misaligned vector register groups, ...) reject a candidate
+* names: `.aq` / `.rl` / `.aqrl`, vector segments (`vlseg<N>e8.v`)
+
+Verified against `llvm-mc` (see *Disassembler test oracle* below).
+
+`dasm[32]` / `dasm[64]` (1.x) are removed.
 
 ## Development
 
 ```sh
 npm i
-npm test          # eslint + mocha + c8 coverage
-npm run opcodes   # rebuild lib/extensions.json from the pinned riscv-opcodes commit
+npm test            # eslint + mocha + c8 coverage
+npm run opcodes     # rebuild lib/extensions.json, lib/syntax.json, lib/csr-names.json
+npm run dasm-audit  # disassembler vs llvm-mc golden data
+```
+
+### Data pipeline
+
+```
+riscv-opcodes @pin ── parse ── lib/patches.js ── imports ──> lib/extensions.json
+                       csrs.csv ── patches.csrs ──────────> lib/csr-names.json
+riscv-unified-db @pin ── join by encoding ── lib/syntax-overrides.js ──> lib/syntax.json
+```
+
+* `lib/patches.js` -- local fixes of `riscv-opcodes` data. Class `U`:
+  upstream bug (link the upstream issue / PR in `upstream`); class `N`:
+  upstream naming convention (`.rv32` suffix, aliases), permanent. A patch
+  that matches nothing or changes nothing is reported as stale.
+* `lib/syntax-overrides.js` -- syntax not in, or different from, UDB:
+  HINT encodings, reserved fields, P / Zvt syntax generated from
+  `riscv-opcodes` fields (`rules`). Stale and redundant overrides are reported.
+* the build cross-checks `riscv-opcodes` against UDB (encodings, immediate
+  layout, sign extension) and reports opcodes without syntax.
+
+### Disassembler test oracle
+
+`test/dasm/golden.json` holds random encodings of every opcode disassembled by
+`llvm-mc -M no-aliases` (features from the opcode file name);
+`test/dasm/known-diff.json` the accepted differences (encodings unknown to /
+disputed with LLVM). `npm test` fails on a new difference and on a fixed one
+still listed.
+
+```sh
+node bin/dasm-audit.js                  # statistics
+node bin/dasm-audit.js --show all-diff  # list differences
+node bin/dasm-audit.js --update-known   # accept current differences
+node bin/dasm-audit.js --generate       # regenerate golden data (needs llvm-mc)
 ```
 
 ### Opcode source
@@ -236,7 +319,11 @@ The pin lives in `package.json`:
 | `--ref <ref>`  | commit / branch / tag (default: pinned commit)                |
 | `--url <repo>` | GitHub repo (default: pinned repo)                            |
 | `--dir <dir>`  | use a local riscv-opcodes checkout instead of GitHub          |
-| `--pin`        | store resolved commit and date in `package.json`              |
+| `--udb-ref <ref>` | riscv-unified-db commit / branch / tag (default: pinned)   |
+| `--udb-url <repo>` | riscv-unified-db GitHub repo (default: pinned repo)       |
+| `--udb-dir <dir>` | use a local riscv-unified-db checkout                      |
+| `--skip-udb`   | do not build `lib/syntax.json`                                |
+| `--pin`        | store resolved commit(s) and date(s) in `package.json`        |
 | `--dry-run`    | check only, write nothing                                     |
 | `--force`      | write `lib/extensions.json` even if there are errors          |
 | `-v`           | verbose                                                       |
@@ -260,11 +347,14 @@ and the exit code is 1. Checks:
 * **warning** -- same instruction name defined twice in one file with unrelated
   encodings (likely an upstream typo)
 
-Known warnings at the current snapshot (upstream issues):
+Known warnings at the current snapshot (upstream issues, patched locally,
+see `lib/patches.js`):
 
 ```
 warning: unratified/rv_zvtbase:5 msetmtypei: bits 28, 24..23, 16..15 not covered by fixed bits or fields
-warning: rv32_zilsd ld: instruction name defined twice with unrelated encodings (upstream typo?)
+warning: upstream bug patch without upstream issue / PR link
+warning: rv_zicfiss sspopchk, sspush: instruction name defined twice with unrelated encodings (upstream typo?)
+warning: rv_zvabd vabd.vv, vabdu.vv: encoding differs from UDB (both out of date vs Zvabd v0.7)
 ```
 
 ### Moving to a new riscv-opcodes commit
@@ -283,7 +373,8 @@ warning: rv32_zilsd ld: instruction name defined twice with unrelated encodings 
 2. Fix the errors:
    * *unknown field* -- add the suggested entry to `lib/fieldo.js`. Pick a
      `kind` (register class: `xr`, `fr`, `vr`, ...; see `lib/kindo.js`, add
-     a new one if needed), `prio` (operand order) and `src` / `dst`, or
+     a new one if needed), `prio` (order of `args` in `lib/extensions.json`;
+     not used by the disassembler) and `src` / `dst`, or
      `bits` (+ `kind: 'sext'`) for immediates. Upstream
      `src/riscv_opcodes/constants.py` (`latex_mapping`) shows how
      immediate bits are scattered.

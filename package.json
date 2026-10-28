@@ -1,6 +1,6 @@
 {
   "name": "riscv",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "description": "RISC-V ISA helpers",
   "main": "lib",
   "bin": {
@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "eslint lib test bin eslint.config.js && c8 -r text -r lcov mocha",
-    "opcodes": "node bin/build-extensions.js"
+    "opcodes": "node bin/build-extensions.js",
+    "dasm-audit": "node bin/dasm-audit.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,9 @@
   "files": [
     "bin/riscv.js",
     "lib/*.js",
-    "lib/extensions.json"
+    "lib/extensions.json",
+    "lib/syntax.json",
+    "lib/csr-names.json"
   ],
   "author": "Aliaksei Chapyzhenka",
   "license": "MIT",
@@ -34,7 +37,8 @@
     "eslint": "^10",
     "globals": "^17.13.0",
     "mocha": "^12",
-    "c8": "^12"
+    "c8": "^12",
+    "js-yaml": "^5.5.0"
   },
   "dependencies": {
     "bit-field": "^1.11.0",
@@ -47,5 +51,10 @@
     "repo": "riscv/riscv-opcodes",
     "commit": "f24ac23ec9fa947011781a09cd6fd25a7c36dc45",
     "date": "2026-10-14T19:04:55Z"
+  },
+  "riscvUdb": {
+    "repo": "riscv/riscv-unified-db",
+    "commit": "8b6b77720ad4f7e46ca2377e9403a2c291efb928",
+    "date": "2026-10-27T18:57:25Z"
   }
 }

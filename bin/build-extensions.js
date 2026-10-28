@@ -1,12 +1,21 @@
 #!/usr/bin/env node
 'use strict';
 
+/* eslint no-console: 0 */
+
 // Build lib/extensions.json from riscv-opcodes (https://github.com/riscv/riscv-opcodes)
+// and lib/syntax.json from riscv-unified-db (https://github.com/riscv/riscv-unified-db)
 //
-//   node bin/build-extensions.js                 # pinned commit from package.json
-//   node bin/build-extensions.js --ref master    # other commit / branch / tag
+//   node bin/build-extensions.js                 # pinned commits from package.json
+//   node bin/build-extensions.js --ref master    # other riscv-opcodes commit / branch / tag
 //   node bin/build-extensions.js --ref master --pin   # ... and pin it in package.json
 //   node bin/build-extensions.js --dir ../riscv-opcodes
+//   node bin/build-extensions.js --udb-ref main --pin   # newer riscv-unified-db
+//   node bin/build-extensions.js --udb-dir ../riscv-unified-db
+//
+// Pipeline: riscv-opcodes -> lib/patches.js -> imports -> lib/extensions.json
+//           riscv-unified-db -> join by encoding + cross-check -> lib/syntax-overrides.js
+//           -> lib/syntax.json
 //
 // All problems are collected and reported together. Nothing is written
 // if there are errors (unless --force).
@@ -21,10 +30,18 @@ const getOpcodes = require('../lib/get-opcodes.js');
 const resolveImports = require('../lib/resolve-imports.js');
 const { createReport } = require('../lib/report.js');
 const fieldo = require('../lib/fieldo.js');
+const applyPatches = require('../lib/apply-patches.js');
+const patches = require('../lib/patches.js');
+const getUdb = require('../lib/get-udb.js');
+const udbJoin = require('../lib/udb-join.js');
+const syntaxOverrides = require('../lib/syntax-overrides.js');
 
 const root = path.resolve(__dirname, '..');
 const pkgPath = path.join(root, 'package.json');
 const extPath = path.join(root, 'lib', 'extensions.json');
+const syntaxPath = path.join(root, 'lib', 'syntax.json');
+const csrPath = path.join(root, 'lib', 'csr-names.json');
+const udbCache = path.join(root, 'node_modules', '.cache', 'riscv-udb');
 
 const help = `Usage: build-extensions [options]
 
@@ -32,7 +49,11 @@ Options:
   --url <repo>   GitHub repo (default: package.json riscvOpcodes.repo)
   --ref <ref>    commit / branch / tag (default: package.json riscvOpcodes.commit)
   --dir <dir>    use local riscv-opcodes checkout instead of GitHub
-  --pin          store resolved commit and date in package.json
+  --udb-url <repo>  riscv-unified-db repo (default: package.json riscvUdb.repo)
+  --udb-ref <ref>   commit / branch / tag (default: package.json riscvUdb.commit)
+  --udb-dir <dir>   use local riscv-unified-db checkout instead of GitHub
+  --skip-udb     do not build lib/syntax.json
+  --pin          store resolved commit(s) and date(s) in package.json
   --force        write lib/extensions.json even if there are errors
   --dry-run      check only, do not write anything
   -v             verbose
@@ -116,6 +137,10 @@ const main = async () => {
       url: {type: 'string'},
       ref: {type: 'string'},
       dir: {type: 'string'},
+      'udb-url': {type: 'string'},
+      'udb-ref': {type: 'string'},
+      'udb-dir': {type: 'string'},
+      'skip-udb': {type: 'boolean'},
       pin: {type: 'boolean'},
       force: {type: 'boolean'},
       'dry-run': {type: 'boolean'},
@@ -173,9 +198,20 @@ const build = async (opts) => {
     ...await lib.extractNode(opts, 'unratified/', opcodes.UNRATIFIED_OPCODES, usage, false)
   ];
 
-  // 4. cross-file checks
+  // 4. local fixes, cross-file checks
+  const applied = applyPatches(opcodesAll, patches, report);
+  console.log('patches: ' + applied.length + ' applied'
+    + applied.map(p => '\n  ' + p.id + ' (' + p.class + ', ' + p.count + ' opcode(s))').join(''));
+  if (opcodes.CSRS) {
+    const csrApplied = applyPatches.applyCsrPatches(opcodes.CSRS, patches.csrs, report);
+    console.log('CSR patches: ' + csrApplied.length + ' applied'
+      + csrApplied.map(p => '\n  ' + p.id + ' (' + p.class + ', ' + p.count + ' CSR(s))').join(''));
+  }
   resolveImports(opcodesAll, report);
   checkInstructions(opcodesAll, report);
+
+  // 4b. riscv-unified-db: syntax + cross-check
+  const udb = opts['skip-udb'] ? undefined : await buildSyntax(opts, pkg, opcodesAll, report);
 
   // 5. what changed
   let oldExtos = [];
@@ -191,15 +227,67 @@ const build = async (opts) => {
   // 6. diagnostics
   const errors = report.errors();
   const warnings = report.warnings();
-  if (report.items.length) {
-    console.log('\n' + report.format());
+  const formatted = report.format({verbose: opts.v});
+  if (formatted) {
+    console.log('\n' + formatted);
   }
   console.log('\n' + errors.length + ' error(s), ' + warnings.length + ' warning(s)');
 
-  return save(opts, pkg, rev, opcodesAll, errors.length);
+  return save(opts, pkg, rev, opcodesAll, udb, opcodes.CSRS, errors.length);
 };
 
-const save = async (opts, pkg, rev, opcodesAll, errorCount) => {
+const buildSyntax = async (opts, pkg, opcodesAll, report) => {
+  const pinned = pkg.riscvUdb || {};
+  const uopts = opts['udb-dir']
+    ? {dir: opts['udb-dir']}
+    : {url: opts['udb-url'] || pinned.repo, ref: opts['udb-ref'] || pinned.commit};
+  if (!uopts.dir && !uopts.url) {
+    report.error('no riscv-unified-db source: use --udb-url / --udb-dir or riscvUdb in package.json');
+    return;
+  }
+  uopts.v = opts.v;
+  uopts.cache = udbCache;
+  const rev = await getOpcodes.getCommit(uopts, {paths: [getUdb.INST_DIR], defaultRef: 'main'});
+  if (uopts.url) uopts.ref = rev.commit;
+  if (rev.dirty) {
+    report.warn('local riscv-unified-db checkout has uncommitted changes in ' + getUdb.INST_DIR);
+  }
+  console.log('\nUDB: ' + (uopts.dir || uopts.url)
+    + (rev.commit ? ' @ ' + rev.commit + ' (' + rev.date + ')' : ''));
+  if (pinned.commit && rev.commit && pinned.commit !== rev.commit) {
+    console.log('pinned: ' + pinned.commit + ' (' + pinned.date + ')');
+  }
+  const insts = await getUdb(uopts, report);
+  const {syntax, counts} = udbJoin(opcodesAll, insts, report);
+  const overridden = udbJoin.applyOverrides(opcodesAll, syntax, syntaxOverrides, report);
+  const missing = udbJoin.checkMissing(opcodesAll, syntax, report);
+  console.log('UDB instructions: ' + insts.length);
+  console.log('join: ' + Object.entries(counts).map(([k, v]) => k + ' ' + v).join(', '));
+  console.log('overrides: ' + overridden + ', without syntax: ' + missing);
+
+  let old = {};
+  try {
+    old = JSON.parse(await readFile(syntaxPath, 'utf8'));
+  } catch {
+    // first build
+  }
+  const keys = new Set([...Object.keys(old), ...Object.keys(syntax)]);
+  const changed = [...keys].filter(k => JSON.stringify(old[k]) !== JSON.stringify(syntax[k]));
+  console.log('changes vs lib/syntax.json: ' + (changed.length ? changed.length + ' entries' : 'none'));
+  if (opts.v) changed.forEach(k => console.log('  ' + k));
+  return {opts: uopts, rev, syntax};
+};
+
+// one entry per line keeps git diffs readable
+const stringifySyntax = (syntax) => '{\n' + Object.entries(syntax)
+  .map(([k, v]) => JSON.stringify(k) + ': ' + JSON.stringify(v)).join(',\n') + '\n}\n';
+
+// {all: {num: name}, rv32: {...}}, one CSR per line
+const stringifyCsrs = (csrs) => '{\n' + Object.entries(csrs).map(([k, t]) => JSON.stringify(k) + ': {\n'
+  + Object.entries(t).map(([n, name]) => JSON.stringify(n) + ': ' + JSON.stringify(name)).join(',\n')
+  + '\n}').join(',\n') + '\n}\n';
+
+const save = async (opts, pkg, rev, opcodesAll, udb, csrs, errorCount) => {
   if (opts['dry-run']) {
     return errorCount ? 1 : 0;
   }
@@ -210,13 +298,33 @@ const save = async (opts, pkg, rev, opcodesAll, errorCount) => {
 
   await writeFile(extPath, lib.jsonStringify(opcodesAll));
   console.log('written: lib/extensions.json');
+  if (csrs) {
+    await writeFile(csrPath, stringifyCsrs(csrs));
+    console.log('written: lib/csr-names.json (' + Object.keys(csrs.all).length + ' + '
+      + Object.keys(csrs.rv32).length + ' rv32 CSRs)');
+  }
+  if (udb) {
+    await writeFile(syntaxPath, stringifySyntax(udb.syntax));
+    console.log('written: lib/syntax.json');
+  }
 
-  if (opts.pin && opts.url && rev.commit) {
-    pkg.riscvOpcodes = {repo: opts.url, commit: rev.commit, date: rev.date};
-    await writeFile(pkgPath, JSON.stringify(pkg, null, 2) + '\n');
-    console.log('pinned: ' + rev.commit + ' (' + rev.date + ') in package.json');
-  } else if (opts.pin) {
-    console.log('--pin needs GitHub source (not --dir)');
+  if (opts.pin) {
+    let pinned = false;
+    if (opts.url && rev.commit) {
+      pkg.riscvOpcodes = {repo: opts.url, commit: rev.commit, date: rev.date};
+      console.log('pinned riscv-opcodes: ' + rev.commit + ' (' + rev.date + ') in package.json');
+      pinned = true;
+    }
+    if (udb && udb.opts.url && udb.rev.commit) {
+      pkg.riscvUdb = {repo: udb.opts.url, commit: udb.rev.commit, date: udb.rev.date};
+      console.log('pinned riscv-unified-db: ' + udb.rev.commit + ' (' + udb.rev.date + ') in package.json');
+      pinned = true;
+    }
+    if (pinned) {
+      await writeFile(pkgPath, JSON.stringify(pkg, null, 2) + '\n');
+    } else {
+      console.log('--pin needs GitHub source (not --dir / --udb-dir)');
+    }
   }
   return errorCount ? 1 : 0;
 };
