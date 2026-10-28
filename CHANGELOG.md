@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.1.0
+
+New:
+
+* `exto`: added `zvfofp8min` (v0.9), `zvfofp4min` (v0.1), `zce` (v1.0) and
+  `svukte` (v0.4)
+
+Fixed:
+
+* `exto` spec URLs follow the current riscv-isa-manual layout
+  (`src/unpriv/`, `src/priv/`, `src/profiles/`): per-extension `.adoc`
+  files, updated anchors. AIA links now point to `.adoc`, profile links to
+  isa-manual. `zam` link pinned to the last commit that has its spec file.
+  `zibi` and `smpmpmt` links updated
+
 ## 2.0.0
 
 Breaking:
