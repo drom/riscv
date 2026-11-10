@@ -1,5 +1,37 @@
 # Changelog
 
+## 2.2.0
+
+New:
+
+* exports: `isaSet`, `implies`, `fileExts`, `csrNames`
+  (`lib/csr-names.json`), `candidates(xlen, isa)`, `buckets(cands)`,
+  `bucketMask(len)`, `varValue`, `parseLocation`, `vtype`, `fliTable` --
+  building blocks for other decoders / code generators, no `riscv/lib/*`
+  deep requires needed
+* `decode.js`: candidate list (`candidates`) split from bucket table
+  (`buckets`)
+* embedded vector subsets: `zve32x`, `zve32f`, `zve64x`, `zve64f`, `zve64d`
+  enable `rv_v` instructions (were `.insn`); ELEN=32: EEW=64 loads / stores
+  and 64-bit indices reserved; vector FP (`vf*`, `vmf*`) requires `zve32f`
+  (patch `v-fp-requires-zve32f`); `zvl*b` implications
+* README: ISA section (`parseIsaString`, `isaSet`, `implies`, `isaFiles`,
+  `fileExts`, Zve rules)
+
+Changed:
+
+* `v` implies `zve64d`, `zvl128b` (so `f`, `d`, per V spec):
+  `isaFiles('rv64imacv', 64)` now includes `rv_f`, `rv_d`
+* `fileExts('rv_v')` is `['zve32x']` (was `['v']`)
+
+Fixed:
+
+* `lib/extensions.json`: identical opcodes after renames removed
+  (`rv32_i`: `slli`, `srli`, `srai`; `rv32_c`: `c.slli`, `c.srli`, `c.srai`
+  were listed twice -- upstream has both `slli` and `slli_rv32`)
+* `bin/build-extensions.js`: error on an instruction defined twice with the
+  same encoding in one file
+
 ## 2.1.0
 
 New:
