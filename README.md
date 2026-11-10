@@ -196,6 +196,8 @@ console.log(riscv.renderAnsi(state, riscv.exto));
 * `csrs` -- CSR names keyed by address: `csrs[0x300] === 'mstatus'`
   (hand-written, 1.x). The disassembler uses `lib/csr-names.json`, built from
   `riscv-opcodes` `csrs.csv` / `csrs32.csv`.
+* `csrNames` -- `lib/csr-names.json`: `{all: {num: name}, rv32: {num: name}}`
+  (`rv32`: RV32 only high halves, `cycleh`, ...).
 
 ### Disassembler
 
@@ -231,6 +233,20 @@ riscv.decode(0x00a00513);
 `instLength(inst)` -- instruction length in bytes from the low bits
 (2, 4, 6, 8; 0 for reserved >= 80 bit encodings).
 
+Building blocks (for other decoders / code generators, e.g. a C++
+disassembler with the same output):
+
+* `candidates(xlen, isa)` -- decoder candidates in match order:
+  `[{name, ext, key, op, syntax, mask, valu, len, pop, fileIdx}]`
+  (`key`: `syntax` key `'<file>::<name>'`, `pop`: mask popcount)
+* `buckets(cands)` -- `{2: Map, 4: Map}`, bucket key
+  `inst & bucketMask(len)` -> candidates; `bucketMask(2) === 0xe003`,
+  `bucketMask(4) === 0x7f`
+* `varValue(inst, v)` -- value of a `syntax` variable (location, shift,
+  sign extension, add, map); `parseLocation('12|4-3')` -> `[12, 4, 3]`
+* `vtype(x)` -- `vtypei` text: `vtype(0xd0) === 'e32, m1, ta, ma'`
+* `fliTable` -- `fli.*` immediate texts (32 entries)
+
 How it works:
 
 * candidates: opcodes of the enabled `riscv-opcodes` files, assembler
@@ -247,6 +263,20 @@ How it works:
 Verified against `llvm-mc` (see *Disassembler test oracle* below).
 
 `dasm[32]` / `dasm[64]` (1.x) are removed.
+
+### ISA
+
+* `parseIsaString(str)` -- `'rv64imac_zba_zbb2p0'` -> `['i', 'm', 'a', 'c', 'zba', 'zbb']`
+  (versions dropped)
+* `isaSet(isa, xlen)` -- `Set` of enabled extensions after implications
+  (`isa`: ISA string or list of names); `null` for `'all'`.
+  `isaSet('rv64gc', 64).has('zicsr') === true`
+* `implies` -- implication table `{ext: [implied, ...]}` used by `isaSet`
+  (read only)
+* `isaFiles(isa, xlen)` -- enabled `riscv-opcodes` file names, in
+  `extensions` order: `isaFiles('rv64gc', 64)` -> `['rv64_a', ..., 'rv_c_d', ...]`
+* `fileExts(file)` -- extensions a file needs: `fileExts('rv_c_d')` ->
+  `['zcd']`, `fileExts('rv_d_zfa')` -> `['d', 'zfa']`
 
 ## Development
 

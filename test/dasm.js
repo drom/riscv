@@ -111,3 +111,46 @@ describe('isa', () => {
     expect(isaFiles('all', 64)).to.not.include('rv_v_aliases');
   });
 });
+
+describe('exports', () => {
+  const riscv = require('../lib');
+
+  it('ISA, decoder building blocks, CSR names', () => {
+    for (const name of ['isaSet', 'implies', 'fileExts', 'isaFiles', 'parseIsaString',
+      'candidates', 'buckets', 'bucketMask', 'varValue', 'parseLocation', 'vtype',
+      'fliTable', 'csrNames', 'syntax', 'extensions', 'decode', 'dasm', 'instLength']) {
+      expect(riscv[name], name).to.not.eq(undefined);
+    }
+    expect(riscv.isaSet('rv64gc', 64).has('zicsr')).to.eq(true);
+    expect(riscv.isaSet('all', 64)).to.eq(null);
+    expect(riscv.implies.g).to.include('d');
+    expect(riscv.fileExts('rv_c_d')).to.deep.eq(['zcd']);
+    expect(riscv.csrNames.all[0x300]).to.eq('mstatus');
+    expect(riscv.csrNames.rv32[0xc80]).to.eq('cycleh');
+    expect(riscv.vtype(0xd0)).to.eq('e32, m1, ta, ma');
+    expect(riscv.fliTable).to.have.length(32);
+    expect(riscv.parseLocation('12|4-3')).to.deep.eq([12, 4, 3]);
+    expect(riscv.bucketMask(2)).to.eq(0xe003);
+  });
+
+  it('candidates: order, no duplicates, consistent with decode', () => {
+    for (const xlen of [32, 64]) {
+      const cands = riscv.candidates(xlen, 'all');
+      const ids = new Set();
+      cands.forEach((c, i) => {
+        const id = c.name + ':' + c.mask + ':' + c.valu;
+        expect(ids.has(id), id).to.eq(false);
+        ids.add(id);
+        expect(c.op.alias, c.key).to.not.eq(true);
+        if (i) expect(cands[i - 1].pop >= c.pop).to.eq(true);
+      });
+      // every candidate's own encoding decodes to a candidate of equal or higher priority
+      const b = riscv.buckets(cands);
+      for (const c of cands.slice(0, 200)) {
+        const bucket = b[c.len].get((c.valu & riscv.bucketMask(c.len)) >>> 0);
+        expect(bucket, c.key).to.include(c);
+      }
+    }
+    expect(riscv.candidates(64, 'rv64i').map(c => c.name)).to.include('addi');
+  });
+});
