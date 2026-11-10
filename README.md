@@ -290,6 +290,69 @@ Vector: `v` implies `zve64d` (-> `zve64f`, `zve64x`, `zve32f`, `zve32x`,
 * SEW dependent limits (FP64 under `zve32f`, `vmulh` EEW=64 under `zve64x`,
   unsupported `vtypei` -> `vill`) are runtime properties, decoded normally
 
+### C++ disassembler
+
+`dasmCpp({xlen, isa, style, namespace})` -- generates a C++11 disassembler
+with the same output as `dasm(inst, {xlen, isa})`; XLEN and ISA are fixed at
+generation time. Returns `{lines, count}` (C++ source lines, number of
+instructions).
+
+* `style: 'members'` (default) -- member functions and tables to embed into
+  a class / struct (e.g. a SystemC tracer); include `<cstdint>`,
+  `<iostream>`, `<iomanip>` before the class
+* `style: 'header'` -- complete header: include guard, includes,
+  `namespace <namespace>` (default `riscv_dasm`) with free functions
+
+Generated API: `void dasm(std::ostream &os, uint32_t inst)` and
+`void dasm(uint32_t inst)` (`std::cout`). Stream flags and fill are restored.
+
+```js
+const fs = require('fs');
+const {lines} = riscv.dasmCpp({xlen: 64, isa: 'rv64gcv', style: 'header'});
+fs.writeFileSync('riscv_dasm.h', lines.join('\n') + '\n');
+// C++: riscv_dasm::dasm(std::cout, 0x00a00513); // addi a0, zero, 10
+```
+
+Candidates, operand rules (`lib/operands.js`, JS and C++ forms side by
+side), reserved encodings and names are shared with the JS decoder;
+`test/dasm-cpp.js` compiles the output (`$CXX`, `c++`, `g++`, `clang++`;
+skipped without a compiler) and compares it with `dasm`.
+
+### Vendor extensions
+
+`extend(pack, {override, report})` -- returns a new context with vendor
+data added; the built-in data (and the parent context) stay unchanged.
+
+```js
+const ctx = riscv.extend({
+  exto: {xfoo: {desc: 'Foo extension', url: 'https://example.com/xfoo'}},
+  extensions: [{name: 'rv_xfoo', ratified: false, opcodes: [
+    {kind: 'leaf', name: 'foo.add', mask: 0xfe00707f, valu: 0x0000000b, args: ['rd', 'rs1', 'rs2']}
+  ]}],
+  syntax: {'rv_xfoo::foo.add': {asm: 'xd, xs1, xs2', vars: [
+    {name: 'xs2', location: '24-20'}, {name: 'xs1', location: '19-15'}, {name: 'xd', location: '11-7'}
+  ]}},
+  implies: {xfoo: ['zicsr']},
+  csrNames: {all: {0x7c0: 'foocfg'}}
+});
+ctx.dasm(0x00c5850b, {isa: 'rv64i_xfoo'}); // 'foo.add a0, a1, a2'
+```
+
+* pack fields (all optional): `exto`, `extensions` (`lib/extensions.json`
+  format, files `rv_<ext>`, `rv32_<ext>`, `rv64_<ext>`), `syntax`
+  (`lib/syntax.json` format, keys `'<file>::<name>'`), `implies`,
+  `csrNames` (`{all, rv32}`), `fieldo`
+* context: `dasm`, `decode`, `candidates`, `isaSet`, `isaFiles`, `dasmCpp`,
+  `renderAnsi(state)` (pack `exto` and instruction counts), `getCount`,
+  `extend` (chain), merged data (`extensions`, `syntax`, `exto`, ...)
+* validation: file names, opcode fields, `valu & ~mask == 0`, imports,
+  syntax keys; encodings overlapping existing opcodes and existing files /
+  syntax keys are errors unless `override: true`; opcodes without syntax and
+  instruction bits covered neither by fixed bits nor by syntax variables are
+  warnings. Errors throw, unless `report` (`createReport()` of
+  `lib/report.js`) is given: then all items are collected there
+* `builtin` -- the context of the built-in data (module exports)
+
 ## Development
 
 ```sh
