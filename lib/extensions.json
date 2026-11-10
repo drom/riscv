@@ -3,9 +3,6 @@
 {"kind": "leaf", "name": "c.jal", "mask": 57347, "valu": 8193, "args": ["c_imm12"]},
 {"kind": "pseudo", "ref": ["rv64_c","c.srli"], "name": "c.srli", "mask": 64515, "valu": 32769, "args": ["rd_rs1_p","c_nzuimm5"]},
 {"kind": "pseudo", "ref": ["rv64_c","c.srai"], "name": "c.srai", "mask": 64515, "valu": 33793, "args": ["rd_rs1_p","c_nzuimm5"]},
-{"kind": "pseudo", "ref": ["rv64_c","c.slli"], "name": "c.slli", "mask": 61443, "valu": 2, "args": ["rd_rs1_n0","c_nzuimm6lo"]},
-{"kind": "pseudo", "ref": ["rv64_c","c.srli"], "name": "c.srli", "mask": 64515, "valu": 32769, "args": ["rd_rs1_p","c_nzuimm5"]},
-{"kind": "pseudo", "ref": ["rv64_c","c.srai"], "name": "c.srai", "mask": 64515, "valu": 33793, "args": ["rd_rs1_p","c_nzuimm5"]},
 {"kind": "pseudo", "ref": ["rv64_c","c.slli"], "name": "c.slli", "mask": 61443, "valu": 2, "args": ["rd_rs1_n0","c_nzuimm6lo"]}
 ]},
 {"name": "rv32_c_f", "ratified": true, "opcodes": [
@@ -19,9 +16,6 @@
 {"kind": "leaf", "name": "fmvp.d.x", "mask": 4261441663, "valu": 2986344531, "args": ["rd","rs1","rs2"]}
 ]},
 {"name": "rv32_i", "ratified": true, "opcodes": [
-{"kind": "pseudo", "ref": ["rv64_i","slli"], "name": "slli", "mask": 4261441663, "valu": 4115, "args": ["rd","rs1","shamtw"]},
-{"kind": "pseudo", "ref": ["rv64_i","srli"], "name": "srli", "mask": 4261441663, "valu": 20499, "args": ["rd","rs1","shamtw"]},
-{"kind": "pseudo", "ref": ["rv64_i","srai"], "name": "srai", "mask": 4261441663, "valu": 1073762323, "args": ["rd","rs1","shamtw"]},
 {"kind": "pseudo", "ref": ["rv64_i","slli"], "name": "slli", "mask": 4261441663, "valu": 4115, "args": ["rd","rs1","shamtw"]},
 {"kind": "pseudo", "ref": ["rv64_i","srli"], "name": "srli", "mask": 4261441663, "valu": 20499, "args": ["rd","rs1","shamtw"]},
 {"kind": "pseudo", "ref": ["rv64_i","srai"], "name": "srai", "mask": 4261441663, "valu": 1073762323, "args": ["rd","rs1","shamtw"]}

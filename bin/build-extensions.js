@@ -83,9 +83,19 @@ const checkLut = (lut, report) => {
 // a is a specialization of b (pseudo with more fixed bits)
 const isSubset = (a, b) => (((a.mask & b.mask) >>> 0) === b.mask) && (((a.valu & b.mask) >>> 0) === b.valu);
 
-// same instruction name defined twice in one file with unrelated encodings
+// same instruction name defined twice in one file with unrelated encodings;
+// same name + encoding twice (ambiguous for decoders) is an error
 const checkInstructions = (extos, report) => {
   for (const exto of extos) {
+    const keys = new Set();
+    for (const op of exto.opcodes) {
+      if (op.kind === 'import') continue;
+      const key = op.name + ':' + op.mask + ':' + op.valu;
+      if (keys.has(key)) {
+        report.error('instruction defined twice with the same encoding', {file: exto.name, inst: op.name});
+      }
+      keys.add(key);
+    }
     const seen = {};
     for (const op of exto.opcodes) {
       if (op.kind === 'import') continue;

@@ -84,6 +84,29 @@ describe('patches', () => {
     expect(msgs(report)).to.deep.eq(['warning: gone: patch is stale: no CSR moved (fixed upstream?), remove it']);
   });
 
+  it('identical opcodes after rename are removed', () => {
+    const report = createReport();
+    const data = [{name: 'rv32_i', opcodes: [
+      {kind: 'pseudo', ref: ['rv64_i', 'slli'], name: 'slli', mask: 7, valu: 1, args: ['rd']},
+      {kind: 'pseudo', ref: ['rv64_i', 'slli'], name: 'slli_rv32', mask: 7, valu: 1, args: ['rd']}
+    ]}];
+    applyPatches(data, [{id: 'rv32', class: 'N', match: {name: /_rv32$/}, rename: [/_rv32$/, '']}], report);
+    expect(data[0].opcodes.map(o => o.name)).to.deep.eq(['slli']);
+    expect(msgs(report)).to.deep.eq(['info: slli: identical opcode after patches removed']);
+  });
+
+  it('no instruction defined twice with the same encoding', () => {
+    for (const ext of require('../lib/extensions.json')) {
+      const keys = new Set();
+      for (const op of ext.opcodes) {
+        if (op.kind === 'import') continue;
+        const key = op.name + ':' + op.mask + ':' + op.valu;
+        expect(keys.has(key), ext.name + ' ' + key).to.eq(false);
+        keys.add(key);
+      }
+    }
+  });
+
   it('lib/patches.js is well formed', () => {
     const patches = require('../lib/patches.js');
     const ids = new Set();
