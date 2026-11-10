@@ -12,9 +12,10 @@ const knownPath = path.join(dir, 'known-diff.json');
 const { fileExts } = require('../../lib/isa.js');
 
 // extensions enabled for a sample: the parts of its riscv-opcodes file name
-// (same as the llvm-mc -mattr used for the golden data)
+// (same as the llvm-mc -mattr used for the golden data; rv_v -> +v, not the
+// minimal Zve32x subset fileExts reports)
 const isaOf = (sample) => (fileExts(sample.ext) || [])
-  .flatMap(e => (e === 'zicbo') ? ['zicbom', 'zicboz', 'zicbop'] : [e]);
+  .flatMap(e => (e === 'zicbo') ? ['zicbom', 'zicboz', 'zicbop'] : (e === 'zve32x') ? ['v'] : [e]);
 
 const ours = (sample) => {
   const dasm = require('../../lib/dasm.js');

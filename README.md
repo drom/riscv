@@ -276,7 +276,19 @@ Verified against `llvm-mc` (see *Disassembler test oracle* below).
 * `isaFiles(isa, xlen)` -- enabled `riscv-opcodes` file names, in
   `extensions` order: `isaFiles('rv64gc', 64)` -> `['rv64_a', ..., 'rv_c_d', ...]`
 * `fileExts(file)` -- extensions a file needs: `fileExts('rv_c_d')` ->
-  `['zcd']`, `fileExts('rv_d_zfa')` -> `['d', 'zfa']`
+  `['zcd']`, `fileExts('rv_d_zfa')` -> `['d', 'zfa']`, `fileExts('rv_v')` ->
+  `['zve32x']`
+
+Vector: `v` implies `zve64d` (-> `zve64f`, `zve64x`, `zve32f`, `zve32x`,
+`f`, `d`) and `zvl128b`. Embedded subsets (`zve32x`, `zve32f`, `zve64x`,
+`zve64f`, `zve64d`) enable the `rv_v` instructions they support (V spec):
+
+* ELEN=32 (`zve32*` only): EEW=64 loads / stores (`vle64.v`, `vlse64.v`,
+  `vl1re64.v`, `vlseg<N>e64.v`, ...) and 64-bit indices (`vluxei64.v`, ...)
+  are reserved -> `.insn`
+* vector FP (`vf*`, `vmf*`) needs `zve32f`
+* SEW dependent limits (FP64 under `zve32f`, `vmulh` EEW=64 under `zve64x`,
+  unsupported `vtypei` -> `vill`) are runtime properties, decoded normally
 
 ## Development
 

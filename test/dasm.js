@@ -144,7 +144,7 @@ describe('exports', () => {
         expect(c.op.alias, c.key).to.not.eq(true);
         if (i) expect(cands[i - 1].pop >= c.pop).to.eq(true);
       });
-      // every candidate's own encoding decodes to a candidate of equal or higher priority
+      // every candidate is in the bucket of its own encoding
       const b = riscv.buckets(cands);
       for (const c of cands.slice(0, 200)) {
         const bucket = b[c.len].get((c.valu & riscv.bucketMask(c.len)) >>> 0);
@@ -152,5 +152,50 @@ describe('exports', () => {
       }
     }
     expect(riscv.candidates(64, 'rv64i').map(c => c.name)).to.include('addi');
+  });
+});
+
+describe('embedded vector subsets (Zve*)', () => {
+  const riscv = require('../lib');
+  const op = (name) => riscv.extensions.find(e => e.name === 'rv_v').opcodes.find(o => o.name === name).valu;
+  const d = (name, isa) => dasm(op(name), {isa}).split(' ')[0];
+  // vsetvli a0, a1, e64, m1, ta, ma
+  const vsetvli = ((0xd8 << 20) | (11 << 15) | (7 << 12) | (10 << 7) | 0x57) >>> 0;
+
+  it('implications, ELEN', () => {
+    const set = riscv.isaSet('rv32imac_zve32x', 32);
+    expect([...set]).to.include.members(['zve32x', 'zicsr', 'zvl32b']);
+    expect(set.has('zve32f')).to.eq(false);
+    expect([...riscv.isaSet('rv64gcv', 64)]).to.include.members(['zve64d', 'zve64f', 'zve64x', 'zve32f', 'zvl128b', 'zvl32b']);
+    expect(riscv.isaFiles('rv32imac_zve32x', 32)).to.include('rv_v');
+    expect(riscv.fileExts('rv_v')).to.deep.eq(['zve32x']);
+    const { elen } = require('../lib/isa.js');
+    expect(elen(riscv.isaSet('rv32imac_zve32x', 32))).to.eq(32);
+    expect(elen(riscv.isaSet('rv32imac_zve64x', 32))).to.eq(64);
+    expect(elen(riscv.isaSet('rv64gcv', 64))).to.eq(64);
+    expect(elen(riscv.isaSet('rv64gc', 64))).to.eq(0);
+  });
+
+  it('integer instructions decode, EEW=64 load / store reserved without ELEN=64', () => {
+    expect(d('vadd.vv', 'rv32imac_zve32x')).to.eq('vadd.vv');
+    for (const name of ['vle64.v', 'vse64.v', 'vlse64.v', 'vle64ff.v', 'vl1re64.v', 'vluxei64.v', 'vsoxei64.v']) {
+      expect(d(name, 'rv32imac_zve32x'), name).to.eq('.insn');
+      expect(d(name, 'rv64imac_zve64x'), name).to.eq(name);
+      expect(d(name, 'rv64gcv'), name).to.eq(name);
+    }
+    expect(d('vle32.v', 'rv32imac_zve32x')).to.eq('vle32.v');
+    expect(d('vluxei64.v', 'rv32imac_zve64x')).to.eq('.insn'); // XLEN=32
+  });
+
+  it('vector FP needs Zve32f', () => {
+    expect(d('vfadd.vv', 'rv32imac_zve32x')).to.eq('.insn');
+    expect(d('vmfeq.vv', 'rv64imac_zve64x')).to.eq('.insn');
+    expect(d('vfadd.vv', 'rv32imafc_zve32f')).to.eq('vfadd.vv');
+    expect(d('vfadd.vv', 'rv64gcv')).to.eq('vfadd.vv');
+    expect(d('vfirst.m', 'rv32imac_zve32x')).to.eq('vfirst.m');
+  });
+
+  it('vtype dependent legality is a runtime property (vill), not reserved', () => {
+    expect(dasm(vsetvli, {isa: 'rv32imac_zve32x'})).to.eq('vsetvli a0, a1, e64, m1, ta, ma');
   });
 });
