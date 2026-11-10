@@ -1,5 +1,28 @@
 # Changelog
 
+## 2.3.0
+
+New:
+
+* `dasmCpp({xlen, isa, style, namespace})` -- C++11 disassembler generator,
+  same output as `dasm` (`style: 'members'` to embed into a class,
+  `'header'` for a standalone namespace header);
+  `test/dasm-cpp.js` compiles and compares with `dasm` (skipped without a
+  C++ compiler)
+* `extend(pack, {override, report})` -- vendor extension contexts: `exto`,
+  `extensions`, `syntax`, `implies`, `csrNames`, `fieldo`; context API
+  `dasm`, `decode`, `candidates`, `isaSet`, `isaFiles`, `dasmCpp`,
+  `renderAnsi`, `getCount`, `extend`; validation (file names, encodings,
+  overlaps, imports, syntax keys, bit coverage); built-in data never
+  modified. `builtin` -- context of the built-in data
+* `lib/operands.js` -- operand formatters (JS and C++ forms), reserved
+  encoding rules and name suffixes shared by `decode` and `dasmCpp`
+* factories: `createIsa`, `createDecode`, `createDasm`, `createDasmCpp`,
+  `createGetCount`, `createContext`
+* `renderAnsi(state, exto, {getCount})` -- optional instruction counter
+
+Unchanged: `dasm` / `decode` output (golden test).
+
 ## 2.2.0
 
 New:
